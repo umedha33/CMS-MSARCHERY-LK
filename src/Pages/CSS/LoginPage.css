@@ -1,0 +1,216 @@
+.login-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #5402BD, #014BBB);
+}
+
+.topograph {
+    z-index: 1;
+    position: fixed;
+    opacity: 0.1;
+}
+
+.container {
+    z-index: 2;
+    display: flex;
+    border-radius: 40px;
+    margin: 20px;
+    width: 70%;
+    height: 85%;
+    background: white;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.left-pane {
+    background: #C7FF5E;
+    width: 55%;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.right-pane {
+    width: 45%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#keep-trad {
+    max-width: 30px;
+    margin: 50px;
+    font-size: 4rem;
+    font-family: "Protest Revolution", sans-serif;
+    font-weight: 700;
+}
+
+.parag {
+    position: absolute;
+    bottom: 38px;
+    margin: 50px;
+    font-size: 1.1rem;
+    line-height: 5px;
+}
+
+#p-email {
+    font-weight: bold;
+    cursor: pointer;
+    font-style: italic;
+    font-size: 1rem;
+}
+
+#p-email:hover {
+    color: rgb(0, 67, 237);
+}
+
+#left-head {
+    text-align: center;
+    /* align-items: center; */
+    font-size: 1.5rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+#center-subhead {
+    text-align: center;
+    /* align-items: center; */
+    font-size: 1.8rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 700;
+    color: rgb(0, 67, 237);
+}
+
+#email {
+    padding-left: 10px;
+    width: 60%;
+    height: 40px;
+    margin: 10px;
+    font-size: 1rem;
+    font-style: normal;
+    border-radius: 5px;
+    border: 1.5px solid rgba(0, 0, 0, 0.371);
+}
+
+#email::placeholder {
+    font-size: 1rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(124, 124, 124);
+}
+
+#email:hover {
+    color: rgb(0, 67, 237);
+}
+
+#password {
+    padding-left: 10px;
+    width: 60%;
+    height: 40px;
+    margin: 10px;
+    margin-top: -10px;
+    font-size: 1rem;
+    font-style: normal;
+    border-radius: 5px;
+    border: 1.5px solid rgba(0, 0, 0, 0.371);
+}
+
+#password::placeholder {
+    font-size: 1rem;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(124, 124, 124);
+}
+
+#password:hover {
+    color: rgb(0, 67, 237);
+}
+
+#forg-pass {
+    font-size: 0.9rem;
+    font-family: "Lexend", sans-serif;
+    cursor: pointer;
+    margin-bottom: 20px;
+    align-self: flex-end;
+    margin-right: 5.5rem;
+}
+
+#forg-pass:hover {
+    color: #014BBB;
+    font-weight: bold;
+}
+
+#btn-login {
+    width: 63%;
+    height: 45px;
+    border-radius: 5px;
+    background: #C7FF5E;
+    border: 2px solid rgba(0, 0, 0, 0.371);
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: "Lexend", sans-serif;
+    cursor: pointer;
+}
+
+#btn-login:hover {
+    background: #014BBB;
+    color: white;
+}
+
+.bottom-left-pane {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 140px;
+    justify-content: flex-end;
+    align-items: center;
+    /* background-color: rgb(255, 121, 143); */
+}
+
+.single-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.double-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 1rem;
+    margin-bottom: -30px;
+}
+
+.centered-pain-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: rgb(255, 192, 203); */
+    height: 100%;
+}
+
+#terms {
+    cursor: pointer;
+}
+
+#terms:hover {
+    font-weight: bold;
+    color: #014BBB;
+}
+
+#p-policy {
+    cursor: pointer;
+}
+
+#p-policy:hover {
+    font-weight: bold;
+    color: #014BBB;
+}
