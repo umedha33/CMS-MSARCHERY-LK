@@ -1,0 +1,23 @@
+.admin{
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(-70deg, #5402BD, #014BBB);
+}
+
+.nav-pane {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    /* background-color: lightgreen; */
+}
+
+.dash-pane{
+    display: flex;
+    align-items: center;
+    background: white;
+    width: 78.2%;
+    height: 96.5vh;
+    margin-top: 12px;
+    border-radius: 20px;
+    height: 95vh;
+}
