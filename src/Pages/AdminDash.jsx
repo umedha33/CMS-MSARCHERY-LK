@@ -1,6 +1,7 @@
 import React from 'react'
 import './CSS/AdminDash.css'
 import SideBar from '../Components/SideBar/SideBar'
+import Tasks from '../Components/Tasks/Tasks'
 
 const AdminDash = () => {
     return (
@@ -9,7 +10,7 @@ const AdminDash = () => {
                 <SideBar />
             </div>
             <div className="dash-pane">
-                {/* <h1>this is admin</h1> */}
+                <Tasks/>
             </div>
         </div>
     )

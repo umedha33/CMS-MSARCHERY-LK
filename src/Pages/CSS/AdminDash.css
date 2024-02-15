@@ -1,23 +1,26 @@
-.admin{
+.admin {
     display: flex;
     height: 100vh;
     background: linear-gradient(-70deg, #5402BD, #014BBB);
+    align-items: center;
 }
 
 .nav-pane {
     z-index: 2;
     display: flex;
     align-items: center;
-    /* background-color: lightgreen; */
 }
 
-.dash-pane{
+.dash-pane {
     display: flex;
-    align-items: center;
+    height: 98vh;
+    width: 100%;
+    margin-right: 10px;
+    margin-left: 2px;
     background: white;
-    width: 78.2%;
-    height: 96.5vh;
-    margin-top: 12px;
-    border-radius: 20px;
-    height: 95vh;
+    border-radius: 12px;
+    position: relative;
+    transition: width 0.3s ease;
+    /* align-items: center;
+    justify-content: center; */
 }
