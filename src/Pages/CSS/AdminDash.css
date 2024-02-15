@@ -12,15 +12,10 @@
 }
 
 .dash-pane {
-    display: flex;
     height: 98vh;
     width: 100%;
     margin-right: 10px;
     margin-left: 2px;
     background: white;
     border-radius: 12px;
-    position: relative;
-    transition: width 0.3s ease;
-    /* align-items: center;
-    justify-content: center; */
 }
