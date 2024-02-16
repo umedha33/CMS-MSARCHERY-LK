@@ -1,20 +1,95 @@
-.tasks-container{
-    /* background: lightgreen; */
+.tasks-container {
     height: 98vh;
     overflow-y: auto;
-    padding-left: 20px;
-    padding-right: 20px;
     border-radius: 12px;
 }
 
-.row1-task-header{
+.row1-task-header {
     display: flex;
     justify-content: space-between;
-    /* background: pink; */
+    margin-top: 10px;
+    border-radius: 9px;
+    align-items: center;
 }
 
-.row1-task-header h1{
+.row1-task-header h1 {
     font-size: 1.5rem;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
+    margin-left: 20px;
 }
+
+.row1-task-header button {
+    background: rgba(0, 0, 0, 0.804);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.row1-task-header button:hover {
+    background-color: #014BBB;
+}
+
+.bread-crum {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    gap: 5px;
+    background-color: rgb(224, 224, 224);
+}
+
+.bread-crum h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-left: 22px;
+    cursor: pointer;
+}
+
+.bread-crum h2:hover {
+    color: #014BBB;
+}
+
+.row3-task-table{
+    background: pink;
+}
+
+#table-setting{
+    background: blue;
+    width: 100%;
+    text-align: center;
+}
+
+/* .task-table{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    padding-top: 20px;
+    text-align: center;
+}
+ */
+
+/* .task-table th,
+.task-table td {
+    padding: 15px; 
+    padding-top: 7px;
+    padding-bottom: 7px;
+    background: red;
+} */
+
+/* .task-table th:nth-child(1),
+.task-table td:nth-child(1) {
+    width: 5%; 
+}
+
+.task-table th:nth-child(2),
+.task-table td:nth-child(2) {
+    width: 20%; 
+} */
