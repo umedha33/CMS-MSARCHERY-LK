@@ -57,39 +57,69 @@
     color: #014BBB;
 }
 
-.row3-task-table{
-    background: pink;
+.row3-task-table {
+    padding: 15px;
+    padding-top: 10px;
 }
 
-#table-setting{
-    background: blue;
+#table-setting {
+    border-collapse: collapse;
     width: 100%;
     text-align: center;
 }
 
-/* .task-table{
+#table-setting th {
+    border: 2px solid black;
+    text-align: left;
+    padding: 9px;
+    font-family: "Lexend", sans-serif;
+}
+
+#table-setting td {
+    border: 2px solid black;
+    text-align: left;
+    padding: 6px;
+    padding-left: 9px;
+}
+
+#table-heading {
+    background: rgba(0, 0, 255, 0.342);
+}
+
+#table-elements tr:hover {
+    background-color: #e4e4e4;
+}
+
+.action-btn {
     display: flex;
     flex-direction: row;
-    height: auto;
-    padding-top: 20px;
-    text-align: center;
-}
- */
-
-/* .task-table th,
-.task-table td {
-    padding: 15px; 
-    padding-top: 7px;
-    padding-bottom: 7px;
-    background: red;
-} */
-
-/* .task-table th:nth-child(1),
-.task-table td:nth-child(1) {
-    width: 5%; 
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
 }
 
-.task-table th:nth-child(2),
-.task-table td:nth-child(2) {
-    width: 20%; 
-} */
+#edit-btn {
+    color: #0151fe;
+    cursor: pointer;
+}
+
+#delete-btn {
+    color: red;
+    cursor: pointer;
+}
+
+.status-ico {
+    display: flex;
+    justify-content: center;
+    margin-left: -2px;
+}
+
+.fa-circle-check {
+    font-size: 1.5rem;
+    color: rgb(0, 208, 0);
+}
+
+.fa-bars-progress {
+    font-size: 1.5rem;
+    color: rgb(208, 163, 0);
+}
