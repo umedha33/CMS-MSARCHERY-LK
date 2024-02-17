@@ -55,7 +55,6 @@ const Tasks = () => {
                             </tr>
                         </thead>
                         <tbody id='table-elements'>
-
                             {dummyData.map((task) => (
                                 <tr key={task.id}>
                                     <td id='id-col'>{task.id}</td>
@@ -74,7 +73,6 @@ const Tasks = () => {
                                     </td>
                                 </tr>
                             ))}
-
                         </tbody>
                     </table>
                 </div>
