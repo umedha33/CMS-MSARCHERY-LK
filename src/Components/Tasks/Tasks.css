@@ -117,9 +117,92 @@
 .fa-circle-check {
     font-size: 1.5rem;
     color: rgb(0, 208, 0);
+    position: relative;
+}
+
+.fa-circle-check:hover::after {
+    content: "Completed";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
+    white-space: nowrap;
 }
 
 .fa-bars-progress {
     font-size: 1.5rem;
-    color: rgb(208, 163, 0);
+    color: rgb(112, 112, 112);
+    position: relative;
+}
+
+.fa-bars-progress:hover:after {
+    content: "Ongoing";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.fa-clock-rotate-left {
+    font-size: 1.5rem;
+    color: rgb(255, 29, 29);
+    position: relative;
+}
+
+.fa-clock-rotate-left:hover:after {
+    content: "Overdue";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.fa-circle-exclamation {
+    font-size: 1.5rem;
+    color: rgb(255, 116, 29);
+    position: relative;
+}
+
+.fa-circle-exclamation:hover:after {
+    content: "Alert";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+#id-col{
+    padding-left: 7px !important;
+    text-align: center !important;
 }

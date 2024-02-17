@@ -1,7 +1,26 @@
 import React from 'react'
 import './Tasks.css'
+import dummyData from '../Assets/tasks-dummy.json'
 
 const Tasks = () => {
+
+    const sortedData = dummyData.sort((a, b) => b.id - a.id);
+
+    const getStatusIcon = (status) => {
+        switch (status) {
+            case "completed":
+                return <span className='status-ico'><i className="fa-solid fa-circle-check"></i></span>;
+            case "ongoing":
+                return <span className='status-ico'><i className="fa-solid fa-bars-progress"></i></span>;
+            case "overdue":
+                return <span className='status-ico'><i className="fa-solid fa-clock-rotate-left"></i></span>;
+            case "alert":
+                return <span className='status-ico'><i className="fa-solid fa-circle-exclamation"></i></span>;
+            default:
+                return null;
+        }
+    };
+
     return (
         <div>
             <div className="tasks-container">
@@ -16,6 +35,7 @@ const Tasks = () => {
                         <h2>All</h2>
                         <h2>Ongoing</h2>
                         <h2>Completed</h2>
+                        <h2>Overdue</h2>
                         <h2>Alerts</h2>
                     </div>
                 </div>
@@ -35,38 +55,26 @@ const Tasks = () => {
                             </tr>
                         </thead>
                         <tbody id='table-elements'>
-                            <tr>
-                                <td>01</td>
-                                <td>Test Task</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </td>
-                                <td>E Commerce Manager</td>
-                                <td>2/15/2024</td>
-                                <td>2/18/2024</td>
-                                <td><span className='status-ico'><i class="fa-solid fa-circle-check"></i></span></td>
-                                <td>
-                                    <span className='action-btn'>
-                                        <i id='edit-btn' class="fa-solid fa-pen-to-square"></i>
-                                        <br />
-                                        <i id='delete-btn' class="fa-solid fa-trash"></i>
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>Aperiam quia autem earum, maiores, non at optio doloribus, accusantium culpa esse sint</td>
-                                <td>Nihil nulla minus at, ab illo laborum tempora praesentium earum totam aspernatur quasi obcaecati</td>
-                                <td>Manager</td>
-                                <td>2/16/2024</td>
-                                <td>2/17/2024</td>
-                                <td><span className='status-ico'><i class="fa-solid fa-bars-progress"></i></span></td>
-                                <td>
-                                    <span className='action-btn'>
-                                        <i id='edit-btn' class="fa-solid fa-pen-to-square"></i>
-                                        <br />
-                                        <i id='delete-btn' class="fa-solid fa-trash"></i>
-                                    </span>
-                                </td>
-                            </tr>
+
+                            {dummyData.map((task) => (
+                                <tr key={task.id}>
+                                    <td id='id-col'>{task.id}</td>
+                                    <td>{task.title}</td>
+                                    <td>{task.description}</td>
+                                    <td>{task.recipient}</td>
+                                    <td>{task.assignDate}</td>
+                                    <td>{task.dueDate}</td>
+                                    <td>{getStatusIcon(task.status)}</td>
+                                    <td>
+                                        <span className='action-btn'>
+                                            <i id='edit-btn' className="fa-solid fa-pen-to-square"></i>
+                                            <br />
+                                            <i id='delete-btn' className="fa-solid fa-trash"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+
                         </tbody>
                     </table>
                 </div>
