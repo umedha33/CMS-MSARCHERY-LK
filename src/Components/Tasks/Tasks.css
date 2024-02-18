@@ -54,7 +54,7 @@
 }
 
 .bread-crum h2:hover {
-    color: #014BBB;
+    color: rgb(255, 38, 0);
 }
 
 .row3-task-table {
@@ -215,4 +215,8 @@
 .tasks-container::-webkit-scrollbar-thumb {
     background-color: rgb(0, 0, 0); 
     border-radius: 5px;
+}
+
+.activeBreadcrumb{
+    color: #014BBB;
 }

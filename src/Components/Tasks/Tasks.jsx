@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Tasks.css'
 import dummyData from '../Assets/tasks-dummy.json'
 
 const Tasks = () => {
+
+    const [selectedBreadcrumb, setSelectedBreadcrumb] = useState('All');
 
     const sortedData = dummyData.sort((a, b) => b.id - a.id);
 
@@ -21,6 +23,11 @@ const Tasks = () => {
         }
     };
 
+    const filteredData = dummyData.filter(task => {
+        if (selectedBreadcrumb === 'All') return true;
+        return task.status === selectedBreadcrumb.toLowerCase();
+    });
+
     return (
         <div>
             <div className="tasks-container">
@@ -32,11 +39,11 @@ const Tasks = () => {
 
                 <div className="row2-sort-header">
                     <div className="bread-crum">
-                        <h2>All</h2>
-                        <h2>Ongoing</h2>
-                        <h2>Completed</h2>
-                        <h2>Overdue</h2>
-                        <h2>Alerts</h2>
+                        <h2 className={selectedBreadcrumb === 'All' ? 'activeBreadcrumb' : ''} onClick={() => setSelectedBreadcrumb('All')}>All</h2>
+                        <h2 className={selectedBreadcrumb === 'Ongoing' ? 'activeBreadcrumb' : ''} onClick={() => setSelectedBreadcrumb('Ongoing')}>Ongoing</h2>
+                        <h2 className={selectedBreadcrumb === 'Completed' ? 'activeBreadcrumb' : ''} onClick={() => setSelectedBreadcrumb('Completed')}>Completed</h2>
+                        <h2 className={selectedBreadcrumb === 'Overdue' ? 'activeBreadcrumb' : ''} onClick={() => setSelectedBreadcrumb('Overdue')}>Overdue</h2>
+                        <h2 className={selectedBreadcrumb === 'Alert' ? 'activeBreadcrumb' : ''} onClick={() => setSelectedBreadcrumb('Alert')}>Alerts</h2>
                     </div>
                 </div>
 
@@ -55,7 +62,7 @@ const Tasks = () => {
                             </tr>
                         </thead>
                         <tbody id='table-elements'>
-                            {dummyData.map((task) => (
+                            {filteredData.map((task) => (
                                 <tr key={task.id}>
                                     <td id='id-col'>{task.id}</td>
                                     <td>{task.title}</td>
