@@ -56,7 +56,6 @@
 .nav-lbl {
     display: flex;
     height: 40px;
-    width: 14.7rem;
     margin: 2px 5px;
     font-size: 0.9rem;
     padding-left: 12px;
@@ -64,14 +63,12 @@
     border-radius: 5px;
     font-family: "Lexend", sans-serif;
     cursor: pointer;
-    transition: font-size 0.2s !important;
-    transition: background-color 0.2s;
+    transition: font-size 0.3s, background-color 0.1s;
 }
 
 .foot-lbl {
     display: flex;
     height: 40px;
-    width: 14.7rem;
     margin: 2px 5px;
     font-size: 0.9rem;
     padding-left: 12px;
@@ -89,7 +86,7 @@
 }
 
 .foot-lbl:hover {
-    color: #c7ff5e;
+    color: #2d81ff;
 }
 
 .nav-lbl i.fa-solid {
@@ -145,13 +142,12 @@
     font-family: "Lexend", sans-serif;
     font-weight: bold;
     background: #c7ff5e;
-    transition: background-color 0.2s;
-    transition: font-size 0.2s;
-    transition: height 0.2s;
+    transition: background-color 0.3s, font-size 0.3s, height 0.5s;
 }
 
 #logout-btn:hover {
-    background: white;
+    background: rgb(255, 0, 43);
+    transition: background-color 0.3s !important;
 }
 
 /* ---- Collapsed set -------------------------------*/
@@ -222,7 +218,7 @@
 
 .collapsed #logout-btn {
     height: 60px;
-    transition: height 0.2s;
+    transition: height 0.3s, background-color 0.3s !important;
 }
 
 .collapsed #logout-btn {
@@ -233,4 +229,14 @@
 .collapsed #logout-btn i {
     font-size: 16px;
     transition: font-size 0.2s;
+}
+
+.nav-lbl.active {
+    background: #2d81ff;
+    color: white;
+}
+
+.foot-lbl.active {
+    background: #2d81ff;
+    color: white;
 }
