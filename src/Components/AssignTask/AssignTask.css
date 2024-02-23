@@ -1,0 +1,69 @@
+.assign-task-container{
+    /* background: lightgreen; */
+    height: 98vh;
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+.row1-assign-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-radius: 9px;
+    align-items: center;
+}
+
+.row1-assign-header h1 {
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.row1-assign-header button {
+    background: rgba(0, 0, 0, 0.804);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.row1-assign-header button:hover {
+    background-color: #014BBB;
+}
+
+.row2-divider {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    gap: 5px;
+    background-color: rgb(224, 224, 224);
+}
+
+.row2-divider h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-left: 22px;
+    cursor: pointer;
+    color: transparent;
+}
+
+.row3-assign-form {
+    display: flex;
+    flex-direction: column;
+    background: pink;
+    padding: 25px;
+}
+
+.input-elems{
+    display: flex;
+    flex-direction: row;
+    background: #7fa1d4;
+}

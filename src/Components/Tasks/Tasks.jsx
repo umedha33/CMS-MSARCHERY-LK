@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 import './Tasks.css'
 import dummyData from '../Assets/tasks-dummy.json'
 
-const Tasks = () => {
+const Tasks = ({ activeNavElem }) => {
 
     const [selectedBreadcrumb, setSelectedBreadcrumb] = useState('All');
 
     const sortedData = dummyData.sort((a, b) => b.id - a.id);
+
+    const assignClick = (item) => {
+        activeNavElem(item);
+    };
 
     const getStatusIcon = (status) => {
         switch (status) {
@@ -34,7 +38,7 @@ const Tasks = () => {
 
                 <div className="row1-task-header">
                     <h1>Tasks</h1>
-                    <button>Assign Task</button>
+                    <button onClick={() => { assignClick('Assign Task'); }}>Assign Task</button>
                 </div>
 
                 <div className="row2-sort-header">
