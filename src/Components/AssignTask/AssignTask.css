@@ -1,5 +1,13 @@
-.assign-task-container{
-    /* background: lightgreen; */
+.assign-task-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.assign-task-container::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.assign-task-container {
     height: 98vh;
     overflow-y: auto;
     border-radius: 12px;
@@ -58,12 +66,261 @@
 .row3-assign-form {
     display: flex;
     flex-direction: column;
-    background: pink;
-    padding: 25px;
+    padding: 20px;
+    padding-top: 15px;
 }
 
-.input-elems{
+/* ---------------------------------------------------------------- */
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    background: rgb(239, 239, 239);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding-bottom: 65px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+}
+
+.form-container h1 {
+    background: #014BBB;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    font-family: "Lexend", sans-serif;
+}
+
+.input-couples {
     display: flex;
     flex-direction: row;
-    background: #7fa1d4;
+    /* align-items: center; */
+    padding: 30px;
+    padding-bottom: 0;
+    gap: 10px;
 }
+
+.input-couples label {
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#title-text {
+    height: 35px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #014BBB;
+    font-weight: bold;
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+#title-text::placeholder {
+    color: rgb(169, 169, 169);
+    font-size: 0.9rem;
+}
+
+#description {
+    width: 55%;
+    height: 80px;
+    max-width: 800px;
+    max-height: 200px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #014BBB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#description::placeholder {
+    color: rgb(169, 169, 169);
+    font-size: 0.9rem;
+}
+
+#recipient {
+    width: 20%;
+    height: 35px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    color: #014BBB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#due-date {
+    width: 20%;
+    height: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    color: #014BBB;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------------- */
+
+.attachment-container {
+    display: flex;
+    flex-direction: column;
+    background: rgb(135, 135, 135);
+    border-radius: 10px;
+    padding-bottom: 50px;
+    margin-top: -30px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+}
+
+.attachment-container h1 {
+    background: #4b4b4b;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    font-family: "Lexend", sans-serif;
+}
+
+.attachment-container .input-couples {
+    color: white;
+}
+
+#comment {
+    width: 55%;
+    height: 80px;
+    max-width: 800px;
+    max-height: 200px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #014BBB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#comment::placeholder {
+    color: rgb(169, 169, 169);
+    font-size: 0.9rem;
+}
+
+#reflinks {
+    width: 55%;
+    height: 80px;
+    max-width: 800px;
+    max-height: 200px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #014BBB;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#reflinks::placeholder {
+    color: rgb(169, 169, 169);
+    font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    background: rgba(42, 42, 42, 0.266);
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.bottom-container label {
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 20px;
+    padding-bottom: 0;
+    color: white;
+}
+
+.file-input {
+    display: flex;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+    gap: 10px;
+}
+
+
+.file-input input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+}
+
+.file-input input[type="file"]:focus {
+    border: 1px solid #3a3a3a;
+}
+
+
+.image-preview{
+    display: flex;
+    flex-direction: row;
+    padding: 0 22px;
+    padding-bottom: 22px;
+    flex-wrap: wrap;
+    row-gap: 15px;
+}
+
+.thumbnail {
+    display: inline-block;
+    width: 100px;
+    margin-right: 20px;
+}
+
+.thumbnail img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.thumbnail p {
+    font-size: 12px;
+    color: white;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+/* ---------------------------------------------------------------- */
