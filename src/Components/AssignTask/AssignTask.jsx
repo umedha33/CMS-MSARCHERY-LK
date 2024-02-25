@@ -12,9 +12,14 @@ const AssignTask = () => {
                 preview: URL.createObjectURL(file)
             })
         );
-        setFiles(prevFiles => [...prevFiles, ...fileArray]); // Concatenate the arrays
+        setFiles(prevFiles => [...prevFiles, ...fileArray]);
     };
 
+    const handleRemoveFile = (index) => {
+        const newFiles = [...files];
+        newFiles.splice(index, 1);
+        setFiles(newFiles);
+    };
 
     return (
         <div className='assign-task-container'>
@@ -69,21 +74,25 @@ const AssignTask = () => {
                         <label>Referral Links:</label>
                         <textarea name="reflinks" id="reflinks" cols="30" rows="10" placeholder='Provide referral links if available'></textarea>
                     </div>
+
                     <div className="bottom-container">
-                        <label>Images:</label>
+                        <label id='lbl-img'>Images:</label>
                         <div className="file-input">
-                            <input
+                            <label for="file-upload" class="file-upload">
+                                Upload Files<i class="fa-solid fa-folder"></i>
+                            </label>
+                            <input id="file-upload"
                                 type="file"
-                                id="attachment-images"
                                 name="attachment-images"
                                 accept="image/png, image/jpeg"
                                 onChange={handleFileChange}
-                                multiple
-                            />
+                                multiple />
                         </div>
+
                         <div className="image-preview">
                             {files.map((file, index) => (
                                 <div key={index} className="thumbnail">
+                                    <i onClick={() => handleRemoveFile(index)} class="fa-solid fa-circle-xmark"></i>
                                     <img src={file.preview} alt={`Thumbnail ${index}`} />
                                     <p>{file.name}</p>
                                 </div>

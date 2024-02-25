@@ -97,7 +97,6 @@
 .input-couples {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     padding: 30px;
     padding-bottom: 0;
     gap: 10px;
@@ -105,14 +104,15 @@
 
 .input-couples label {
     font-family: "Lexend", sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 #title-text {
     height: 35px;
     width: 50%;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     font-size: 0.9rem;
@@ -133,7 +133,8 @@
     max-width: 800px;
     max-height: 200px;
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     font-size: 0.9rem;
@@ -151,7 +152,8 @@
     width: 20%;
     height: 35px;
     padding-left: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     color: #014BBB;
@@ -164,7 +166,8 @@
     height: 35px;
     padding-left: 5px;
     padding-right: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     color: #014BBB;
@@ -181,7 +184,6 @@
     flex-direction: column;
     background: rgb(135, 135, 135);
     border-radius: 10px;
-    padding-bottom: 50px;
     margin-top: -30px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 
@@ -208,7 +210,8 @@
     max-width: 800px;
     max-height: 200px;
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     font-size: 0.9rem;
@@ -228,7 +231,8 @@
     max-width: 800px;
     max-height: 200px;
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top-left-radius: 0;
     border: 1px solid black;
     font-family: "Lexend", sans-serif;
     font-size: 0.9rem;
@@ -242,18 +246,6 @@
     font-size: 0.9rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .bottom-container {
     display: flex;
     flex-direction: column;
@@ -262,38 +254,75 @@
     margin: 20px;
 }
 
-.bottom-container label {
+#lbl-img {
+    color: white;
     font-family: "Lexend", sans-serif;
     font-size: 1rem;
     font-weight: bold;
-    padding: 20px;
+    padding: 13px 20px;
     padding-bottom: 0;
-    color: white;
 }
+
+/* --------------------------------------------------------------------- */
+/* --------------------------------------------------------------------- */
 
 .file-input {
-    display: flex;
-    padding: 10px 20px;
-    padding-bottom: 20px;
-    gap: 10px;
-}
-
-
-.file-input input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin: 20px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    background: rgba(42, 42, 42, 0.266);
+    border: 2px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     color: white;
 }
 
-.file-input input[type="file"]:focus {
-    border: 1px solid #3a3a3a;
+.file-input:hover {
+    background-color: #e0e0e01f;
+}
+
+.file-input.has-file::before {
+    content: attr(data-file-name);
+}
+
+.file-input.has-file::after {
+    content: ' + ' attr(data-file-count) ' more';
 }
 
 
-.image-preview{
+/* ---------------------------------------------------------------- */
+
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.file-upload {
+    width: 100%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.fa-folder {
+    color: rgb(255, 196, 0);
+    padding-left: 10px;
+    font-size: 1.1rem;
+}
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+
+.image-preview {
     display: flex;
     flex-direction: row;
     padding: 0 22px;
@@ -306,6 +335,7 @@
     display: inline-block;
     width: 100px;
     margin-right: 20px;
+    position: relative;
 }
 
 .thumbnail img {
@@ -321,6 +351,27 @@
     color: white;
     margin: 0;
     word-wrap: break-word;
+}
+
+.fa-circle-xmark {
+    position: absolute;
+    text-align: right;
+    top: 4px;
+    right: 4px;
+    color: rgb(255, 0, 0);
+    font-size: 1rem;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fa-circle-xmark:hover {
+    color: black;
+    transition: color 0.2s;
 }
 
 /* ---------------------------------------------------------------- */
