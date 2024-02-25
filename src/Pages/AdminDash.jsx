@@ -48,7 +48,7 @@ const AdminDash = () => {
             break;
 
         case "Assign Task":
-            componentToRender = <AssignTask />;
+            componentToRender = <AssignTask  activeNavElem={activeNavElem}/>;
             break;
 
         default:

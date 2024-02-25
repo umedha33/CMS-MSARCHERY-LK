@@ -28,6 +28,13 @@
     margin-left: 20px;
 }
 
+.button-set{
+    display: flex;
+    flex-direction: row;
+    padding-right: 15px;
+    gap: 10px;
+}
+
 .row1-assign-header button {
     background: rgba(0, 0, 0, 0.804);
     color: white;
@@ -37,11 +44,19 @@
     width: 7rem;
     height: 3rem;
     border-radius: 10px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
+}
+
+#add-btn {
+    background: #014BBB;
+}
+
+#add-btn:hover{
+    background-color: #1fc922;
 }
 
 .row1-assign-header button:hover {
-    background-color: #014BBB;
+    background-color: #ea1313;
 }
 
 .row2-divider {

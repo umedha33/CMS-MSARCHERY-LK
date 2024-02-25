@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AssignTask.css'
 
-const AssignTask = () => {
+const AssignTask = ({ activeNavElem }) => {
 
     const [files, setFiles] = useState([]);
 
@@ -25,7 +25,10 @@ const AssignTask = () => {
         <div className='assign-task-container'>
             <div className="row1-assign-header">
                 <h1>Add Task</h1>
-                <button>Close</button>
+                <div className="button-set">
+                    <button id='add-btn'>Submit</button>
+                    <button id='close-btn' onClick={() => { activeNavElem('Tasks'); }}>Close</button>
+                </div>
             </div>
 
             <div className="row2-divider">
