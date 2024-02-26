@@ -3,7 +3,7 @@ import React from 'react'
 const Chat = () => {
   return (
     <div>
-      <h1>Hello Chat</h1>
+      <h1>Chat</h1>
     </div>
   )
 }
