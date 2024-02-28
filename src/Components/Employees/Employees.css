@@ -1,3 +1,12 @@
+.employee-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.employee-container::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
 .employee-container {
     height: 98vh;
     overflow-y: auto;
@@ -35,18 +44,61 @@
     background-color: #014BBB;
 }
 
-.row3-employee-card-set{
-    display: grid;
-    background: pink;
-    width: 100%;
-    padding-block-end: 20px;
-    /* height: 10vh; */
+.emp-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 25px 20px;
+    gap: 25px;
 }
 
-.emp-card{
-    background: coral;
-    width: 35vh;
-    height: 45vh;
+.empCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #b5b5b5;
+    width: 40vh;
     border-radius: 15px;
-    margin: 30px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: scale 0.2s;
+}
+
+.empCard:hover {
+    scale: 1.05;
+    transition: scale 0.2s;
+}
+
+.empCard.online {
+    background-color: #2d81ff;
+}
+
+.info-set {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+.empCard img {
+    width: 50%;
+    height: auto;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    border-radius: 50%;
+}
+
+.info-set h3 {
+    color: black;
+    font-size: 1rem;
+    line-height: 0;
+}
+
+.emp-tag {
+    color: white;
 }

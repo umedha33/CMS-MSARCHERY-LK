@@ -1,0 +1,209 @@
+.assign-emp-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.assign-emp-container::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+}
+
+.assign-emp-container {
+    height: 98vh;
+    overflow-y: auto;
+    border-radius: 12px;
+}
+
+.row1-assignemp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-radius: 9px;
+    align-items: center;
+}
+
+.row1-assignemp-header h1 {
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.button-set {
+    display: flex;
+    flex-direction: row;
+    padding-right: 15px;
+    gap: 10px;
+}
+
+.row1-assignemp-header button {
+    background: rgba(0, 0, 0, 0.804);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+}
+
+#add-btn {
+    background: #014BBB;
+}
+
+#add-btn:hover {
+    background-color: #1fc922;
+}
+
+.row1-assignemp-header button:hover {
+    background-color: #ea1313;
+}
+
+.row3-assignemp-form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 15px;
+}
+
+
+.empform-container {
+    display: flex;
+    flex-direction: column;
+    background: rgb(239, 239, 239);
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.empform-container h1 {
+    background: #014BBB;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 20px;
+    margin: 0;
+    font-size: 1rem;
+    color: white;
+    font-family: "Lexend", sans-serif;
+}
+
+.first-grid label {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.single-couple input {
+    height: 40px;
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-family: "Lexend", sans-serif;
+    font-size: 0.9rem;
+    color: #014BBB;
+    font-weight: bold;
+    padding-left: 8px;
+    cursor: pointer;
+}
+
+.first-grid {
+    display: grid;
+    padding: 20px;
+    padding-right: 0;
+    padding-top: 30px;
+    grid-template-columns: repeat(2, 40%);
+    grid-column-gap: 10px;
+    grid-row-gap: 30px;
+}
+
+.profilepic-container {
+    display: flex;
+    flex-direction: column;
+    background: #4b4b4b;
+    border-radius: 10px;
+    margin: 15px;
+    margin-top: 20px;
+    padding-top: 5px;
+}
+
+#lbl-img {
+    color: white;
+    font-family: "Lexend", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 13px 20px;
+    padding-bottom: 0;
+}
+
+.pp-input {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin: 20px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    background: rgba(42, 42, 42, 0.266);
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+}
+
+.pp-input:hover {
+    background-color: #e0e0e01f;
+}
+
+.pp-input.has-file::before {
+    content: attr(data-file-name);
+}
+
+.pp-input.has-file::after {
+    content: ' + ' attr(data-file-count) ' more';
+}
+
+.pp-preview {
+    padding: 0 22px;
+    padding-bottom: 22px;
+}
+
+.pp-thumbnail {
+    width: 250px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.pp-thumbnail img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.pp-thumbnail p {
+    font-size: 14px;
+    color: white;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.pp-close {
+    position: absolute;
+    text-align: right;
+    top: 8px;
+    right: 8px;
+    color: rgb(255, 0, 0);
+    font-size: 1.2rem;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.pp-close:hover {
+    color: black;
+    transition: color 0.2s;
+}

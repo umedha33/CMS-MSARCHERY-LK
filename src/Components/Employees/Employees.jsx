@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 import './Employees.css'
-const Employees = () => {
+import empDummy from '../Assets/emp-dummy.js'
+
+const Employees = ({ activeNavElem }) => {
 
   const [selectedBreadcrumb, setSelectedBreadcrumb] = useState('All');
 
+  const filteredData = empDummy.filter(emp => {
+    if (selectedBreadcrumb === 'All') return true;
+    return emp.status === selectedBreadcrumb;
+  });
+
+  const assignClick = (item) => {
+    activeNavElem(item);
+  };
 
   return (
     // <div>
@@ -19,7 +29,7 @@ const Employees = () => {
 
         <div className="row1-employee-header">
           <h1>Employees</h1>
-          <button>Add EMP</button>
+          <button onClick={() => { assignClick('Assign EMP'); }}>Add EMP</button>
         </div>
 
         <div className="row2-sort-header">
@@ -31,7 +41,22 @@ const Employees = () => {
         </div>
 
         <div className="row3-employee-card-set">
-          <div className="emp-card"></div>
+
+          <div className="emp-cards">
+            {filteredData.map(emp => (
+              <div key={emp.id} className={`empCard ${emp.status === 'Online' ? 'online' : ''}`}>
+                <img src={emp.dp} alt="dp-image" />
+                <div className="info-set">
+                  <h3>Post: <span class="emp-tag">{emp.empPost}</span></h3>
+                  <h3>Name: <span class="emp-tag">{emp.empName}</span></h3>
+                  <h3>ID: <span class="emp-tag">{emp.empID}</span></h3>
+                  <h3>Status: <span class="emp-tag">{emp.status}</span></h3>
+                  <h3>Contact: <span class="emp-tag">{emp.contact}</span></h3>
+                  <h3>Email: <span class="emp-tag">{emp.email}</span></h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

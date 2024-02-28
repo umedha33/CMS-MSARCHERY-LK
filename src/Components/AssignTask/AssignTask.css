@@ -28,7 +28,7 @@
     margin-left: 20px;
 }
 
-.button-set{
+.button-set {
     display: flex;
     flex-direction: row;
     padding-right: 15px;
@@ -51,7 +51,7 @@
     background: #014BBB;
 }
 
-#add-btn:hover{
+#add-btn:hover {
     background-color: #1fc922;
 }
 
@@ -95,7 +95,6 @@
     border-top-right-radius: 10px;
     padding-bottom: 65px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-
 }
 
 .form-container h1 {
@@ -124,7 +123,7 @@
 }
 
 #title-text {
-    height: 35px;
+    height: 40px;
     width: 50%;
     border-radius: 10px;
     border-top-left-radius: 0;
@@ -165,7 +164,7 @@
 
 #recipient {
     width: 20%;
-    height: 35px;
+    height: 40px;
     padding-left: 5px;
     border-radius: 10px;
     border-top-left-radius: 0;
@@ -178,7 +177,7 @@
 
 #due-date {
     width: 20%;
-    height: 35px;
+    height: 40px;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 10px;
