@@ -84,7 +84,9 @@
 }
 
 #table-heading {
-    background: rgba(0, 0, 255, 0.342);
+    /* background: rgba(0, 0, 255, 0.342); */
+    background: #2d81ff;
+    color: white;
 }
 
 #table-elements tr:hover {

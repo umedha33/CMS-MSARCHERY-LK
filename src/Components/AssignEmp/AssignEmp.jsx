@@ -53,7 +53,7 @@ const AssignEmp = ({ activeNavElem }) => {
                         </div>
                         <div class="single-couple">
                             <label for="emp-email">Email Address:</label>
-                            <input type="text" id="emp-email" placeholder="Enter Email Address" />
+                            <input type="email" id="emp-email" placeholder="Enter Email Address" />
                         </div>
 
                         <div class="single-couple">
@@ -63,6 +63,19 @@ const AssignEmp = ({ activeNavElem }) => {
                         <div class="single-couple">
                             <label for="e-password">Password:</label>
                             <input type="text" id="e-password" placeholder="Enter Password" />
+                        </div>
+                        <div class="single-couple">
+                            <label for="emp-post">Employee Post:</label>
+                            <select name="emp-post" id="emp-post">
+                            <option value="" disabled selected hidden>Not Selected</option>
+                            <option value="Manager">Manager</option>
+                            <option value="Accountant">Accountant</option>
+                            <option value="E-Com-Manager">E-Com Manager</option>
+                            <option value="Sales-Manager">Sales & Marketing Manager</option>
+                            <option value="Content-Creator">Content Creator</option>
+                            <option value="Customer-Care">Customer Care</option>
+                            <option value="Logistics-Preperation">Logistics & Preperation Manager</option>
+                        </select>
                         </div>
                     </div>
                     <div className="profilepic-container">

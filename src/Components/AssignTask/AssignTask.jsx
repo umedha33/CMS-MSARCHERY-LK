@@ -58,12 +58,11 @@ const AssignTask = ({ activeNavElem }) => {
                             <option value="" disabled selected hidden>Not Selected</option>
                             <option value="Manager">Manager</option>
                             <option value="Accountant">Accountant</option>
-                            <option value="E-Com-Manager">E-Com-Manager</option>
-                            <option value="Sales-Manager">Sales-Manager</option>
-                            <option value="Marketing-Manager">Marketing-Manager</option>
-                            <option value="Content-Creator">Content-Creator</option>
-                            <option value="Customer-Care">Customer-Care</option>
-                            <option value="Logistics-Preperation">Logistics-Preperation</option>
+                            <option value="E-Com-Manager">E-Com Manager</option>
+                            <option value="Sales-Manager">Sales & Marketing Manager</option>
+                            <option value="Content-Creator">Content Creator</option>
+                            <option value="Customer-Care">Customer Care</option>
+                            <option value="Logistics-Preperation">Logistics & Preperation Manager</option>
                         </select>
                     </div>
                     <div className="input-couples">
