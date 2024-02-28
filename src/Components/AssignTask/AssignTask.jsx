@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AssignTask.css'
 
 const AssignTask = ({ activeNavElem }) => {
@@ -20,6 +20,11 @@ const AssignTask = ({ activeNavElem }) => {
         newFiles.splice(index, 1);
         setFiles(newFiles);
     };
+
+    useEffect(() => {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('due-date').setAttribute('min', today);
+    }, []);
 
     return (
         <div className='assign-task-container'>
@@ -63,7 +68,7 @@ const AssignTask = ({ activeNavElem }) => {
                     </div>
                     <div className="input-couples">
                         <label>Set Due Date:</label>
-                        <input type="date" id='due-date' />
+                        <input type="date" id="due-date" />
                     </div>
                 </div>
 
