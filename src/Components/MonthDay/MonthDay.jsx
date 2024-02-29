@@ -1,9 +1,19 @@
 import React from 'react'
+import './MonthDay.css'
+import dayjs from 'dayjs'
 
-const MonthDay = ({ day }) => {
+const MonthDay = ({ day, rowIdx }) => {
+
+    const getCurrentDayClass = () => {
+        return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") ? 'current-day' : '';
+    }
+
     return (
-        <div>
-            {day.format()}
+        <div className='day-cell'>
+            {rowIdx === 0 && (
+                <p>{day.format("ddd").toUpperCase()}</p>
+            )}
+            <p className={`${getCurrentDayClass()}`}>{day.format("DD")}</p>
         </div>
     )
 }

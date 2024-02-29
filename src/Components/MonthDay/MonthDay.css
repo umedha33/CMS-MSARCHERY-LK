@@ -1,0 +1,21 @@
+.day-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid rgba(39, 39, 39, 0.204);
+}
+
+.current-day {
+    background: blue;
+    color: white;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 28px; 
+    height: 28px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}

@@ -1,6 +1,11 @@
 .month-container {
+    width: 100%;
+    border: 2px solid rgb(39, 39, 39);
+}
+
+.month-grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 columns */
-    grid-template-rows: repeat(5, 1fr); /* 5 rows */
-  }
-  
+    grid-template-columns: repeat(7, 1fr);
+}
+
+
