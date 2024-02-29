@@ -1,11 +1,13 @@
 .month-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    border: 2px solid rgb(39, 39, 39);
+    height: 100%;
+    border: 2px solid rgba(39, 39, 39, 0.204);
 }
 
 .month-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    height: 100%;
 }
-
-

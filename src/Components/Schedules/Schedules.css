@@ -1,17 +1,15 @@
 .row3-schedule-container{
     display: flex;
-    background: pink;
-    padding: 20px;
-    /* height: 90vh; */
+    padding: 10px 20px;
+    height: 73vh;
+    gap: 10px;
 }
 
 .left-side-sch-cont{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: lightgreen;
     width: 75%;
-    /* height: 100%; */
 }
 
 .right-side-sch-cont{
