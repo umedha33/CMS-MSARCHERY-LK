@@ -1,0 +1,15 @@
+.row3-schedule-container{
+    display: flex;
+    background: pink;
+    padding: 20px;
+}
+
+.left-side-sch-cont{
+    background: lightgreen;
+    width: 70%;
+}
+
+.right-side-sch-cont{
+    background: rgb(158, 128, 240);
+    width: 30%;
+}
