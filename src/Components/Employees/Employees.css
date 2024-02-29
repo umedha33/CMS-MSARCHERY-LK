@@ -38,10 +38,12 @@
     height: 3rem;
     border-radius: 10px;
     margin-right: 15px;
+    transition: background-color 0.2s;
 }
 
 .row1-employee-header button:hover {
     background-color: #014BBB;
+    transition: background-color 0.2s;
 }
 
 .emp-cards {

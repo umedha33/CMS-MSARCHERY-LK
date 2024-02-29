@@ -43,19 +43,22 @@
     border: none;
     width: 7rem;
     height: 3rem;
+    transition: background-color 0.2s;
     border-radius: 10px;
-    /* margin-right: 15px; */
 }
 
 #add-btn {
+    transition: background-color 0.2s;
     background: #014BBB;
 }
 
 #add-btn:hover {
+    transition: background-color 0.2s;
     background-color: #1fc922;
 }
 
 .row1-assign-header button:hover {
+    transition: background-color 0.2s;
     background-color: #ea1313;
 }
 

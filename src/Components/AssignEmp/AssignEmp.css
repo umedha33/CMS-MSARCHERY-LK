@@ -44,17 +44,21 @@
     width: 7rem;
     height: 3rem;
     border-radius: 10px;
+    transition: background-color 0.2s;
 }
 
 #add-btn {
     background: #014BBB;
+    transition: background-color 0.2s;
 }
 
 #add-btn:hover {
+    transition: background-color 0.2s;
     background-color: #1fc922;
 }
 
 .row1-assignemp-header button:hover {
+    transition: background-color 0.2s;
     background-color: #ea1313;
 }
 

@@ -1,40 +1,52 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Schedules.css'
 import { getMonth } from '../Assets/util'
-import CalenderHeader from '../CalenderHeader/CalenderHeader'
 import CalendarMonth from '../CalendarMonth/CalendarMonth'
 import ScheduleSide from '../ScheduleSide/ScheduleSide'
+import GlobalContext from '../../context/GlobalContext'
+import dayjs from 'dayjs'
 
 const Schedules = ({ activeNavElem }) => {
+
   const [currentMonth, setCurrentMonth] = useState(getMonth())
+  const { monthIndex, setMonthIndex } = useContext(GlobalContext)
+
+  const handlePrevMonth = () => {
+    setMonthIndex(monthIndex - 1);
+  }
+
+  const handleNextMonth = () => {
+    setMonthIndex(monthIndex + 1);
+  }
+
+  const handleResetMonth = () => {
+    setMonthIndex(dayjs().month());
+  }
+
+  useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex])
 
   return (
-    // <div>
-    //   <h1>Schedules</h1>
-    //   <p>personal calendar which can be used to add important tasks.</p>
-    //   <p>should display available tasks as well.</p>
-    //   <p>should notify upcoming and due tasks.</p>
-    //   <p>pending task cards</p>
-    // </div>
-
-    <div className='assign-task-container'>
-      <div className="row1-assign-header">
-        <h1>Schedules</h1>
-        <div className="button-set">
-          <button id='add-btn'>abc</button>
-          <button id='close-btn' onClick={() => { activeNavElem('Tasks'); }}>xyz</button>
+    <div className='schedule-container'>
+      <div className="row1-schedule-header">
+        <h1>{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</h1>
+        <div className="calendar-navset">
+          <i onClick={handlePrevMonth} class="fa-solid fa-angle-left monthnav"></i>
+          <i onClick={handleNextMonth} class="fa-solid fa-angle-right monthnav"></i>
+          <button onClick={handleResetMonth}>Today</button>
         </div>
       </div>
 
-      <div className="row2-calendar-header">
-        <CalenderHeader />
+      <div className="row2-divider">
+        <h2>.</h2>
       </div>
 
       <div className="row3-schedule-container">
         <div className="left-side-sch-cont"><CalendarMonth month={currentMonth} /></div>
         <div className="right-side-sch-cont"><ScheduleSide /></div>
       </div>
-      
+
     </div >
 
   )

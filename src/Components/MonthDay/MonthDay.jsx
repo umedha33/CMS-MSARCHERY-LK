@@ -11,9 +11,9 @@ const MonthDay = ({ day, rowIdx }) => {
     return (
         <div className='day-cell'>
             {rowIdx === 0 && (
-                <p>{day.format("ddd").toUpperCase()}</p>
+                <p id='dayname'>{day.format("ddd").toUpperCase()}</p>
             )}
-            <p className={`${getCurrentDayClass()}`}>{day.format("DD")}</p>
+            <p id='datenum' className={`${getCurrentDayClass()}`}>{day.format("DD")}</p>
         </div>
     )
 }
