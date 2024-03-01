@@ -47,8 +47,10 @@ const ScheduleSide = () => {
                 {day.format('dd').charAt(0)}
               </span>
             ))}
+          </div>
+          <div>
             {currentMonth.map((row, i) => (
-              <div key={i}>
+              <div key={i} className='datesgrd'>
                 {row.map((day, idx) => (
                   <button key={idx} className={`daybtns`}>
                     <span>{day.format('DD')}</span>
