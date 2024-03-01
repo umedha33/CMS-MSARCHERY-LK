@@ -23,20 +23,45 @@
 .row3-schedule-container {
     display: flex;
     padding: 15px 20px;
-    min-height: 78vh;
-    gap: 10px;
+    min-height: 77vh;
+    gap: 18px;
+}
+
+.top-btm-set {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.daynames-set {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    background: #2d81ff;
+    border-radius: 10px;
+}
+
+.daynames-set h2 {
+    font-family: "Lexend", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 5px 0;
+    color: white;
 }
 
 .left-side-sch-cont {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75%;
+    height: 100%;
 }
 
 .right-side-sch-cont {
-    background: rgb(158, 128, 240);
-    width: 27%;
+    width: 20%;
 }
 
 .calendar-navset {

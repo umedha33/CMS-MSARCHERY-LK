@@ -1,0 +1,81 @@
+.schedule-side-container {
+    display: flex;
+    flex-direction: column;
+    background: lightblue;
+    height: 100%;
+}
+
+.event-btnset {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-btnset h1 {
+    font-family: "Lexend", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #2d81ff;
+    margin: 0;
+}
+
+#sch-add-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2d81ff;
+    color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 13px 18px;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+#sch-add-btn:hover {
+    background: #1a58b5;
+    transition: background-color 0.2s;
+}
+
+.fa-plus {
+    margin-right: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.small-calendar-cont {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background: coral;
+}
+
+.top-set-smcal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.smallcalendar-navset {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.smallmonthnav {
+    cursor: pointer;
+}
+
+.grid-lay {
+    display: grid;
+    background: rgb(148, 70, 70);
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-lay span{
+    display: flex;
+    justify-content: center;
+}
+

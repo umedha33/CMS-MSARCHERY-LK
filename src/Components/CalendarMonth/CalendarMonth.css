@@ -3,7 +3,8 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    border: 2px solid rgba(39, 39, 39, 0.204);
+    border-radius: 10px;
+
 }
 
 .month-grid {

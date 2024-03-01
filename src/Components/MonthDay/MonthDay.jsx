@@ -10,9 +10,9 @@ const MonthDay = ({ day, rowIdx }) => {
 
     return (
         <div className='day-cell'>
-            {rowIdx === 0 && (
+            {/* {rowIdx === 0 && (
                 <p id='dayname'>{day.format("ddd").toUpperCase()}</p>
-            )}
+            )} */}
             <p id='datenum' className={`${getCurrentDayClass()}`}>{day.format("DD")}</p>
         </div>
     )
