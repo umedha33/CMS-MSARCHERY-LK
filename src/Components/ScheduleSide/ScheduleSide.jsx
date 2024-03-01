@@ -8,7 +8,7 @@ const ScheduleSide = () => {
 
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month())
   const [currentMonth, setCurrentMonth] = useState(getMonth())
-  const { monthIndex } = useContext(GlobalContext)
+  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext)
 
   const handlePrevMonth = () => {
     setCurrentMonthIdx(currentMonthIdx - 1);
@@ -16,6 +16,21 @@ const ScheduleSide = () => {
 
   const handleNextMonth = () => {
     setCurrentMonthIdx(currentMonthIdx + 1);
+  }
+
+  const getDayClass = (day) => {
+    const format = "DD-MM-YY";
+    const nowDay = dayjs().format(format);
+    const currDay = day.format(format);
+    const slcDay = daySelected && daySelected.format(format);
+
+    if (nowDay === currDay) {
+      return "currDay";
+    } else if (currDay === slcDay) {
+      return "slcDay";
+    } else {
+      return "";
+    }
   }
 
   useEffect(() => {
@@ -52,7 +67,10 @@ const ScheduleSide = () => {
             {currentMonth.map((row, i) => (
               <div key={i} className='datesgrd'>
                 {row.map((day, idx) => (
-                  <button key={idx} className={`daybtns`}>
+                  <button key={idx} onClick={() => {
+                    setSmallCalendarMonth(currentMonthIdx);
+                    setDaySelected(day);
+                  }} className={`daybtns ${getDayClass(day)}`}>
                     <span>{day.format('DD')}</span>
                   </button>
                 ))}
