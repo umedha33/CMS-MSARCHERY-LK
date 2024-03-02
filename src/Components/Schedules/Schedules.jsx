@@ -5,11 +5,12 @@ import CalendarMonth from '../CalendarMonth/CalendarMonth'
 import ScheduleSide from '../ScheduleSide/ScheduleSide'
 import GlobalContext from '../../context/GlobalContext'
 import dayjs from 'dayjs'
+import EventModal from '../EventModal/EventModal'
 
 const Schedules = ({ activeNavElem }) => {
 
-  const [currentMonth, setCurrentMonth] = useState(getMonth())
-  const { monthIndex, setMonthIndex } = useContext(GlobalContext)
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const { monthIndex, showEventModal, setMonthIndex } = useContext(GlobalContext);
 
   const handlePrevMonth = () => {
     setMonthIndex(monthIndex - 1);
@@ -32,8 +33,8 @@ const Schedules = ({ activeNavElem }) => {
       <div className="row1-schedule-header">
         <h1>{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</h1>
         <div className="calendar-navset">
-          <i onClick={handlePrevMonth} class="fa-solid fa-angle-left monthnav"></i>
-          <i onClick={handleNextMonth} class="fa-solid fa-angle-right monthnav"></i>
+          <i onClick={handlePrevMonth} className="fa-solid fa-angle-left monthnav"></i>
+          <i onClick={handleNextMonth} className="fa-solid fa-angle-right monthnav"></i>
           <button onClick={handleResetMonth}>Today</button>
         </div>
       </div>
@@ -43,6 +44,7 @@ const Schedules = ({ activeNavElem }) => {
       </div>
 
       <div className="row3-schedule-container">
+        {showEventModal && <EventModal />}
         <div className="top-btm-set">
           <div className="daynames-set">
             <h2>MON</h2>

@@ -34,12 +34,12 @@ const Employees = ({ activeNavElem }) => {
             <div key={emp.id} className={`empCard ${emp.status === 'Online' ? 'online' : ''}`}>
               <img src={emp.dp} alt="dp-image" />
               <div className="info-set">
-                <h3>Post: <span class="emp-tag">{emp.empPost}</span></h3>
-                <h3>Name: <span class="emp-tag">{emp.empName}</span></h3>
-                <h3>ID: <span class="emp-tag">{emp.empID}</span></h3>
-                <h3>Status: <span class="emp-tag">{emp.status}</span></h3>
-                <h3>Contact: <span class="emp-tag">{emp.contact}</span></h3>
-                <h3>Email: <span class="emp-tag">{emp.email}</span></h3>
+                <h3>Post: <span className="emp-tag">{emp.empPost}</span></h3>
+                <h3>Name: <span className="emp-tag">{emp.empName}</span></h3>
+                <h3>ID: <span className="emp-tag">{emp.empID}</span></h3>
+                <h3>Status: <span className="emp-tag">{emp.status}</span></h3>
+                <h3>Contact: <span className="emp-tag">{emp.contact}</span></h3>
+                <h3>Email: <span className="emp-tag">{emp.email}</span></h3>
               </div>
             </div>
           ))}

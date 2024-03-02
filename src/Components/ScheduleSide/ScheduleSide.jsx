@@ -8,7 +8,7 @@ const ScheduleSide = () => {
 
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month())
   const [currentMonth, setCurrentMonth] = useState(getMonth())
-  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext)
+  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected, setShowEventModal } = useContext(GlobalContext)
 
   const handlePrevMonth = () => {
     setCurrentMonthIdx(currentMonthIdx - 1);
@@ -35,7 +35,7 @@ const ScheduleSide = () => {
 
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIdx));
-  }, [currentMonth])
+  }, [currentMonthIdx])
 
   useEffect(() => {
     setCurrentMonthIdx(monthIndex);
@@ -45,20 +45,20 @@ const ScheduleSide = () => {
     <div className='schedule-side-container'>
       <div className="event-btnset">
         <h1>Schedule</h1>
-        <button id='sch-add-btn'><i class="fa-solid fa-plus"></i>Create</button>
+        <button onClick={() => setShowEventModal(true)} id='sch-add-btn'><i className="fa-solid fa-plus"></i>Create</button>
       </div>
       <div className="small-calendar-cont">
         <div className='top-set-smcal'>
           <p>{dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}</p>
           <div className="smallcalendar-navset">
-            <i onClick={handlePrevMonth} class="fa-solid fa-angle-left smallmonthnav"></i>
-            <i onClick={handleNextMonth} class="fa-solid fa-angle-right smallmonthnav"></i>
+            <i onClick={handlePrevMonth} className="fa-solid fa-angle-left smallmonthnav"></i>
+            <i onClick={handleNextMonth} className="fa-solid fa-angle-right smallmonthnav"></i>
           </div>
         </div>
         <div className="small-cal">
           <div className="grid-lay">
             {currentMonth[0].map((day, i) => (
-              <span>
+              <span key={i}>
                 {day.format('dd').charAt(0)}
               </span>
             ))}

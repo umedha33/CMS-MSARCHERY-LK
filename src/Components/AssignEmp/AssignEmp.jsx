@@ -33,38 +33,38 @@ const AssignEmp = ({ activeNavElem }) => {
                 <h2>.</h2>
             </div>
 
-            <div class="row3-assignemp-form">
+            <div className="row3-assignemp-form">
 
-                <div class="empform-container">
+                <div className="empform-container">
                     <h1>Fill in relevant information to add an employee » </h1>
 
-                    <div class="first-grid">
-                        <div class="single-couple">
+                    <div className="first-grid">
+                        <div className="single-couple">
                             <label for="first-name">First Name:</label>
                             <input type="text" id="first-name" placeholder="Enter First Name" />
                         </div>
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="last-name">Last Name:</label>
                             <input type="text" id="last-name" placeholder="Enter Last Name" />
                         </div>
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="contact-number">Contact Number:</label>
                             <input type="text" id="contact-number" placeholder="Enter Contact Number" />
                         </div>
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="emp-email">Email Address:</label>
                             <input type="email" id="emp-email" placeholder="Enter Email Address" />
                         </div>
 
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="username">Username:</label>
                             <input type="text" id="username" placeholder="Enter Username" />
                         </div>
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="e-password">Password:</label>
                             <input type="text" id="e-password" placeholder="Enter Password" />
                         </div>
-                        <div class="single-couple">
+                        <div className="single-couple">
                             <label for="emp-post">Employee Post:</label>
                             <select name="emp-post" id="emp-post">
                             <option value="" disabled selected hidden>Not Selected</option>

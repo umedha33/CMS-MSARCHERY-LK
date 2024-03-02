@@ -48,9 +48,9 @@ const SideBar = ({ activeNavElem }) => {
                     </div>
                     <div className={`${isSidebarOpen ? 'foot-elements' : 'foot-elements-min'}`}>
                         <hr id='hr-bottom' />
-                        <h2 className={`foot-lbl ${activeNavItem === 'Settings' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Settings'); }}><i class="fa-solid fa-gear"></i>Settings</h2>
-                        <h2 className={`foot-lbl ${activeNavItem === 'Help Center' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Help Center'); }}><i class="fa-solid fa-circle-question"></i>Help Center</h2>
-                        <button id='logout-btn'><i class="fa-solid fa-right-from-bracket"></i> LOGOUT</button>
+                        <h2 className={`foot-lbl ${activeNavItem === 'Settings' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Settings'); }}><i className="fa-solid fa-gear"></i>Settings</h2>
+                        <h2 className={`foot-lbl ${activeNavItem === 'Help Center' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Help Center'); }}><i className="fa-solid fa-circle-question"></i>Help Center</h2>
+                        <button id='logout-btn'><i className="fa-solid fa-right-from-bracket"></i> LOGOUT</button>
                     </div>
                 </div>
                 <i id='tog-close' className={`fa-solid fa-angle-${isSidebarOpen ? 'left' : 'right'}`} onClick={toggleSidebar}></i>

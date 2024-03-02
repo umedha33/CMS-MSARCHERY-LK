@@ -85,8 +85,8 @@ const AssignTask = ({ activeNavElem }) => {
                     <div className="bottom-container">
                         <label id='lbl-img'>Images:</label>
                         <div className="file-input">
-                            <label for="file-upload" class="file-upload">
-                                Upload Files<i class="fa-solid fa-folder"></i>
+                            <label for="file-upload" className="file-upload">
+                                Upload Files<i className="fa-solid fa-folder"></i>
                             </label>
                             <input id="file-upload"
                                 type="file"
@@ -99,7 +99,7 @@ const AssignTask = ({ activeNavElem }) => {
                         <div className="image-preview">
                             {files.map((file, index) => (
                                 <div key={index} className="thumbnail">
-                                    <i onClick={() => handleRemoveFile(index)} class="fa-solid fa-circle-xmark"></i>
+                                    <i onClick={() => handleRemoveFile(index)} className="fa-solid fa-circle-xmark"></i>
                                     <img src={file.preview} alt={`Thumbnail ${index}`} />
                                     <p>{file.name}</p>
                                 </div>
