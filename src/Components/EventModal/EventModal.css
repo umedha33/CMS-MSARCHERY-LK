@@ -18,13 +18,76 @@
 }
 
 .hedr {
-    background-color: #f5f7fa;
+    background-color: #dadada;
     padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
-.fa-x{
+.fa-xmark {
     cursor: pointer;
+}
+
+.midsec-evnt {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(247, 247, 247);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+}
+
+#event-title {
+    height: 40px;
+    padding-left: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #014BBB;
+    font-family: "Lexend", sans-serif;
+    border: none;
+    outline: 1px solid #438eff;
+    border-radius: 10px;
+}
+
+#event-title::placeholder {
+    padding-left: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-family: "Lexend", sans-serif;
+}
+
+.btn-evnt-task-set {
+    display: flex;
+    padding-top: 10px;
+}
+
+.btn-evnt-task-set button {
+    border: none;
+    padding: 10px 20px;
+    font-family: "Lexend", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    background: rgb(232, 232, 232);
+}
+
+#evntbtnL{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#tskbtnR{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.btnAct{
+    background:#438eff !important;
+    color: white;
+    font-family: "Lexend", sans-serif;
+    transition: background-color 0.2s;
 }
