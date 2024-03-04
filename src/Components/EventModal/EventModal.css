@@ -39,11 +39,13 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px;
+    padding-top: 15px;
 }
 
 #event-title {
     height: 40px;
-    padding-left: 10px;
+    padding-left: 15px;
+    margin-bottom: 5px;
     font-size: 0.9rem;
     font-weight: bold;
     color: #014BBB;
@@ -54,7 +56,6 @@
 }
 
 #event-title::placeholder {
-    padding-left: 5px;
     font-size: 0.9rem;
     font-weight: 500;
     color: #7a7a7a;
@@ -63,31 +64,123 @@
 
 .btn-evnt-task-set {
     display: flex;
+    align-items: center;
     padding-top: 10px;
 }
 
 .btn-evnt-task-set button {
     border: none;
-    padding: 10px 20px;
+    /* height: 2.5rem; */
+    padding: 12px 20px;
     font-family: "Lexend", sans-serif;
     font-weight: 500;
     cursor: pointer;
     background: rgb(232, 232, 232);
 }
 
-#evntbtnL{
+#evntbtnL {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-#tskbtnR{
+#tskbtnR {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.btnAct{
-    background:#438eff !important;
+.btnAct {
+    background: #438eff !important;
     color: white;
     font-family: "Lexend", sans-serif;
+    transition: background-color 0.2s;
+}
+
+.pert-day {
+    display: flex;
+    padding: 0 10px;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    font-family: "Lexend", sans-serif;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.desc-segmnt {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    gap: 20px;
+}
+
+.desc-segmnt textarea {
+    width: 100%;
+    min-width: 85%;
+    min-height: 2.2rem;
+    max-height: 3rem;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: 1px solid #438eff;
+    font-family: "Lexend", sans-serif;
+}
+
+.tsk-label {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    padding-left: 10px;
+    gap: 20px;
+}
+
+.lbl-set {
+    display: flex;
+}
+
+.lbl-set button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+}
+
+#hr-footer {
+    height: 0.5px;
+    background-color: #438eff67;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border: none;
+    width: 98%;
+}
+
+.formfter-sec {
+    display: flex;
+    justify-content: end;
+    padding: 5px 3px;
+    padding-bottom: 0;
+}
+
+.formfter-sec button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Lexend", sans-serif;
+    background: #438eff;
+    color: white;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.formfter-sec button:hover {
+    background: #3979d8;
     transition: background-color 0.2s;
 }

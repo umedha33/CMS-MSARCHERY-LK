@@ -4,6 +4,11 @@
     justify-content: space-between;
     border: 1px solid rgba(39, 39, 39, 0.204);
     border-radius: 10px;
+    cursor: pointer;
+}
+
+.day-cell:hover{
+    background-color: rgba(218, 232, 255, 0.559);
 }
 
 #datenum {
