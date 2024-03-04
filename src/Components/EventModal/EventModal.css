@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(0, 0, 0, 0.542);
 }
 
 .modal-form-cont {
@@ -70,7 +71,6 @@
 
 .btn-evnt-task-set button {
     border: none;
-    /* height: 2.5rem; */
     padding: 12px 20px;
     font-family: "Lexend", sans-serif;
     font-weight: 500;

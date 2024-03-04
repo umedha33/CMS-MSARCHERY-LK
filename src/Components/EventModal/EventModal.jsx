@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './EventModal.css'
 import GlobalContext from '../../context/GlobalContext'
 
@@ -6,20 +6,33 @@ const labelClasses = ["#d50100", "#e77c74", "#f6bf26", "#32b67a", "#039be6", "#7
 
 const EventModal = () => {
 
-    const { setShowEventModal, daySelected } = useContext(GlobalContext);
+    const { setShowEventModal, daySelected, dispatchCalEvent } = useContext(GlobalContext);
+
     const [activeBtn, setActiveBtn] = useState('Event');
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-    }
-
     const [etitle, setETitle] = useState('');
     const [edescription, setEDescription] = useState('');
     const [slctedLbl, setSlctedLbl] = useState(labelClasses[0]);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const calendarEvent = {
+            etitle,
+            edescription,
+            label: slctedLbl,
+            day: daySelected.valueOf(),
+            id: Date.now()
+        }
+        dispatchCalEvent({ type: 'push', payload: calendarEvent });
+        setShowEventModal(false);
+    }
+
+    const preventDef = (event) => {
+        event.preventDefault();
+    }
+
     return (
         <div className='event-modal-container'>
-            <form className='modal-form-cont' onSubmit={handleFormSubmit}>
+            <form className='modal-form-cont' onSubmit={preventDef}>
                 <div className='hedr'>
                     <i className="fa-solid fa-bars"></i>
                     <i onClick={() => setShowEventModal(false)} className="fa-solid fa-xmark"></i>
@@ -56,14 +69,14 @@ const EventModal = () => {
                             onChange={(e) => setEDescription(e.target.value)}></textarea>
                     </div>
                     <div className="tsk-label">
-                        <i class="fa-solid fa-tags"></i>
+                        <i className="fa-solid fa-tags"></i>
                         <div className="lbl-set">
                             {labelClasses.map((lblcolor, i) => (
                                 <button key={i}
                                     onClick={() => setSlctedLbl(lblcolor)}
                                     style={{ backgroundColor: lblcolor }}>
                                     {slctedLbl === lblcolor && (
-                                        <i class="fa-solid fa-check"></i>
+                                        <i className="fa-solid fa-check"></i>
                                     )}
                                 </button>
                             ))}
@@ -72,7 +85,8 @@ const EventModal = () => {
                     <div className="foot">
                         <hr id='hr-footer' />
                         <div className="formfter-sec">
-                            <button type='submit'>Save</button>
+                            <button type='submit'
+                                onClick={handleSubmit}>Save</button>
                         </div>
                     </div>
                 </div>
