@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import GlobalContext from '../../context/GlobalContext'
 
 const MonthDay = ({ day, rowIdx }) => {
-    const { setDaySelected, setShowEventModal, savedEvents } = useContext(GlobalContext);
+    const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent } = useContext(GlobalContext);
     const [dayEvents, setDayEvents] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,10 @@ const MonthDay = ({ day, rowIdx }) => {
         <div className='day-cell' onClick={() => dayCLick(day)}>
             <p id='datenum' className={`${getCurrentDayClass()}`}>{day.format("DD")}</p>
             {dayEvents.map((evt, idx) => (
-                <div key={idx} className="evnt-lb" style={{ backgroundColor: evt.label }}>
+                <div
+                    key={idx}
+                    onClick={() => setSelectedEvent(evt)}
+                    className="evnt-lb" style={{ backgroundColor: evt.label }}>
                     {evt.etitle}
                 </div>
             ))}

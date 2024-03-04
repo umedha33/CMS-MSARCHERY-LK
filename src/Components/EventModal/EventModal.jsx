@@ -6,12 +6,12 @@ const labelClasses = ["#d50100", "#e77c74", "#f6bf26", "#32b67a", "#039be6", "#7
 
 const EventModal = () => {
 
-    const { setShowEventModal, daySelected, dispatchCalEvent } = useContext(GlobalContext);
+    const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } = useContext(GlobalContext);
 
     const [activeBtn, setActiveBtn] = useState('Event');
-    const [etitle, setETitle] = useState('');
-    const [edescription, setEDescription] = useState('');
-    const [slctedLbl, setSlctedLbl] = useState(labelClasses[0]);
+    const [etitle, setETitle] = useState(selectedEvent ? selectedEvent.etitle : "");
+    const [edescription, setEDescription] = useState(selectedEvent ? selectedEvent.edescription : "");
+    const [slctedLbl, setSlctedLbl] = useState(selectedEvent ? labelClasses.find((lbl) => lbl === selectedEvent.label) : labelClasses[0]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,9 +20,13 @@ const EventModal = () => {
             edescription,
             label: slctedLbl,
             day: daySelected.valueOf(),
-            id: Date.now()
+            id: selectedEvent ? selectedEvent.id : Date.now()
         }
-        dispatchCalEvent({ type: 'push', payload: calendarEvent });
+        if (selectedEvent) {
+            dispatchCalEvent({ type: 'update', payload: calendarEvent });
+        } else {
+            dispatchCalEvent({ type: 'push', payload: calendarEvent });
+        }
         setShowEventModal(false);
     }
 
@@ -34,7 +38,16 @@ const EventModal = () => {
         <div className='event-modal-container'>
             <form className='modal-form-cont' onSubmit={preventDef}>
                 <div className='hedr'>
-                    <i className="fa-solid fa-bars"></i>
+                    <div className='lst-icons'>
+                        <i className="fa-solid fa-bars"></i>
+                        {selectedEvent && (
+                            <i onClick={() => {
+                                dispatchCalEvent({ type: "delete", payload: selectedEvent });
+                                selectedEvent = "";
+                                setShowEventModal(false);
+                            }} className="fa-solid fa-trash"></i>
+                        )}
+                    </div>
                     <i onClick={() => setShowEventModal(false)} className="fa-solid fa-xmark"></i>
                 </div>
                 <div className="midsec-evnt">

@@ -27,6 +27,7 @@ const ContextWrapper = (props) => {
     const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
     const [daySelected, setDaySelected] = useState(dayjs());
     const [showEventModal, setShowEventModal] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState(null);
     const [savedEvents, dispatchCalEvent] = useReducer(savedEventsReducer, [], initEvents);
 
     useEffect(() => {
@@ -50,7 +51,9 @@ const ContextWrapper = (props) => {
             showEventModal,
             setShowEventModal,
             dispatchCalEvent,
-            savedEvents
+            savedEvents,
+            selectedEvent,
+            setSelectedEvent
         }}>
             {props.children}
         </GlobalContext.Provider>
