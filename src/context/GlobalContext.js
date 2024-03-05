@@ -14,7 +14,9 @@ const GlobalContext = React.createContext({
     selectedEvent: null,
     setSelectedEvent: () => { },
     setLabels: () => { },
-    labels: []
+    labels: [],
+    updateLabel: () => { },
+    fileteredEvents: [],
 });
 
 export default GlobalContext

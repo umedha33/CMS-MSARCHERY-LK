@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './EventModal.css'
 import GlobalContext from '../../context/GlobalContext'
 
-const labelClasses = ["#ff2300", "#e77c74", "#ffe227", "#32b67a", "#039be6", "#7986cc"];
+const labelClasses = ["#ff2200ae", "#e77c74a5", "#ffe227c2", "#32b67bc0", "#039ae6bb", "#7985ccd7"];
 
 const EventModal = () => {
 
@@ -44,6 +44,7 @@ const EventModal = () => {
                             <i onClick={() => {
                                 dispatchCalEvent({ type: "delete", payload: selectedEvent });
                                 setShowEventModal(false);
+                                window.location.reload();
                             }} className="fa-solid fa-trash"></i>
                         )}
                     </div>

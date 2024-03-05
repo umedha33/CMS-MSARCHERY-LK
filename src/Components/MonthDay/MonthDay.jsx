@@ -4,13 +4,13 @@ import dayjs from 'dayjs'
 import GlobalContext from '../../context/GlobalContext'
 
 const MonthDay = ({ day, rowIdx }) => {
-    const { setDaySelected, setShowEventModal, savedEvents, setSelectedEvent } = useContext(GlobalContext);
+    const { setDaySelected, setShowEventModal, fileteredEvents, setSelectedEvent } = useContext(GlobalContext);
     const [dayEvents, setDayEvents] = useState([]);
 
     useEffect(() => {
-        const events = savedEvents.filter(evt => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY"));
+        const events = fileteredEvents.filter(evt => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY"));
         setDayEvents(events)
-    }, [savedEvents, day])
+    }, [fileteredEvents, day])
 
     const getCurrentDayClass = () => {
         return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") ? 'current-day' : '';

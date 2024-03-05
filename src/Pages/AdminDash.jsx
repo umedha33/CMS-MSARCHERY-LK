@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './CSS/AdminDash.css'
-import SideBar from '../Components/SideBar/SideBar'
-import Tasks from '../Components/Tasks/Tasks'
+import React, { useState, useEffect } from 'react';
+import './CSS/AdminDash.css';
+import SideBar from '../Components/SideBar/SideBar';
+import Tasks from '../Components/Tasks/Tasks';
 import Employees from './../Components/Employees/Employees';
 import Schedules from './../Components/Schedules/Schedules';
 import Chat from './../Components/Chat/Chat';
@@ -11,13 +11,20 @@ import Settings from '../Components/Settings/Settings';
 import HelpCenter from '../Components/HelpCenter/HelpCenter';
 import AssignTask from '../Components/AssignTask/AssignTask';
 import AssignEmp from '../Components/AssignEmp/AssignEmp';
+import { useLocation } from 'react-router-dom';
 
 const AdminDash = () => {
+    const [showComp, setShowComp] = useState(null);
+    const location = useLocation();
 
-    const [showComp, setShowComp] = useState('Tasks');
+    useEffect(() => {
+        const storedPage = sessionStorage.getItem('currentPage');
+        setShowComp(storedPage || 'Tasks');
+    }, [location]);
 
     const activeNavElem = (element) => {
         setShowComp(element);
+        sessionStorage.setItem('currentPage', element);
     };
 
     let componentToRender;
@@ -47,19 +54,20 @@ const AdminDash = () => {
         case "Help Center":
             componentToRender = <HelpCenter />;
             break;
-
         case "Assign Task":
             componentToRender = <AssignTask activeNavElem={activeNavElem} />;
             break;
-
         case "Assign EMP":
             componentToRender = <AssignEmp activeNavElem={activeNavElem} />;
             break;
-
         default:
             componentToRender = null;
             break;
     }
+
+    // if (showComp === null) {
+    //     return <div>Loading...</div>; 
+    // }
 
     return (
         <div className='admin'>
@@ -73,5 +81,4 @@ const AdminDash = () => {
     )
 }
 
-export default AdminDash
-
+export default AdminDash;

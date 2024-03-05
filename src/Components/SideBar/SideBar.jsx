@@ -1,21 +1,43 @@
-import React, { useState } from 'react'
-import './SideBar.css'
-import mslogo from '../Assets/msarchery-logo-new-tra.png'
+import React, { useState, useEffect } from 'react';
+import './SideBar.css';
+import mslogo from '../Assets/msarchery-logo-new-tra.png';
 
 const SideBar = ({ activeNavElem }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [activeNavItem, setActiveNavItem] = useState('Tasks');
+    const [activeNavItem, setActiveNavItem] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true); 
+
+    useEffect(() => {
+        const storedNavItem = sessionStorage.getItem('activeNavItem');
+        const storedSidebarState = sessionStorage.getItem('isSidebarOpen');
+
+        if (storedNavItem) {
+            setActiveNavItem(storedNavItem);
+        }
+
+        if (storedSidebarState === 'true' || storedSidebarState === 'false') {
+            setIsSidebarOpen(storedSidebarState === 'true');
+        }
+
+        setIsLoading(false);
+    }, []);
 
     const toggleSidebar = () => {
-        setIsSidebarOpen(!isSidebarOpen);
+        setIsSidebarOpen(prevState => !prevState);
+        sessionStorage.setItem('isSidebarOpen', !isSidebarOpen);
     };
 
     const handleNavItemClick = (item) => {
         setActiveNavItem(item);
         activeNavElem(item);
+        sessionStorage.setItem('activeNavItem', item);
     };
 
     const empPost = "Admin Dashboard";
+
+    // if (isLoading) {
+    //     return <div>Loading...</div>; 
+    // }
 
     return (
         <div>
@@ -59,4 +81,4 @@ const SideBar = ({ activeNavElem }) => {
     )
 }
 
-export default SideBar
+export default SideBar;

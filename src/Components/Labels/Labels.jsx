@@ -3,21 +3,21 @@ import './Labels.css'
 import GlobalContext from '../../context/GlobalContext'
 
 const Labels = () => {
-    const { labels } = useContext(GlobalContext)
+    const { labels, updateLabel } = useContext(GlobalContext)
 
     const getLabelName = (color) => {
         switch (color) {
-            case "#ff2300":
+            case "#ff2200ae":
                 return "High Priority"
-            case "#e77c74":
+            case "#e77c74a5":
                 return "Urgent"
-            case "#ffe227":
+            case "#ffe227c2":
                 return "Personal"
-            case "#32b67a":
+            case "#32b67bc0":
                 return "Normal Priority"
-            case "#039be6":
+            case "#039ae6bb":
                 return "Low Priority"
-            case "#7986cc":
+            case "#7985ccd7":
                 return "Informational"
             default:
                 return "Unknown Label";
@@ -32,6 +32,7 @@ const Labels = () => {
                     <input
                         type="checkbox"
                         checked={checked}
+                        onChange={() => updateLabel({label: lbl, checked: !checked})}
                     />
                     <span>{getLabelName(lbl)}</span>
                 </div>
