@@ -3,6 +3,7 @@ import './ScheduleSide.css'
 import dayjs from 'dayjs'
 import { getMonth } from '../Assets/util'
 import GlobalContext from '../../context/GlobalContext'
+import Labels from '../Labels/Labels'
 
 const ScheduleSide = () => {
 
@@ -78,6 +79,7 @@ const ScheduleSide = () => {
             ))}
           </div>
         </div>
+          <Labels />
       </div>
     </div>
   )

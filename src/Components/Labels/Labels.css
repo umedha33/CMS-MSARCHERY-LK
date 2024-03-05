@@ -1,0 +1,28 @@
+.lbl-container{
+    background-color: #fbfbfb;
+    margin: 3px;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.lbl-container p{
+    color: #2d81ff;
+    font-weight: bold;
+    margin-top: 0;
+    margin-left: 3px;
+    margin-bottom: 5px;
+}
+
+.labl{
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+.labl span{
+    margin-bottom: 3px;
+    margin-left: 5px;
+}

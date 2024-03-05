@@ -1,0 +1,16 @@
+.ecom-dash-container{
+    display: flex;
+    gap: 20px;
+    background: pink;
+}
+
+.leftside{
+    display: flex;
+    align-items: end;
+    background: lightgreen;
+    height: 80vh;
+}
+
+.right-side{
+    background: gray;
+}
