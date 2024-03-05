@@ -7,7 +7,7 @@ const EcomDash = () => {
     <div className='ecom-dash-container'>
 
       <div className="leftside">
-        <h1>onel</h1>
+        <h1>left side</h1>
       </div>
 
       <div className="right-side">
