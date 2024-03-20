@@ -26,11 +26,11 @@ const Chat = () => {
           </div>
           <div className="chatrender">
             <div className="chatlist-card">
-              <h2>Sumedha</h2>
+              <h2>Umedha</h2>
               <p>Hey did you get the contact?</p>
             </div>
             <div className="chatlist-card">
-              <h2>Akash</h2>
+              <h2>Senerath</h2>
               <p>I have the ID</p>
             </div>
             <div className="grplist-card">
@@ -54,7 +54,24 @@ const Chat = () => {
               <i class="fa-solid fa-circle-info"></i>
             </div>
             <div className="msg-body">
-              {/* <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis fuga deserunt quasi aut sapiente inventore quod! Sequi tempore quae hic aspernatur. Aut id officiis illo natus exercitationem, omnis facere delectus!</p> */}
+              <div className="chat-threads">
+                <div className="sender-side">
+                  <p id='sender-msg'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta error corrupti.</p>
+                </div>
+                <div className="user-side">
+                  <p id='user-msg'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta error corrupti.</p>
+                  <p id='user-msg'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta error corrupti. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta error corrupti.</p>
+                </div>
+                <div className="sender-side">
+                  <p id='sender-msg'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta adipisicing elit. Perferendis officia ad dicta error</p>
+                </div>
+                <div className="user-side">
+                  <p id='user-msg'>Perferendis officia ad dicta error corrupti.</p>
+                </div>
+                <div className="sender-side">
+                  <p id='sender-msg'>consectetur adipisicing elit. Perferendis officia ad dicta error corrupti dolor sit amet, consectetur adipisicing elit. Perferendis officia ad dicta error</p>
+                </div>
+              </div>
               <div className="text-sender">
                 <input type="text" name="message-txt" id="message-txt" placeholder='Enter a message' />
                 <i class="fa-solid fa-circle-arrow-right"></i>
