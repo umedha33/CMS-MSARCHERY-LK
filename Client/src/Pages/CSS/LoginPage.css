@@ -129,6 +129,30 @@
     color: rgb(0, 67, 237);
 }
 
+.pass {
+    position: relative;
+}
+
+#pssShowbtn {
+    position: absolute;
+    z-index: 100;
+    right: 20.5rem;
+    top: 48.9%;
+    transform: translateY(-50%);
+    background-color: #014BBB;
+    border-radius: 5px;
+    height: 1.8rem;
+    width: 3.2rem;
+    font-family: "Lexend", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 #forg-pass {
     font-size: 0.9rem;
     font-family: "Lexend", sans-serif;

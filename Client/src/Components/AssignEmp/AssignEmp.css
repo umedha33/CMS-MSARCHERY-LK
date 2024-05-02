@@ -96,6 +96,50 @@
     margin-right: 10px;
 }
 
+.pass {
+    position: relative;
+}
+
+.single-couple button {
+    position: absolute;
+    z-index: 100;
+    right: 105px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #014BBB;
+    border-radius: 5px;
+    height: 1.8rem;
+    width: 3.2rem;
+    font-family: "Lexend", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#passbtn2 {
+    position: absolute;
+    z-index: 100;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #014BBB;
+    border-radius: 5px;
+    height: 1.8rem;
+    width: 3.2rem;
+    font-family: "Lexend", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 .single-couple input {
     height: 40px;
     width: 60%;
