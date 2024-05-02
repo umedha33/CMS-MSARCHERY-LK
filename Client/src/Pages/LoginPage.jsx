@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './CSS/LoginPage.css'
 import topograph from '../Components/Assets/topograph.png'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function LoginPage() {
     const [email, setEmail] = useState();
@@ -15,8 +16,34 @@ function LoginPage() {
         setShowHide(!showHide);
     };
 
-    const consFunc = () => {
-        console.log(email, password);
+    // const consFunc = () => {
+    //     console.log(email, password);
+    // }
+
+    const submitHandler = async () => {
+        if (!email || !password) {
+            window.alert("Enter credentials!");
+        }
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            const { data } = await axios.post('/api/user/login', {
+                email, password
+            }, config);
+
+            window.alert("Login Successful!");
+            localStorage.setItem('userInfo', JSON.stringify(data, '-password'));
+            // console.log(`rcvd: `, data);
+            navigate("/admin");
+
+        } catch (error) {
+
+        }
+
     }
 
     return (
@@ -50,7 +77,7 @@ function LoginPage() {
                                 {showHide ? 'Hide' : 'Show'}
                             </button>
                             <p id='forg-pass'>Forgot Password?</p>
-                            <button id='btn-login' onClick={() => consFunc()}>SIGN IN</button>
+                            <button id='btn-login' onClick={() => submitHandler()}>SIGN IN</button>
                             {/* <button id='btn-login' onClick={() => navigate("/admin")}>SIGN IN</button> */}
                         </div>
                         <div class="bottom-left-pane">

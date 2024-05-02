@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './AssignEmp.css'
+import axios from 'axios'
 
 const AssignEmp = ({ activeNavElem }) => {
     const [name, setName] = useState();
@@ -10,6 +11,7 @@ const AssignEmp = ({ activeNavElem }) => {
     const [password, setPassword] = useState();
     const [pic, setPic] = useState();
     const [showHide, setShowHide] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [file, setFile] = useState(null);
 
@@ -20,12 +22,37 @@ const AssignEmp = ({ activeNavElem }) => {
                 preview: URL.createObjectURL(selectedFile)
             }));
         }
-        postDetails();
+        postDetails(selectedFile);
     };
 
     const postDetails = (pics) => {
+        setLoading(true);
+        if (!pics) {
+            console.log("Image undefined");
+            return;
+        }
+        if (pics.type === "image/jpeg" || pics.type === "image/png") {
+            const formData = new FormData();
+            formData.append("file", pics);
+            formData.append("upload_preset", "cms-msarchery");
 
-    }
+            fetch("https://api.cloudinary.com/v1_1/djvqxvwqj/image/upload", {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Cloudinary response:", data);
+                    setPic(data.url.toString());
+                    console.log(data.url.toString());
+                })
+                .catch((error) => {
+                    console.error("Error uploading image to Cloudinary:", error);
+                });
+        } else {
+            console.log("Invalid image type");
+        }
+    };
 
     const handleRemoveFile = () => {
         setFile(null);
@@ -36,7 +63,41 @@ const AssignEmp = ({ activeNavElem }) => {
     };
 
     const consFunc = () => {
-        console.log(name, email, phone, role, password, confirmpassword);
+        if (loading) {
+            console.log(name, email, phone, role, password, pic, confirmpassword);
+            setLoading(false);
+        } else {
+            console.log("Wait till image uploads");
+        }
+    }
+
+    const submitHandler = async () => {
+        consFunc();
+        if (!name || !email || !phone || !role || !password || !pic || !confirmpassword) {
+            window.alert("All feilds required!");
+        }
+
+        if (password !== confirmpassword) {
+            window.alert("Password Does Not Match!")
+        }
+
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            }
+            const { data } = await axios.post('/api/user', {
+                name, email, phone, password, role, pic
+            }, config);
+
+            window.alert("Registeration Successful!");
+            console.log(`rcvd log: `, data);
+
+        } catch (error) {
+            window.alert("Error occured!");
+        }
+
     }
 
     return (
@@ -44,7 +105,7 @@ const AssignEmp = ({ activeNavElem }) => {
             <div className="row1-assignemp-header">
                 <h1>Add Employee</h1>
                 <div className="button-set">
-                    <button id='add-btn' onClick={() => { consFunc() }}>Submit</button>
+                    <button id='add-btn' onClick={() => { submitHandler() }}>Submit</button>
                     <button id='close-btn' onClick={() => { activeNavElem('Employees'); }}>Close</button>
                 </div>
             </div>
