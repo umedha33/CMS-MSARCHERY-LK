@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './SideBar.css';
 import mslogo from '../Assets/msarchery-logo-new-tra.png';
+import { useNavigate } from 'react-router-dom';
+import { ChatState } from '../../context/ChatProvider';
 
 const SideBar = ({ activeNavElem }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [activeNavItem, setActiveNavItem] = useState(null); 
-    const [isLoading, setIsLoading] = useState(true); 
+    const [activeNavItem, setActiveNavItem] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [dashName, setDashName] = useState('dashboard');
+
+    const navigate = useNavigate();
+    const { user } = ChatState();
 
     useEffect(() => {
         const storedNavItem = sessionStorage.getItem('activeNavItem');
@@ -33,11 +39,20 @@ const SideBar = ({ activeNavElem }) => {
         sessionStorage.setItem('activeNavItem', item);
     };
 
-    const empPost = "Admin Dashboard";
+    // const empPost = "Admin Dashboard";
 
-    // if (isLoading) {
-    //     return <div>Loading...</div>; 
+    // const dashboardName = () => {
+    //     if (user) {
+    //         setDashName(`${user.role} dashboard`);
+    //     } else {
+    //         return dashName;
+    //     }
     // }
+
+    const logoutHandler = () => {
+        localStorage.removeItem('userInfo');
+        navigate("/");
+    }
 
     return (
         <div>
@@ -45,7 +60,7 @@ const SideBar = ({ activeNavElem }) => {
                 <div className="side-bar">
                     <div className="header-elements">
                         <img id='ms-logo' src={mslogo} alt="ms-logo" />
-                        <h1 id='head-lbl'>{empPost}</h1>
+                        <h1 id='head-lbl'>{user ? `${user.role} dashboard` : 'Dashboard'}</h1>
                     </div>
                     <hr id='hr-top' />
                     <div className={`${isSidebarOpen ? 'nav-elements' : 'nav-elements-min'}`}>
@@ -72,7 +87,7 @@ const SideBar = ({ activeNavElem }) => {
                         <hr id='hr-bottom' />
                         <h2 className={`foot-lbl ${activeNavItem === 'Settings' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Settings'); }}><i className="fa-solid fa-gear"></i>Settings</h2>
                         <h2 className={`foot-lbl ${activeNavItem === 'Help Center' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Help Center'); }}><i className="fa-solid fa-circle-question"></i>Help Center</h2>
-                        <button id='logout-btn'><i className="fa-solid fa-right-from-bracket"></i> LOGOUT</button>
+                        <button id='logout-btn' onClick={() => { logoutHandler() }}><i className="fa-solid fa-right-from-bracket"></i> LOGOUT</button>
                     </div>
                 </div>
                 <i id='tog-close' className={`fa-solid fa-angle-${isSidebarOpen ? 'left' : 'right'}`} onClick={toggleSidebar}></i>

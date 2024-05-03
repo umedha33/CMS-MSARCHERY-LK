@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './CSS/LoginPage.css'
 import topograph from '../Components/Assets/topograph.png'
 import { useNavigate } from 'react-router-dom'
@@ -8,8 +8,15 @@ function LoginPage() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [showHide, setShowHide] = useState(false);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('userInfo'));
+
+        if (user) {
+            navigate("/admin");
+        }
+    }, [navigate]);
 
 
     const togglePasswordVisibility = () => {
@@ -35,7 +42,7 @@ function LoginPage() {
                 email, password
             }, config);
 
-            window.alert("Login Successful!");
+            // window.alert("Login Successful!");
             localStorage.setItem('userInfo', JSON.stringify(data, '-password'));
             // console.log(`rcvd: `, data);
             navigate("/admin");
