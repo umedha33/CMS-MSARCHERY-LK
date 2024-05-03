@@ -1,0 +1,42 @@
+.search-res-container {
+    display: flex;
+    background-color: rgb(155, 208, 255);
+    align-items: center;
+    height: 3rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-res-container:hover {
+    background-color: rgb(109, 187, 255);
+}
+
+.search-res-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#srch-us-thumb {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+.srch-res-inf {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.srch-res-inf h2 {
+    margin: 0;
+    font-size: 1rem;
+    margin-top: -3.5px;
+}
+
+.srch-res-inf p {
+    margin: 0;
+    font-size: 0.8rem;
+}
