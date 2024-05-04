@@ -5,7 +5,7 @@ import UserBadgeItem from '../UserBadgeItem/UserBadgeItem';
 import axios from 'axios';
 import UserListItem from '../UserListItem/UserListItem';
 
-const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain, fetchMessages }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [groupChatName, setGroupChatName] = useState();
     const [search, setSearch] = useState("");
@@ -35,6 +35,7 @@ const UpdateGroupChatModel = ({ fetchAgain, setFetchAgain }) => {
 
             user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
             setFetchAgain(!fetchAgain);
+            fetchMessages();
             setLoading(false);
 
         } catch (error) {
