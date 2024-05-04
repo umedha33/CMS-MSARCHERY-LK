@@ -39,16 +39,6 @@ const SideBar = ({ activeNavElem }) => {
         sessionStorage.setItem('activeNavItem', item);
     };
 
-    // const empPost = "Admin Dashboard";
-
-    // const dashboardName = () => {
-    //     if (user) {
-    //         setDashName(`${user.role} dashboard`);
-    //     } else {
-    //         return dashName;
-    //     }
-    // }
-
     const logoutHandler = () => {
         localStorage.removeItem('userInfo');
         navigate("/");

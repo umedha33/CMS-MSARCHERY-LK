@@ -17,10 +17,6 @@ const ChatList = ({ fetchAgain }) => {
     const { user, selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
     const handleSearch = async () => {
-        // if (!search) {
-        //     window.alert("Enter Name or Email!");
-        // }
-
         try {
             setLoading(true)
 

@@ -7,7 +7,7 @@ import ChatBox from '../ChatBox/ChatBox'
 import ProfileModel from '../ProfileModel/ProfileModel'
 
 const Chat = () => {
-  const { user } = ChatState();
+  const { user, notification, setNotification } = ChatState();
   const [fetchAgain, setFetchAgain,] = useState(false);
 
   return (
@@ -15,7 +15,8 @@ const Chat = () => {
       <div className="row1-chatapp-header">
         <h1>MS CHAT</h1>
         <div className="noti-prof">
-          <i class="fa-solid fa-bell"></i>
+          {/* <i class="fa-solid fa-bell"></i> */}
+          <h2>{user.name}</h2>
           <ProfileModel user={user}>
             <img src={user.pic} alt="dp" className='header-img' />
           </ProfileModel>

@@ -241,6 +241,10 @@
     color: white;
 }
 
-.fa-calendar-days{
+.fa-calendar-days {
     margin-left: 2px;
+}
+
+.notif {
+    color: red;
 }
