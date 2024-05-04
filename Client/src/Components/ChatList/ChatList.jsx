@@ -4,6 +4,7 @@ import { ChatState } from '../../context/ChatProvider';
 import axios from 'axios';
 import UserListItem from '../UserListItem/UserListItem';
 import { getSender } from '../../config/ChatLogics';
+import GroupChatModel from '../GroupChatModel/GroupChatModel';
 
 const ChatList = () => {
     const [loggedUser, setLoggedUser] = useState();
@@ -98,8 +99,10 @@ const ChatList = () => {
                     onClick={() => { setIsOpen(true) }} />
                 {isOpen ? (
                     <i class="fa-solid fa-xmark fax" onClick={() => { searchBack() }}></i>
-                ) : (
-                    <i class="fa-solid fa-plus"></i>
+                ) : (//GROUP BUTTON
+                    <GroupChatModel>
+                        <i class="fa-solid fa-plus"></i>
+                    </GroupChatModel>
                 )}
             </div>
             {isOpen ? (

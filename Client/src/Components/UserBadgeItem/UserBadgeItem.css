@@ -1,0 +1,23 @@
+.userbadge-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(60, 185, 252);
+    align-items: center;
+    padding: 2px 10px;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.userbadge-container h1 {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #ffffff;
+    margin-top: -2px;
+}
+
+.usr-bdg-cls {
+    font-size: 1rem;
+    margin-top: 1px;
+}

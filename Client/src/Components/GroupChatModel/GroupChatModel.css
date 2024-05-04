@@ -1,0 +1,189 @@
+.grpchat-model-container {
+    /* background-color: cadetblue; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grp-container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.grp-card {
+    position: relative;
+    z-index: 100;
+    background-color: aliceblue;
+    width: 40rem;
+    /* height: 30rem; */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btm-btn-grpch {
+    /* background-color: antiquewhite; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    gap: 15px;
+}
+
+#cls-btn-grpch {
+    display: flex;
+    width: 47%;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    height: 2.5rem;
+    margin: 20px 0;
+    margin-bottom: 10px;
+    background-color: #7b92b4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#cls-btn-grpch:hover {
+    background-color: #f12222;
+}
+
+#cret-btn-grpch {
+    display: flex;
+    width: 47%;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    height: 2.5rem;
+    margin: 20px 0;
+    margin-bottom: 10px;
+    background-color: #7b92b4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#cret-btn-grpch:hover {
+    background-color: #10cc45;
+}
+
+#grp-hdr {
+    margin: 0;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: #014BBB;
+}
+
+.grpch-inps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    /* background-color: antiquewhite; */
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#grp-name-inp {
+    width: 80%;
+    height: 2.6rem;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    color: #014BBB;
+    padding-left: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+#grp-users-inp {
+    width: 80%;
+    height: 2.6rem;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.163);
+    color: #014BBB;
+    padding-left: 10px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lodn-cont-grpch {
+    display: flex;
+    /* background-color: #2d81ff; */
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-spinner {
+    background-color: #2d81ff49;
+    border: 4px solid rgba(99, 94, 255, 0.241);
+    border-left-color: #3278c7;
+    /* Change this to your desired color */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: loading 1s linear infinite;
+}
+
+.render-reslts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #10cc45; */
+    margin-top: 20px;
+}
+
+.usr-list {
+    display: flex;
+    flex-direction: column;
+    width: 82%;
+    gap: 5px;
+}
+
+.usr-lst-ary {
+    display: flex;
+    /* background-color: #014BBB; */
+    width: 82%;
+    margin: 10px 0;
+    margin-top: -10px;
+    gap: 5px;
+}
