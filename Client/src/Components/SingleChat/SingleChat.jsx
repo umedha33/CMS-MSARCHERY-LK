@@ -6,12 +6,17 @@ import ProfileModel from '../ProfileModel/ProfileModel';
 import UpdateGroupChatModel from '../UpdateGroupChatModel/UpdateGroupChatModel';
 import axios from 'axios';
 import ScrollableChat from '../ScrollableChat/ScrollableChat';
+import io from 'socket.io-client'
+
+const ENDPOINT = "http://localhost:4000";
+var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(false);
     const [newMessage, setNewMessage] = useState();
+    const [socketConnected, setSocketConnected] = useState(false);
 
     const { user, selectedChat, setSelectedChat } = ChatState();
 
@@ -34,6 +39,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             console.log(`msgs: `, messages);
             setMessages(data);
             setLoading(false);
+            socket.emit("join chat", selectedChat._id);
 
         } catch (error) {
             window.alert('Error occured');
@@ -41,8 +47,28 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }
 
     useEffect(() => {
+        socket = io(ENDPOINT);
+        socket.emit('setup', user)
+        socket.on('connection', () => setSocketConnected(true))
+    }, [])
+
+    useEffect(() => {
         fetchMessages();
+        selectedChatCompare = selectedChat;
     }, [selectedChat])
+
+    useEffect(() => {
+        socket.on("message recieved", (newMessageRecieved) => {
+            if (!selectedChatCompare || selectedChatCompare._id !== newMessageRecieved.chat._id) {
+                // if (!notification.includes(newMessageRecieved)) {
+                //     setNotification([newMessageRecieved, ...notification]);
+                //     setFetchAgain(!fetchAgain);
+                // }
+            } else {
+                setMessages([...messages, newMessageRecieved]);
+            }
+        });
+    });
 
     const sendMessage = async () => {
         if (newMessage) {
@@ -59,13 +85,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     chatId: selectedChat._id,
                 }, config)
 
-                console.log(`data: `, data)
+                // console.log(`data: `, data)
+                socket.emit("new message", data);
                 setMessages([...messages, data]);
             } catch (error) {
                 window.alert('Error occured');
             }
         }
     }
+
 
     const typingHandler = (e) => {
         setNewMessage(e.target.value);

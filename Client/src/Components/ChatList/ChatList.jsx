@@ -134,12 +134,16 @@ const ChatList = ({ fetchAgain }) => {
                                     {!chat.isGroupChat ? (
                                         <>
                                             <h3>{getSender(loggedUser, chat.users)}</h3>
-                                            <p>dhodwhdhdwd</p>
+                                            <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
+                                                ? chat.latestMessage.content.substring(0, 51) + "..."
+                                                : chat.latestMessage.content}</p>
                                         </>
                                     ) : (
                                         <>
                                             <h3>{chat.chatName}</h3>
-                                            <p>ifubiuwfbiubwf</p>
+                                            <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
+                                                ? chat.latestMessage.content.substring(0, 51) + "..."
+                                                : chat.latestMessage.content}</p>
                                         </>
                                     )}
                                 </div>
