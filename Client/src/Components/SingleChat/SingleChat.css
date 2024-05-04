@@ -1,9 +1,36 @@
-/* .messenger-container {
+.singlechat-container {
     display: flex;
     background-color: #2d81ff;
     border-radius: 20px;
     width: 80%;
     padding: 8px;
+}
+
+.empty-chts {
+    display: flex;
+    width: 100%;
+    background-color: aliceblue;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty-chts h1 {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #1666de;
+}
+
+/* ============================ */
+
+.messenger-container {
+    display: flex;
+    /* background-color: #354b6c; */
+    border-radius: 20px;
+    width: 100%;
+    /* padding: 8px; */
 }
 
 .default-cont {
@@ -32,6 +59,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* background-color: rgb(107, 100, 91); */
 }
 
 .msg-head {
@@ -39,18 +67,24 @@
     justify-content: space-between;
     align-items: center;
     margin: 10px;
+    /* width: 100%; */
     margin-bottom: 17px;
+    /* background-color: aqua; */
 }
 
-.msg-head h2 {
+#headr-h2 {
     color: white;
     margin: 0;
+    margin-top: -10px;
+    margin-bottom: -8px;
+    width: 100%;
 }
 
 .msg-head .fa-circle-info {
     font-size: 1.3rem;
     color: white;
     margin-right: 8px;
+    /* margin-top: -5px; */
     cursor: pointer;
 }
 
@@ -63,9 +97,9 @@
     flex-direction: column;
     justify-content: end;
     background-color: rgb(235, 235, 235);
-    height: 67.5vh;
+    height: 100%;
     border-radius: 15px;
-    padding: 8px;
+    /* padding: 8px; */
     overflow-y: auto;
 }
 
@@ -136,4 +170,12 @@
     scale: 1.1;
     color: black;
     transition: scale 0.2s, color 0.2s;
-} */
+}
+
+.convo-header {
+    display: flex;
+    /* background-color: aliceblue; */
+    width: 100%;
+    justify-content: space-between;
+    /* gap: 20px; */
+}

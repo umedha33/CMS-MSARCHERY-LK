@@ -88,7 +88,9 @@
 #prof-email {
     margin: 0;
     font-size: 1.2rem;
-    font-weight: normal;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    color: black;
 }
 
 .prof-inf {

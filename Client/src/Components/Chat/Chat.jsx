@@ -8,6 +8,7 @@ import ProfileModel from '../ProfileModel/ProfileModel'
 
 const Chat = () => {
   const { user } = ChatState();
+  const [fetchAgain, setFetchAgain,] = useState(false);
 
   return (
     <div className='chatapp-container'>
@@ -28,8 +29,8 @@ const Chat = () => {
       {user ? (
         <>
           <div className="chatting-container">
-            <ChatList />
-            <ChatBox />
+            <ChatList fetchAgain={fetchAgain} />
+            <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
           </div>
         </>
       ) : (

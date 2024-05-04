@@ -213,3 +213,10 @@
     scale: 1.03;
     transition: scale 0.2s;
 }
+
+#chat-slcted {
+    background-color: #2d81ff;
+    color: white;
+    scale: 1.05;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.365);
+}

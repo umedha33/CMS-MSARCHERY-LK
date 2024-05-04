@@ -6,7 +6,8 @@ import UserListItem from '../UserListItem/UserListItem';
 import { getSender } from '../../config/ChatLogics';
 import GroupChatModel from '../GroupChatModel/GroupChatModel';
 
-const ChatList = () => {
+const ChatList = ({ fetchAgain }) => {
+
     const [loggedUser, setLoggedUser] = useState();
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
@@ -85,7 +86,7 @@ const ChatList = () => {
     useEffect(() => {
         setLoggedUser(JSON.parse(localStorage.getItem('userInfo')));
         fetchChats();
-    }, [])
+    }, [fetchAgain])
 
     return (
         <div className="chatlist-container">
@@ -127,7 +128,9 @@ const ChatList = () => {
                     {chats ? (
                         <>
                             {chats.map((chat) => (
-                                <div className={!chat.isGroupChat ? 'new-chtlst' : 'new-grplst'}>
+                                <div onClick={() => setSelectedChat(chat)}
+                                    className={!chat.isGroupChat ? 'new-chtlst' : 'new-grplst'}
+                                    id={selectedChat === chat ? 'chat-slcted' : ''}>
                                     {!chat.isGroupChat ? (
                                         <>
                                             <h3>{getSender(loggedUser, chat.users)}</h3>
@@ -147,17 +150,6 @@ const ChatList = () => {
                             <div className="loading-spinner"></div>
                         </div>
                     )}
-
-
-                    {/* <div className="chatlist-card">
-                        <h2>Umedha</h2>
-                        <p>Hey did you get the contact?</p>
-                    </div>
-
-                    <div className="grplist-card">
-                        <h2>Logistics Group</h2>
-                        <p><span>Lalith: </span>We'll send it...</p>
-                    </div> */}
                 </div>
             )}
 
