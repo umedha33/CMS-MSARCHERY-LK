@@ -130,20 +130,26 @@ const ChatList = ({ fetchAgain }) => {
                                     {!chat.isGroupChat ? (
                                         <>
                                             <h3>{getSender(loggedUser, chat.users)}</h3>
-                                            <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
-                                                ? chat.latestMessage.content.substring(0, 51) + "..."
-                                                : chat.latestMessage.content}</p>
+                                            {chat.latestMessage ? (
+                                                <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
+                                                    ? `${chat.latestMessage.content.substring(0, 51)}...`
+                                                    : chat.latestMessage.content}</p>
+                                            ) : <p>No messages yet.</p>}
                                         </>
                                     ) : (
                                         <>
                                             <h3>{chat.chatName}</h3>
-                                            <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
-                                                ? chat.latestMessage.content.substring(0, 51) + "..."
-                                                : chat.latestMessage.content}</p>
+                                            {chat.latestMessage ? (
+                                                <p>{chat.latestMessage.sender.name}: {chat.latestMessage.content.length > 50
+                                                    ? `${chat.latestMessage.content.substring(0, 51)}...`
+                                                    : chat.latestMessage.content}</p>
+                                            ) : <p>No messages yet.</p>}
                                         </>
                                     )}
                                 </div>
                             ))}
+
+
                         </>
                     ) : (
                         <div className="lodn-cont">
