@@ -18,7 +18,7 @@ const Lobby = () => {
                 </div>
             </div>
 
-            <div className="botmset">
+            {/* <div className="botmset">
                 <div className="lby-bdy-container">
                     <div className="lobby-create-container">
                         <h1 id='lb-cnt-hd'>CREATE OR JOIN ROOM</h1>
@@ -31,7 +31,7 @@ const Lobby = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
