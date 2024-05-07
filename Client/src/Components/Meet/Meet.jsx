@@ -22,7 +22,7 @@ const Meet = () => {
         src="/ConferenceRoom/lobby.html"
         title="Conference Room"
         width="100%"
-        height="84.2%"
+        height="83.5%"
         className='iframe'
       />
     </div>

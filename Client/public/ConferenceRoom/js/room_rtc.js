@@ -32,8 +32,13 @@ let localScreenTracks;
 let sharingScreen = false;
 
 let joinRoomInit = async () => {
+    //("Initializing RTM client with APP_ID:", APP_ID);
     rtmClient = await AgoraRTM.createInstance(APP_ID)
+    //("RTM client initialized:", rtmClient);
+
+    //("Logging in RTM client with UID:", uid);
     await rtmClient.login({ uid, token })
+    //("RTM client logged in");
 
     await rtmClient.addOrUpdateLocalUserAttributes({ 'name': displayName })
 
@@ -45,10 +50,14 @@ let joinRoomInit = async () => {
     channel.on('ChannelMessage', handleChannelMessage)
 
     getMembers()
-    addBotMessageToDom(`Welcome to the room ${displayName}! 👋`)
+    addBotMessageToDom(`Welcome to the room ${displayName}!`)
 
     client = AgoraRTC.createClient({ mode: 'rtc', codec: 'vp8' })
+    //("RTC client created:", client);
+
+    //("Joining RTC room:", roomId);
     await client.join(APP_ID, roomId, token, uid)
+    //("RTC room joined");
 
     client.on('user-published', handleUserPublished)
     client.on('user-left', handleUserLeft)
@@ -94,9 +103,12 @@ let switchToCamera = async () => {
 }
 
 let handleUserPublished = async (user, mediaType) => {
+    //("User published:", user.uid, "Media type:", mediaType);
     remoteUsers[user.uid] = user
 
+    //("Subscribing to user:", user.uid);
     await client.subscribe(user, mediaType)
+    //("Subscription complete:", user.uid);
 
     let player = document.getElementById(`user-container-${user.uid}`)
     if (player === null) {
@@ -126,6 +138,7 @@ let handleUserPublished = async (user, mediaType) => {
 }
 
 let handleUserLeft = async (user) => {
+    //("User left:", user.uid);
     delete remoteUsers[user.uid]
     let item = document.getElementById(`user-container-${user.uid}`)
     if (item) {
