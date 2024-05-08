@@ -24,15 +24,17 @@ const AdminDash = () => {
     const location = useLocation();
     const { user } = ChatState();
     const [socketConnected, setSocketConnected] = useState(false);
+    const [startTime, setStartTime] = useState();
+    const [endTime, setEndTime] = useState();
 
     useEffect(() => {
         if (user && user._id) {
             socket = io(ENDPOINT);
             socket.emit('setup', user);
-            socket.on('connection', () => {
-                console.log('Socket connected');
-                setSocketConnected(true);
-            });
+            // socket.on('connection', () => {
+            //     console.log('Socket connected');
+            //     setSocketConnected(true);
+            // });
         } else {
             console.error('User data is not defined or missing _id field');
         }
@@ -51,24 +53,56 @@ const AdminDash = () => {
                 userStatus: userStatus,
             }, config);
 
-            console.log(`data: `, data);
+            // console.log(`data: `, data);
             socket.emit("user active", data);
         } catch (error) {
             // window.alert('Error occurred');
         }
     };
 
+    const sendEmpLog = async (startTime, endTime) => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`,
+                },
+            };
+            const { data } = await axios.post('/api/user/emplogs', {
+                startTime: startTime,
+                endTime: endTime,
+            }, config);
+
+            console.log(`Emp log data: `, data);
+
+        } catch (error) {
+            console.error('Error occurred while sending emp log', error);
+        }
+    };
 
     useEffect(() => {
-        // Set user status to true on initial mount
+        if (endTime && startTime) {
+            console.log(`end: `, endTime);
+            sendEmpLog(startTime, endTime);
+        }
+    }, [endTime]);
+
+    useEffect(() => {
+        console.log(`start: `, startTime);
+    }, [startTime])
+
+    useEffect(() => {
         if (user) {
             sendStatus(true);
+            setStartTime(new Date());
         }
 
         const handleVisibilityChange = () => {
             if (document.visibilityState === 'visible') {
                 sendStatus(true);
+                setStartTime(new Date());
             } else {
+                setEndTime(new Date());
                 sendStatus(false);
             }
         };
@@ -80,6 +114,7 @@ const AdminDash = () => {
         };
     }, [user]);
 
+    // ==========================================
 
     useEffect(() => {
         const storedPage = sessionStorage.getItem('currentPage');

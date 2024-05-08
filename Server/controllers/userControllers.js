@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel');
+const EmpLog = require('../models/emplogModel')
 const generateToken = require('../config/generateToken');
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -111,5 +112,36 @@ const updateUserStatus = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { registerUser, authUser, allUsers, fetchAllEmp, updateUserStatus };
+const addEmpLog = asyncHandler(async (req, res) => {
+    const { startTime, endTime } = req.body;
+
+    if (!startTime || !endTime) {
+        res.status(400);
+        throw new Error('start time and end time missing');
+    }
+
+    if (!req.user || !req.user._id) {
+        res.status(401);
+        throw new Error('User not authenticated');
+    }
+
+    const lastLog = await EmpLog.findOne({}).sort({ logId: -1 });
+    const nextLogId = lastLog ? lastLog.logId + 1 : 1;
+
+    const newLog = new EmpLog({
+        logId: nextLogId,
+        userId: req.user._id,
+        startTime: startTime,
+        endTime: endTime,
+    });
+
+    const createdLog = await newLog.save();
+
+    res.status(201).json({
+        message: 'Employee log created successfully',
+        log: createdLog,
+    });
+});
+
+module.exports = { registerUser, authUser, allUsers, fetchAllEmp, updateUserStatus, addEmpLog };
 
