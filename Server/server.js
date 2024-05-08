@@ -11,7 +11,9 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes');
 const chatRoutes = require('./routes/chatRoutes')
 const messageRoutes = require('./routes/messageRoutes')
+const taskRoutes = require('./routes/taskRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
+
 
 connectDB();
 const app = express();
@@ -27,6 +29,7 @@ app.get('/', (req, res) => {
 app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/message', messageRoutes)
+app.use('/api/task', taskRoutes)
 
 app.use(notFound)
 app.use(errorHandler)
