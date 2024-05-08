@@ -104,3 +104,32 @@
 .emp-tag {
     color: white;
 }
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lodn-cont {
+    display: flex;
+    /* background-color: #2d81ff; */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loading-spinner {
+    background-color: #2d81ff49;
+    border: 4px solid rgba(99, 94, 255, 0.241);
+    border-left-color: #3278c7;
+    /* Change this to your desired color */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: loading 1s linear infinite;
+}

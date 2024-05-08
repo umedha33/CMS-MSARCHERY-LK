@@ -68,6 +68,11 @@ io.on("connection", (socket) => {
         });
     });
 
+    socket.on("user active", (receivedStatus) => {
+        // console.log("User active status received:", receivedStatus.message);
+        socket.broadcast.emit("user status update", receivedStatus);
+    });
+
     socket.off("setup", () => {
         console.log("USER DISCONNECTED");
         socket.leave(userData._id);

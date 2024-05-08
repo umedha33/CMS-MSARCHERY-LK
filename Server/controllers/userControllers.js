@@ -77,4 +77,39 @@ const allUsers = asyncHandler(async (req, res) => {
     res.send(users);
 })
 
-module.exports = { registerUser, authUser, allUsers };
+const fetchAllEmp = asyncHandler(async (req, res) => {
+    const users = await User.find({}, '-password');
+    res.status(200).json(users);
+});
+
+const updateUserStatus = asyncHandler(async (req, res) => {
+    const { userStatus } = req.body;
+    // console.log(userStatus, req.user);
+
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not authenticated.');
+    }
+
+    if (typeof userStatus !== 'boolean') {
+        res.status(400);
+        throw new Error("Invalid status. Must be a boolean value (true for 'online', false for 'offline').");
+    }
+
+    if (!req.user) {
+        res.status(404);
+        throw new Error('User not found.');
+    }
+
+    req.user.userActive = userStatus;
+    await req.user.save();
+
+    res.status(200).json({
+        message: `User status updated successfully to ${userStatus ? 'online' : 'offline'}.`,
+        user: req.user,
+        // userActive: req.user.userActive,
+    });
+});
+
+module.exports = { registerUser, authUser, allUsers, fetchAllEmp, updateUserStatus };
+

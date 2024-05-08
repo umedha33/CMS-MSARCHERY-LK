@@ -12,10 +12,74 @@ import HelpCenter from '../Components/HelpCenter/HelpCenter';
 import AssignTask from '../Components/AssignTask/AssignTask';
 import AssignEmp from '../Components/AssignEmp/AssignEmp';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import io from 'socket.io-client'
+import { ChatState } from './../context/ChatProvider';
+
+const ENDPOINT = "http://localhost:4000";
+var socket;
 
 const AdminDash = () => {
     const [showComp, setShowComp] = useState(null);
     const location = useLocation();
+    const { user } = ChatState();
+    const [socketConnected, setSocketConnected] = useState(false);
+
+    useEffect(() => {
+        if (user && user._id) {
+            socket = io(ENDPOINT);
+            socket.emit('setup', user);
+            socket.on('connection', () => {
+                console.log('Socket connected');
+                setSocketConnected(true);
+            });
+        } else {
+            console.error('User data is not defined or missing _id field');
+        }
+    }, [user]);
+
+
+    const sendStatus = async (userStatus) => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`,
+                },
+            };
+            const { data } = await axios.put('/api/user/updateStatus', {
+                userStatus: userStatus,
+            }, config);
+
+            console.log(`data: `, data);
+            socket.emit("user active", data);
+        } catch (error) {
+            // window.alert('Error occurred');
+        }
+    };
+
+
+    useEffect(() => {
+        // Set user status to true on initial mount
+        if (user) {
+            sendStatus(true);
+        }
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                sendStatus(true);
+            } else {
+                sendStatus(false);
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+
+        return () => {
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+        };
+    }, [user]);
+
 
     useEffect(() => {
         const storedPage = sessionStorage.getItem('currentPage');

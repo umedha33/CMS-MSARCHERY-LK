@@ -3,15 +3,53 @@ import './SideBar.css';
 import mslogo from '../Assets/msarchery-logo-new-tra.png';
 import { useNavigate } from 'react-router-dom';
 import { ChatState } from '../../context/ChatProvider';
+import axios from 'axios';
+import io from 'socket.io-client'
+
+const ENDPOINT = "http://localhost:4000";
+var socket;
 
 const SideBar = ({ activeNavElem }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [activeNavItem, setActiveNavItem] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [dashName, setDashName] = useState('dashboard');
+    const [socketConnected, setSocketConnected] = useState(false);
 
     const navigate = useNavigate();
     const { user } = ChatState();
+
+    useEffect(() => {
+        if (user && user._id) {
+            socket = io(ENDPOINT);
+            // socket.emit('setup', user);
+            // socket.on('connection', () => {
+            //     console.log('Socket connected');
+            //     setSocketConnected(true);
+            // });
+        } else {
+            console.error('User data is not defined or missing _id field');
+        }
+    }, [user]);
+
+    const sendStatus = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`,
+                },
+            };
+            const { data } = await axios.put('/api/user/updateStatus', {
+                userStatus: false,
+            }, config);
+
+            console.log(`data: `, data);
+            socket.emit("user active", data);
+        } catch (error) {
+            // window.alert('Error occurred');
+        }
+    };
 
     useEffect(() => {
         const storedNavItem = sessionStorage.getItem('activeNavItem');
@@ -40,6 +78,7 @@ const SideBar = ({ activeNavElem }) => {
     };
 
     const logoutHandler = () => {
+        sendStatus();
         localStorage.removeItem('userInfo');
         navigate("/");
     }
