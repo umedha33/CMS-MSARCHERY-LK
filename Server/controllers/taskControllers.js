@@ -127,5 +127,81 @@ const updateTskStatus = asyncHandler(async (req, res) => {
     }
 });
 
+const updateTask = asyncHandler(async (req, res) => {
+    const { taskId, title, description, recipient, dueDate, status, addComments, refLinks } = req.body;
+    // console.log(req.body);
 
-module.exports = { addTask, fetchTasks, fetchAsnTasks, updateTskStatus };
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not authenticated.');
+    }
+
+    if (!taskId) {
+        res.status(400);
+        throw new Error('taskId missing');
+    }
+
+    try {
+        const task = await Task.findOne({ taskId });
+
+        if (!task) {
+            res.status(404);
+            throw new Error('Task not found.');
+        }
+
+        if (title !== "") task.taskTitle = title;
+        if (description !== "") task.taskDescription = description;
+        if (recipient !== "") task.taskRecipient = recipient;
+        if (dueDate !== "") task.taskDueDate = dueDate;
+        if (status !== "") task.taskStatus = status;
+        if (addComments !== "") task.taskAddComments = addComments;
+        if (refLinks !== "") task.taskRefLinks = refLinks;
+
+        await task.save();
+
+        res.status(201).json({
+            message: `Task updated successfully with taskId: ${taskId}`,
+            task: task,
+        });
+
+    } catch (error) {
+        res.status(500);
+        throw new Error('Error updating task: ' + error.message);
+    }
+});
+
+const deleteTask = asyncHandler(async (req, res) => {
+    const { taskId } = req.query;
+
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not authenticated.');
+    }
+
+    if (!taskId) {
+        res.status(400);
+        throw new Error('taskId is missing.');
+    }
+
+    try {
+        const task = await Task.findOne({ taskId });
+
+        if (!task) {
+            res.status(404);
+            throw new Error('Task not found.');
+        }
+
+        await Task.deleteOne({ taskId });
+
+        res.status(201).json({
+            message: `Task with taskId: ${taskId} was successfully deleted.`,
+        });
+    } catch (error) {
+        res.status(500);
+        console.error('Error deleting task: ' + error.message);
+        throw new Error('Error deleting task: ' + error.message);
+    }
+});
+
+
+module.exports = { addTask, fetchTasks, fetchAsnTasks, updateTskStatus, updateTask, deleteTask };

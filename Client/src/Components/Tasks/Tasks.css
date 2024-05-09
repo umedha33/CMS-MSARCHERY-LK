@@ -60,7 +60,7 @@
 }
 
 #asgnd-tsks {
-    color: rgb(0, 137, 216);
+    color: rgb(105, 148, 49);
     margin-left: 50px;
 }
 
@@ -268,6 +268,17 @@
     position: relative;
 }
 
+.modal-content2 {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 550px;
+    max-width: 90%;
+    text-align: center;
+    position: relative;
+}
+
 .modal-content h2 {
     margin-top: 0;
     margin-bottom: 20px;
@@ -344,4 +355,79 @@
 
 .modal-actions button:last-child:hover {
     background-color: #c82333;
+}
+
+.files-modl {
+    background-color: #ff000044;
+    width: 100%;
+    word-wrap: break-word;
+    border-radius: 10px;
+    margin-top: -10px;
+    padding: 5px 0;
+}
+
+.files-modl p {
+    margin: 10px;
+    font-size: 0.9rem;
+}
+
+.inpt-modl {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+}
+
+.txtar-modl {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+}
+
+.txtar-modl2 {
+    width: 64%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+}
+
+.txtar-modl3 {
+    width: 75.5%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+}
+
+.inps-mdl {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 10px;
+}
+
+.caln-modl {
+    width: 81.5%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+}
+
+.rsp-slct {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
 }

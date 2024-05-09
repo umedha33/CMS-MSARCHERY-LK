@@ -9,8 +9,15 @@ const Tasks = ({ activeNavElem }) => {
     const [allAsnTasks, setAllAsnTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
     const [newStatus, setNewStatus] = useState('');
+    const [taskTitle, setTaskTitle] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
+    const [addComment, setAddComment] = useState('');
+    const [refLink, setRefLink] = useState('');
+    const [taskDueDate, setTaskDueDate] = useState('');
+    const [newRecipient, setNewRecipient] = useState('');
     const { user } = ChatState();
 
     const fetchTasks = async () => {
@@ -48,6 +55,7 @@ const Tasks = ({ activeNavElem }) => {
             if (data) {
                 setAllAsnTasks(data.asnTasks);
                 setLoading(false);
+                console.log(data);
             }
 
         } catch (error) {
@@ -82,10 +90,67 @@ const Tasks = ({ activeNavElem }) => {
         }
     };
 
+    const deleteTask = async (taskId) => {
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`,
+                },
+            };
+            const response = await axios.delete(`/api/task/deletetask?taskId=${taskId}`, config);
+
+            console.log(`status update: `, response);
+            fetchAsnTasks();
+
+        } catch (error) {
+            window.alert('Error occurred');
+        }
+    };
+
+    const updateAsnTask = async (taskId, title, description, recipient, dueDate, status, addComments, refLinks) => {
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${user.token}`,
+                },
+            };
+            const response = await axios.put('/api/task/updatetask', {
+                taskId: taskId,
+                title: title,
+                description: description,
+                recipient: recipient,
+                dueDate: dueDate,
+                status: "Ongoing",
+                addComments: addComments,
+                refLinks: refLinks,
+            }, config);
+
+            console.log(`task update: `, response);
+            fetchAsnTasks();
+
+        } catch (error) {
+            window.alert('Error occurred');
+        }
+    };
+
     const editStatusBtn = (task) => {
         setSelectedTask(task);
         setNewStatus(task.taskStatus);
-        setShowModal(true); // Open modal
+        setShowModal(true);
+    };
+
+    const editTaskBtn = (task) => {
+        setSelectedTask(task);
+        setTaskTitle(task.taskTitle);
+        setTaskDescription(task.taskDescription);
+        setAddComment(task.taskAddComments);
+        setRefLink(task.taskRefLinks);
+        setTaskDueDate(task.taskDueDate ? task.taskDueDate.split('T')[0] : '');
+        setNewRecipient(task.taskRecipient);
+        setShowEditModal(true);
     };
 
     const assignClick = (item) => {
@@ -115,6 +180,12 @@ const Tasks = ({ activeNavElem }) => {
     };
 
     const handleStatusChange = (event) => setNewStatus(event.target.value);
+    const handleTitleChange = (event) => setTaskTitle(event.target.value);
+    const handleDescriptionChange = (event) => setTaskDescription(event.target.value);
+    const handleAddCommChange = (event) => setAddComment(event.target.value);
+    const handleRefLinkChange = (event) => setRefLink(event.target.value);
+    const handleDueDateChange = (event) => setTaskDueDate(event.target.value);
+    const handleRecipientChange = (event) => setNewRecipient(event.target.value);
 
     const filteredData = allTasks.filter(task => {
         if (selectedBreadcrumb === 'All') return true;
@@ -213,9 +284,9 @@ const Tasks = ({ activeNavElem }) => {
                                             <td>{getStatusIcon(task.taskStatus.toLowerCase())}</td>
                                             <td>
                                                 <span className='action-btn'>
-                                                    <i id='edit-btn' className="fa-solid fa-pen-to-square"></i>
+                                                    <i id='edit-btn' className="fa-solid fa-pen-to-square" onClick={() => editTaskBtn(task)}></i>
                                                     <br />
-                                                    <i id='delete-btn' className="fa-solid fa-trash"></i>
+                                                    <i id='delete-btn' className="fa-solid fa-trash" onClick={() => deleteTask(task.taskId)}></i>
                                                 </span>
                                             </td>
                                         </tr>
@@ -250,7 +321,7 @@ const Tasks = ({ activeNavElem }) => {
                                     </div>
                                     <div className="modal-actions">
                                         <button onClick={() => updateStatus(selectedTask.taskId, newStatus)}>Save Changes</button>
-                                        <button onClick={() => setShowModal(false)}>Cancel</button>
+                                        <button onClick={() => setShowModal(false)}>Close</button>
                                     </div>
                                 </div>
                             )}
@@ -258,6 +329,97 @@ const Tasks = ({ activeNavElem }) => {
                     </div>
                 )}
 
+                {showEditModal && (
+                    <div className="modal-overlay">
+                        <div className="modal-content2">
+                            <h2 id='mdl-hdr'>Edit Task</h2>
+                            {selectedTask && (
+                                <div className="modal-details">
+                                    <p><strong>Task ID: </strong>{selectedTask.taskId}</p>
+                                    <p><strong>{`Files (Uneditable):`} </strong></p>
+                                    <div className='files-modl'>
+                                        <p>
+                                            {selectedTask.taskAttachments.length > 0 ? (
+                                                selectedTask.taskAttachments.map((file, index, array) => (
+                                                    <React.Fragment key={index}>
+                                                        {file.fileName}
+                                                        {index < array.length - 1 && ', '}
+                                                        <br />
+                                                    </React.Fragment>
+                                                ))
+                                            ) : (
+                                                "No Files"
+                                            )}
+                                        </p>
+                                    </div>
+                                    <div className='inps-mdl'>
+                                        <p><strong>Title: </strong> </p>
+                                        <input
+                                            type="text"
+                                            className='inpt-modl'
+                                            value={taskTitle}
+                                            onChange={handleTitleChange}
+                                        />
+                                    </div>
+                                    <div className='inps-mdl'>
+                                        <p><strong>Description: </strong></p>
+                                        <textarea
+                                            className='txtar-modl'
+                                            value={taskDescription}
+                                            onChange={handleDescriptionChange}>
+                                        </textarea>
+                                    </div>
+                                    <div className='inps-mdl'>
+                                        <p><strong>Additional Comments: </strong></p>
+                                        <textarea
+                                            className='txtar-modl2'
+                                            value={addComment}
+                                            onChange={handleAddCommChange}>
+                                        </textarea>
+                                    </div>
+                                    <div className='inps-mdl'>
+                                        <p><strong>Referral Links: </strong></p>
+                                        <textarea
+                                            className='txtar-modl3'
+                                            value={refLink}
+                                            onChange={handleRefLinkChange}>
+                                        </textarea>
+                                    </div>
+                                    <div className='inps-mdl'>
+                                        <p><strong>Due Date:</strong></p>
+                                        <input
+                                            type="date"
+                                            className='caln-modl'
+                                            value={taskDueDate}
+                                            onChange={handleDueDateChange}
+                                        />
+                                    </div>
+                                    <div className='stts'>
+                                        <label id='stts-lbl' htmlFor="status"><strong>Recipient: </strong></label>
+                                        <select
+                                            // id="status"
+                                            className='rsp-slct'
+                                            value={newRecipient}
+                                            onChange={handleRecipientChange}
+                                        >
+                                            <option value="Manager">Manager</option>
+                                            <option value="Accountant">Accountant</option>
+                                            <option value="E-Com-Manager">E-Com Manager</option>
+                                            <option value="Sales-Manager">Sales & Marketing Manager</option>
+                                            <option value="Content-Creator">Content Creator</option>
+                                            <option value="Customer-Care">Customer Care</option>
+                                            <option value="Logistics-Preperation">Logistics & Preperation Manager</option>
+                                        </select>
+                                    </div>
+                                    <div className="modal-actions">
+                                        <button onClick={() => updateAsnTask(selectedTask.taskId, taskTitle, taskDescription, newRecipient, taskDueDate, newStatus, addComment, refLink)}>Save Changes</button>
+                                        <button onClick={() => setShowEditModal(false)}>Close</button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
