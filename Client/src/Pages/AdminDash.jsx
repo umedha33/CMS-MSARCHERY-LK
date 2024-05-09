@@ -15,6 +15,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import io from 'socket.io-client'
 import { ChatState } from './../context/ChatProvider';
+import MySubmissions from './../Components/MySubmissions/MySubmissions';
 
 const ENDPOINT = "http://localhost:4000";
 var socket;
@@ -146,6 +147,9 @@ const AdminDash = () => {
             break;
         case "Sales":
             componentToRender = <Sales />;
+            break;
+        case "MySubmissions":
+            componentToRender = <MySubmissions />;
             break;
         case "Settings":
             componentToRender = <Settings />;

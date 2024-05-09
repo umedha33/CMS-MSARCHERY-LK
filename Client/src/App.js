@@ -14,8 +14,8 @@ function App() {
           <Routes>
             <Route path='/' element={<LoginPage />}></Route>
             <Route path='/admin' element={<AdminDash />}></Route>
-            <Route path='/manager' element={<ManagerDash />}></Route>
-            <Route path='/ecom' element={<EcomDash />}></Route>
+            {/* <Route path='/manager' element={<ManagerDash />}></Route> */}
+            {/* <Route path='/ecom' element={<EcomDash />}></Route> */}
           </Routes>
         </ChatProvider>
       </BrowserRouter>

@@ -12,6 +12,7 @@ const userRoutes = require('./routes/userRoutes');
 const chatRoutes = require('./routes/chatRoutes')
 const messageRoutes = require('./routes/messageRoutes')
 const taskRoutes = require('./routes/taskRoutes')
+const mysubRoutes = require('./routes/mysubRoutes')
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 
@@ -30,6 +31,7 @@ app.use('/api/user', userRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/message', messageRoutes)
 app.use('/api/task', taskRoutes)
+app.use('/api/mysub', mysubRoutes)
 
 app.use(notFound)
 app.use(errorHandler)

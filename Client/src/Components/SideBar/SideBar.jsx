@@ -22,11 +22,6 @@ const SideBar = ({ activeNavElem }) => {
     useEffect(() => {
         if (user && user._id) {
             socket = io(ENDPOINT);
-            // socket.emit('setup', user);
-            // socket.on('connection', () => {
-            //     console.log('Socket connected');
-            //     setSocketConnected(true);
-            // });
         } else {
             console.error('User data is not defined or missing _id field');
         }
@@ -110,6 +105,9 @@ const SideBar = ({ activeNavElem }) => {
                         </h2>
                         <h2 className={`nav-lbl ${activeNavItem === 'Sales' ? 'active' : ''}`} onClick={() => { handleNavItemClick('Sales'); }}>
                             <i className="fa-solid fa-chart-line"></i>Sales
+                        </h2>
+                        <h2 className={`nav-lbl ${activeNavItem === 'MySubmissions' ? 'active' : ''}`} onClick={() => { handleNavItemClick('MySubmissions'); }}>
+                            <i className="fa-solid fa-file-export"></i>My Submissions
                         </h2>
                     </div>
                     <div className={`${isSidebarOpen ? 'foot-elements' : 'foot-elements-min'}`}>
