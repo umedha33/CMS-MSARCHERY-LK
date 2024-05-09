@@ -55,18 +55,13 @@ const Tasks = ({ activeNavElem }) => {
             if (data) {
                 setAllAsnTasks(data.asnTasks);
                 setLoading(false);
-                console.log(data);
+                // console.log(data);
             }
 
         } catch (error) {
             console.error('Error occurred while fetching the task', error);
         }
     };
-
-    useEffect(() => {
-        fetchTasks();
-        fetchAsnTasks();
-    }, []);
 
     const updateStatus = async (taskId, status) => {
 
@@ -84,6 +79,8 @@ const Tasks = ({ activeNavElem }) => {
 
             console.log(`status update: `, response);
             fetchTasks();
+            fetchAsnTasks();
+            setShowModal(false);
 
         } catch (error) {
             window.alert('Error occurred');
@@ -103,6 +100,7 @@ const Tasks = ({ activeNavElem }) => {
 
             console.log(`status update: `, response);
             fetchAsnTasks();
+            fetchTasks();
 
         } catch (error) {
             window.alert('Error occurred');
@@ -130,11 +128,34 @@ const Tasks = ({ activeNavElem }) => {
 
             console.log(`task update: `, response);
             fetchAsnTasks();
-
+            fetchTasks();
+            setShowEditModal(false);
         } catch (error) {
             window.alert('Error occurred');
         }
     };
+
+    const checkAndUpdateOverdueTasks = async () => {
+        const today = new Date().toISOString().split('T')[0];
+
+        allTasks.forEach(async (task) => {
+            const dueDate = task.taskDueDate ? task.taskDueDate.split('T')[0] : null;
+
+            if (dueDate && dueDate < today && task.taskStatus !== 'overdue' && task.taskStatus !== 'completed') {
+                await updateStatus(task.taskId, 'overdue');
+
+                if (selectedTask && selectedTask.taskId === task.taskId) {
+                    setNewStatus('overdue');
+                }
+            }
+        });
+    };
+
+    useEffect(() => {
+        fetchTasks();
+        fetchAsnTasks();
+        checkAndUpdateOverdueTasks();
+    }, []);
 
     const editStatusBtn = (task) => {
         setSelectedTask(task);
@@ -245,7 +266,7 @@ const Tasks = ({ activeNavElem }) => {
                                             <td>{getStatusIcon(task.taskStatus.toLowerCase())}</td>
                                             <td>
                                                 <span className='action-btn'>
-                                                    <i id='edit-btn' className="fa-solid fa-pen-to-square" onClick={() => editStatusBtn(task)}></i>
+                                                    <i id='edit-btn' className="fa-solid fa-eye" onClick={() => editStatusBtn(task)}></i>
                                                 </span>
                                             </td>
                                         </tr>
@@ -301,12 +322,32 @@ const Tasks = ({ activeNavElem }) => {
                 {showModal && (
                     <div className="modal-overlay">
                         <div className="modal-content">
-                            <h2 id='mdl-hdr'>Edit Task Status</h2>
+                            <h2 id='mdl-hdr'>Task Details</h2>
                             {selectedTask && (
                                 <div className="modal-details">
-                                    <p><strong>Title:</strong> {selectedTask.taskTitle}</p>
                                     <p><strong>Task ID:</strong> {selectedTask.taskId}</p>
+                                    <p><strong>Title:</strong> {selectedTask.taskTitle}</p>
+                                    <p><strong>Description:</strong> {selectedTask.taskDescription}</p>
+                                    <p><strong>Assigned By:</strong> {selectedTask.taskAssigner.name}</p>
+                                    <p><strong>Assigned Date:</strong> {formatDate(selectedTask.taskAsnDate)}</p>
                                     <p><strong>Due Date:</strong> {formatDate(selectedTask.taskDueDate)}</p>
+                                    <p><strong>Additional Comments:</strong> {`${selectedTask.taskAddComments}` || "-"}</p>
+                                    <p><strong>Referral Links:</strong> {`${selectedTask.taskRefLinks}` || "-"}</p>
+                                    <div className='files-modl2'>
+                                        <p>
+                                            {selectedTask.taskAttachments.length > 0 ? (
+                                                selectedTask.taskAttachments.map((file, index, array) => (
+                                                    <React.Fragment key={index}>
+                                                        <a href={file.fileUrl}>{file.fileName}</a>
+                                                        {index < array.length - 1 && ', '}
+                                                        <br />
+                                                    </React.Fragment>
+                                                ))
+                                            ) : (
+                                                "No Files"
+                                            )}
+                                        </p>
+                                    </div>
                                     <div className='stts'>
                                         <label id='stts-lbl' htmlFor="status">Status: </label>
                                         <select
@@ -315,8 +356,8 @@ const Tasks = ({ activeNavElem }) => {
                                             onChange={handleStatusChange} >
                                             <option value="ongoing">Ongoing</option>
                                             <option value="completed">Completed</option>
-                                            <option value="overdue">Overdue</option>
                                             <option value="alert">Alert</option>
+                                            <option disabled value="overdue">Overdue</option>
                                         </select>
                                     </div>
                                     <div className="modal-actions">

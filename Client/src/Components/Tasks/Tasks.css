@@ -118,11 +118,23 @@
 #edit-btn {
     color: #0151fe;
     cursor: pointer;
+    transition: color 0.2s, font-size 0.2s;
+}
+
+#edit-btn:hover {
+    color: #1e9c2e;
+    font-size: 1.2rem;
 }
 
 #delete-btn {
     color: red;
     cursor: pointer;
+    transition: color 0.2s, font-size 0.2s;
+}
+
+#delete-btn:hover {
+    color: rgb(20, 156, 72);
+    font-size: 1.2rem;
 }
 
 .status-ico {
@@ -151,6 +163,7 @@
     font-weight: normal;
     font-size: 0.8rem;
     white-space: nowrap;
+    z-index: 100;
 }
 
 .fa-bars-progress {
@@ -173,6 +186,7 @@
     font-weight: normal;
     font-size: 0.8rem;
     white-space: nowrap;
+    z-index: 100;
 }
 
 .fa-clock-rotate-left {
@@ -195,6 +209,7 @@
     font-weight: normal;
     font-size: 0.8rem;
     white-space: nowrap;
+    z-index: 100;
 }
 
 .fa-circle-exclamation {
@@ -217,6 +232,7 @@
     font-weight: normal;
     font-size: 0.8rem;
     white-space: nowrap;
+    z-index: 100;
 }
 
 #id-col {
@@ -262,7 +278,7 @@
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 400px;
+    width: 550px;
     max-width: 90%;
     text-align: center;
     position: relative;
@@ -366,7 +382,21 @@
     padding: 5px 0;
 }
 
+.files-modl2 {
+    background-color: #0066ff44;
+    width: 100%;
+    word-wrap: break-word;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 5px 0;
+}
+
 .files-modl p {
+    margin: 10px;
+    font-size: 0.9rem;
+}
+
+.files-modl2 p {
     margin: 10px;
     font-size: 0.9rem;
 }
