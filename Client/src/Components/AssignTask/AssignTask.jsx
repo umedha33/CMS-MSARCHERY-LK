@@ -6,29 +6,30 @@ import { ChatState } from '../../context/ChatProvider';
 const AssignTask = ({ activeNavElem }) => {
     const { user } = ChatState();
 
-    // Task form state
     const [taskTitle, setTaskTitle] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
     const [taskRecipient, setTaskRecipient] = useState('');
     const [taskDueDate, setTaskDueDate] = useState('');
-    const [taskStatus, setTaskStatus] = useState('Pending');
+    const [taskStatus, setTaskStatus] = useState('Ongoing');
     const [taskAddComments, setTaskAddComments] = useState('');
     const [taskRefLinks, setTaskRefLinks] = useState('');
     const [taskAttachments, setTaskAttachments] = useState([]);
-    const [files, setFiles] = useState([]);
 
-    const handleFileChange = (event) => {
-        const fileList = event.target.files;
-        const fileArray = Array.from(fileList).map(file => ({
+    const handleFileChange = (e) => {
+        const files = Array.from(e.target.files);
+        const newAttachments = files.map((file) => ({
             file,
             preview: URL.createObjectURL(file),
         }));
-        setFiles(prevFiles => [...prevFiles, ...fileArray]);
-        setTaskAttachments(prev => [...prev, ...fileList]);
+        setTaskAttachments((prev) => [...prev, ...newAttachments]);
+        // console.log(newAttachments);
     };
 
+    // useEffect(() => {
+    //     console.log(`File Array: `, taskAttachments);
+    // }, [handleFileChange])
+
     const handleRemoveFile = (index) => {
-        setFiles(prevFiles => prevFiles.filter((_, idx) => idx !== index));
         setTaskAttachments(prev => prev.filter((_, idx) => idx !== index));
     };
 
@@ -38,6 +39,12 @@ const AssignTask = ({ activeNavElem }) => {
     }, []);
 
     const createTask = async () => {
+
+        if (!taskTitle || !taskDescription || !taskRecipient || !taskDueDate) {
+            window.alert("Please fill required feilds!")
+            return
+        }
+
         try {
             const formData = new FormData();
             formData.append('taskTitle', taskTitle);
@@ -48,8 +55,8 @@ const AssignTask = ({ activeNavElem }) => {
             formData.append('taskAddComments', taskAddComments);
             formData.append('taskRefLinks', taskRefLinks);
 
-            taskAttachments.forEach((file, index) => {
-                formData.append(`taskAttachments`, file);
+            taskAttachments.forEach((attachment) => {
+                formData.append('taskAttachments', attachment.file);
             });
 
             const config = {
@@ -58,15 +65,19 @@ const AssignTask = ({ activeNavElem }) => {
                     'Content-Type': 'multipart/form-data',
                 },
             };
-            const { data } = await axios.post('/api/task/addtask', formData, config);
 
-            console.log(`Task data: `, data);
-            activeNavElem('Tasks'); // Redirect or update navigation on successful task creation
+            const { data } = await axios.post('/api/task/addtask', formData, config);
+            console.log('Task data: ', data);
+
+            if (data) {
+                window.alert("Task Successfully Created!")
+            }
 
         } catch (error) {
             console.error('Error occurred while creating the task', error);
         }
     };
+
 
     return (
         <div className='assign-task-container'>
@@ -138,14 +149,14 @@ const AssignTask = ({ activeNavElem }) => {
                             </label>
                             <input id="file-upload"
                                 type="file"
-                                name="taskAttachments"  // This name should match the multer field name
+                                name="taskAttachments"
                                 accept=".png,.jpg,.jpeg,.pdf,.docx"
                                 onChange={handleFileChange}
                                 multiple />
                         </div>
 
                         <div className="image-preview">
-                            {files.map((file, index) => (
+                            {taskAttachments.map((file, index) => (
                                 <div key={index} className="thumbnail">
                                     <i onClick={() => handleRemoveFile(index)} className="fa-solid fa-circle-xmark"></i>
                                     <img src={file.preview} alt={`Thumbnail ${index}`} />
