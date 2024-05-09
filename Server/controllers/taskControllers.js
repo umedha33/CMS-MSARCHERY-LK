@@ -90,4 +90,42 @@ const fetchAsnTasks = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addTask, fetchTasks, fetchAsnTasks };
+const updateTskStatus = asyncHandler(async (req, res) => {
+    const { taskId, status } = req.body;
+    // console.log(req.body);
+
+    if (!req.user) {
+        res.status(401);
+        throw new Error('User not authenticated.');
+    }
+
+    if (!taskId || !status) {
+        res.status(400);
+        throw new Error('taskId and status missing');
+    }
+
+    try {
+        const task = await Task.findOne({ taskId });
+
+        if (!task) {
+            res.status(404);
+            throw new Error('Task not found.');
+        }
+
+        task.taskStatus = status;
+        await task.save();
+        // console.log(`task updated`);
+
+        res.status(201).json({
+            message: `Task status updated successfully to ${status}.`,
+        });
+
+    } catch (error) {
+        res.status(500);
+        // console.log('Error updating task status: ' + error.message);
+        throw new Error('Error updating task status: ' + error.message);
+    }
+});
+
+
+module.exports = { addTask, fetchTasks, fetchAsnTasks, updateTskStatus };
