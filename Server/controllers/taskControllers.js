@@ -54,4 +54,22 @@ const addTask = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addTask };
+const fetchTasks = asyncHandler(async (req, res) => {
+    try {
+        if (!req.user || !req.user.role) {
+            res.status(401);
+            throw new Error('User not authenticated or missing role information');
+        }
+
+        const tasks = await Task.find({ taskRecipient: req.user.role })
+            .populate('taskAssigner', 'name email')
+            .sort({ taskDueDate: 1 });
+
+        res.status(201).json({ tasks });
+    } catch (error) {
+        console.error('Error occurred while fetching tasks', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+module.exports = { addTask, fetchTasks };

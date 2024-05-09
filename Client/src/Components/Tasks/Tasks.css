@@ -59,6 +59,15 @@
     color: rgb(255, 38, 0);
 }
 
+#asgnd-tsks {
+    color: rgb(0, 137, 216);
+    margin-left: 50px;
+}
+
+#asgnd-tsks:hover {
+    color: rgb(255, 38, 0);
+}
+
 .row3-task-table {
     padding: 15px;
     padding-top: 10px;
@@ -222,4 +231,8 @@
 
 .activeBreadcrumb {
     color: #014BBB;
+}
+
+.activeBreadcrumb-id {
+    color: #ff0000 !important;
 }
