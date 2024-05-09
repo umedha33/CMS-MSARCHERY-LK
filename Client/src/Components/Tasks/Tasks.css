@@ -98,6 +98,11 @@
     color: white;
 }
 
+#table-heading-asns {
+    background: #232323;
+    color: white;
+}
+
 #table-elements tr:hover {
     background-color: #e4e4e4;
 }

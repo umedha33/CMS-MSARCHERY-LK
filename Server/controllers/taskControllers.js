@@ -72,4 +72,22 @@ const fetchTasks = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addTask, fetchTasks };
+const fetchAsnTasks = asyncHandler(async (req, res) => {
+    try {
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const asnTasks = await Task.find({ taskAssigner: req.user._id })
+            .populate('taskAssigner', 'name email')
+            .sort({ taskDueDate: 1 });
+
+        res.status(201).json({ asnTasks });
+    } catch (error) {
+        console.error('Error occurred while fetching asntasks', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+module.exports = { addTask, fetchTasks, fetchAsnTasks };

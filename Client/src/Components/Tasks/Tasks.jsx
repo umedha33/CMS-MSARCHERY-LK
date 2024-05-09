@@ -8,6 +8,7 @@ const Tasks = ({ activeNavElem }) => {
 
     const [selectedBreadcrumb, setSelectedBreadcrumb] = useState('All');
     const [allTasks, setAllTasks] = useState([]);
+    const [allAsnTasks, setAllAsnTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const { user } = ChatState();
 
@@ -23,10 +24,34 @@ const Tasks = ({ activeNavElem }) => {
             const { data } = await axios.get('/api/task/fetchtasks', config);
 
             if (data) {
-                console.log("Task Fetched Successfully!")
-                console.log('All Tasks: ', data.tasks);
-                setAllTasks(data.tasks);
+                console.log("Tasks Fetched Successfully!")
+                // console.log('All Tasks: ', data.tasks);
 
+                setAllTasks(data.tasks);
+                setLoading(false);
+            }
+
+        } catch (error) {
+            console.error('Error occurred while fetching the task', error);
+        }
+    };
+
+    const fetchAsnTasks = async () => {
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+            };
+
+            const { data } = await axios.get('/api/task/fetchasntasks', config);
+
+            if (data) {
+                console.log("Assigned Tasks Fetched Successfully!");
+                // console.log('All Assigned Tasks: ', data.asnTasks);
+
+                setAllAsnTasks(data.asnTasks);
                 setLoading(false);
             }
 
@@ -37,6 +62,7 @@ const Tasks = ({ activeNavElem }) => {
 
     useEffect(() => {
         fetchTasks();
+        fetchAsnTasks();
     }, [])
 
 
@@ -72,6 +98,11 @@ const Tasks = ({ activeNavElem }) => {
         return task.taskStatus.toLowerCase() === selectedBreadcrumb.toLowerCase();
     });
 
+    // const filteredAsnData = allAsnTasks.filter(task => {
+    //     if (selectedBreadcrumb === 'All') return true;
+    //     return task.taskStatus.toLowerCase() === selectedBreadcrumb.toLowerCase();
+    // });
+
     return (
         <div>
             <div className="tasks-container">
@@ -93,52 +124,103 @@ const Tasks = ({ activeNavElem }) => {
                 </div>
 
                 <div className="row3-task-table">
-                    <table id='table-setting'>
-                        <thead id='table-heading'>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Recipient</th>
-                                <th>Assigned Date</th>
-                                <th>Due Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id='table-elements'>
-                            {loading ? (
-                                <>
-                                    <div className="lodn-cont">
-                                        <div className="loading-spinner"></div>
-                                    </div>
-                                </>
-                            ) : (
-                                <>
-                                    {filteredData.map((task) => (
-                                        <tr key={task.taskId}>
-                                            <td id='id-col'>{task.taskId}</td>
-                                            <td>{task.taskTitle}</td>
-                                            <td>{task.taskDescription}</td>
-                                            <td>{task.taskRecipient}</td>
-                                            <td>{formatDate(task.taskAsnDate)}</td>
-                                            <td>{formatDate(task.taskDueDate)}</td>
-                                            <td>{getStatusIcon((task.taskStatus).toLowerCase())}</td>
-                                            <td>
-                                                <span className='action-btn'>
-                                                    <i id='edit-btn' className="fa-solid fa-pen-to-square"></i>
-                                                    <br />
-                                                    <i id='delete-btn' className="fa-solid fa-trash"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </>
-                            )}
 
+                    {['All', 'Ongoing', 'Completed', 'Overdue', 'Alert'].includes(selectedBreadcrumb) ? (
+                        <>
+                            <table id='table-setting'>
+                                <thead id='table-heading'>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Assigned By</th>
+                                        <th>Assigned Date</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='table-elements'>
+                                    {loading ? (
+                                        <>
+                                            <div className="lodn-cont">
+                                                <div className="loading-spinner"></div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            {filteredData.map((task) => (
+                                                <tr key={task.taskId}>
+                                                    <td id='id-col'>{task.taskId}</td>
+                                                    <td>{task.taskTitle}</td>
+                                                    <td>{task.taskDescription}</td>
+                                                    <td>{task.taskAssigner.name}</td>
+                                                    <td>{formatDate(task.taskAsnDate)}</td>
+                                                    <td>{formatDate(task.taskDueDate)}</td>
+                                                    <td>{getStatusIcon((task.taskStatus).toLowerCase())}</td>
+                                                    <td>
+                                                        <span className='action-btn'>
+                                                            <i id='edit-btn' className="fa-solid fa-pen-to-square"></i>
+                                                            <br />
+                                                            <i id='delete-btn' className="fa-solid fa-trash"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </>
+                                    )}
+                                </tbody>
+                            </table>
+                        </>
+                    ) : (
+                        <>
+                            <table id='table-setting'>
+                                <thead id='table-heading-asns'>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Recipient</th>
+                                        <th>Assigned Date</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id='table-elements'>
+                                    {loading ? (
+                                        <>
+                                            <div className="lodn-cont">
+                                                <div className="loading-spinner"></div>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            {allAsnTasks.map((task) => (
+                                                <tr key={task.taskId}>
+                                                    <td id='id-col'>{task.taskId}</td>
+                                                    <td>{task.taskTitle}</td>
+                                                    <td>{task.taskDescription}</td>
+                                                    <td>{task.taskRecipient}</td>
+                                                    <td>{formatDate(task.taskAsnDate)}</td>
+                                                    <td>{formatDate(task.taskDueDate)}</td>
+                                                    <td>{getStatusIcon((task.taskStatus).toLowerCase())}</td>
+                                                    <td>
+                                                        <span className='action-btn'>
+                                                            <i id='edit-btn' className="fa-solid fa-pen-to-square"></i>
+                                                            <br />
+                                                            <i id='delete-btn' className="fa-solid fa-trash"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </>
+                                    )}
+                                </tbody>
+                            </table>
+                        </>
+                    )}
 
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
