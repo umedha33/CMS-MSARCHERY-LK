@@ -73,6 +73,14 @@
     font-family: "Roboto", sans-serif;
 }
 
+.inp-fm-sec input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+}
+
 .inp-fm-sec input[type="file"] {
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
@@ -200,6 +208,7 @@
     font-family: "Roboto", sans-serif;
     cursor: pointer;
     transition: background-color 0.2s;
+    margin-bottom: 10px;
 }
 
 .submtbtn-mysb button:hover {

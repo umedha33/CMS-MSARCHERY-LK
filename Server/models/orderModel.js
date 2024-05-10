@@ -9,8 +9,14 @@ const orderModel = mongoose.Schema({
     orderAmount: { type: Number },
     orderProducts: { type: String },
     orderDate: { type: Date },
-    customerPic: { type: String },
-    customerLicense: { type: String },
+    customerPic: {
+        url: { type: String },
+        name: { type: String },
+    },
+    customerLicense: {
+        url: { type: String },
+        name: { type: String },
+    },
 }, {
     timestamps: true,
 });

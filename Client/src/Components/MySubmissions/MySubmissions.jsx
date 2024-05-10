@@ -4,12 +4,12 @@ import axios from 'axios';
 import { ChatState } from '../../context/ChatProvider';
 
 const MySubmissions = () => {
-    const [orderId, setOrderId] = useState('');
+    const [orderId, setOrderId] = useState(0);
     const [custName, setCustName] = useState('');
     const [custEmail, setCustEmail] = useState('');
-    const [custPhone, setCustPhone] = useState('');
+    const [custPhone, setCustPhone] = useState(0);
     const [custAddress, setCustAddress] = useState('');
-    const [orderAmount, setOrderAmount] = useState('');
+    const [orderAmount, setOrderAmount] = useState(0);
     const [orderProducts, setOrderProducts] = useState('');
     const [orderDate, setOrderDate] = useState('');
     const [customerImage, setCustomerImage] = useState(null);
@@ -55,15 +55,13 @@ const MySubmissions = () => {
         formData.append('orderDate', orderDate);
 
         if (customerImage) {
-            formData.append('taskAttachments', customerImage);
+            formData.append('customerPic', customerImage);
         }
-
         if (customerLicense) {
-            formData.append('taskAttachments', customerLicense);
+            formData.append('customerLicense', customerLicense);
         }
 
         try {
-
             const config = {
                 headers: {
                     Authorization: `Bearer ${user.token}`,
@@ -73,35 +71,16 @@ const MySubmissions = () => {
 
             const { data } = await axios.post('/api/mysub/addOrder', formData, config);
 
-            console.log('Task data: ', data);
+            console.log('Order data:', data);
 
             if (data) {
-                window.alert("Task Successfully Created!")
+                window.alert("Order Successfully Created!");
             }
-            // const response = await fetch('/api/task/addOrder', {
-            //     method: 'POST',
-            //     body: formData,
-            //     headers: {
-            //         // This header is not necessary with multipart form data
-            //         // 'Content-Type': 'multipart/form-data'
-            //     }
-            // });
-
-            // if (!response.ok) {
-            //     const errorData = await response.json();
-            //     console.error('Submission failed:', errorData);
-            //     alert('Submission failed');
-            //     return;
-            // }
-
-            // const responseData = await response.json();
-            // alert('Submission succeeded!');
-            // console.log(responseData);
-
         } catch (error) {
             console.error('Error submitting the order:', error);
         }
     };
+
 
     return (
         <div className='mysub-container'>
@@ -182,7 +161,7 @@ const MySubmissions = () => {
                             <input
                                 id="file-upload-customer-license"
                                 type="file"
-                                accept="image/png, image/jpeg"
+                                accept=".png,.jpg,.jpeg,.pdf,.docx"
                                 onChange={handleCustomerLicenseChange}
                             />
                         </div>
@@ -199,7 +178,7 @@ const MySubmissions = () => {
                 </div>
 
                 <div className="submtbtn-mysb">
-                    <button onClick={handleSubmit}>SUBMIT</button>
+                    <button onClick={() => handleSubmit()}>SUBMIT</button>
                 </div>
             </div>
         </div>

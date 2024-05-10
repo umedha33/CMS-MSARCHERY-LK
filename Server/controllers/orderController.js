@@ -4,51 +4,57 @@ const Order = require('../models/orderModel');
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
-        const { orderId, custName, custEmail, custPhone, custAddress, orderAmount, orderProducts, orderDate, customerPic, customerLicense } = req.body;
+        const { orderId, custName, custEmail, custPhone, custAddress, orderAmount, orderProducts, orderDate } = req.body;
 
         if (!req.user || !req.user._id) {
             res.status(401);
             throw new Error('User not authenticated');
         }
 
-        // const order = await Order.findOne({}).sort({ orderId: -1 });
-        // const nextOrderId = order ? order.orderId + 1 : 1;
+        let customerPicUrl = null;
+        let customerPicName = null;
+        let customerLicenseUrl = null;
+        let customerLicenseName = null;
 
-        if (req.files && req.files.length > 0) {
-            const uploadPromises = req.files.map(file => {
-                return cloudinary.uploader.upload(file.path, { resource_type: 'auto' });
-            });
+        if (req.files['customerPic']) {
+            const customerPic = req.files['customerPic'][0];
+            const customerPicUpload = await cloudinary.uploader.upload(customerPic.path, { resource_type: 'image' });
+            customerPicUrl = customerPicUpload.secure_url;
+            customerPicName = customerPic.originalname;
+        }
 
-            const uploadResults = await Promise.all(uploadPromises);
-            taskAttachments = uploadResults.map(result => ({
-                fileName: result.original_filename,
-                fileUrl: result.secure_url,
-            }));
+        if (req.files['customerLicense']) {
+            const customerLicense = req.files['customerLicense'][0];
+            const customerLicenseUpload = await cloudinary.uploader.upload(customerLicense.path, { resource_type: 'image' });
+            customerLicenseUrl = customerLicenseUpload.secure_url;
+            customerLicenseName = customerLicense.originalname;
         }
 
         const newOrder = new Order({
-            orderId: orderId,
-            custName: custName,
-            custEmail: custEmail,
-            custPhone: custPhone,
-            custAddress: custAddress,
-            orderAmount: orderAmount,
-            orderProducts: orderProducts,
-            orderDate: orderDate,
-            customerPic: customerPic,
-            customerLicense: customerLicense,
+            orderId,
+            custName,
+            custEmail,
+            custPhone,
+            custAddress,
+            orderAmount,
+            orderProducts,
+            orderDate,
+            customerPic: { url: customerPicUrl, name: customerPicName },
+            customerLicense: { url: customerLicenseUrl, name: customerLicenseName },
         });
 
-        let createdOrder = await newOrder.save();
+        const createdOrder = await newOrder.save();
 
         res.status(201).json({
             message: 'Order info added successfully',
-            task: createdOrder,
+            order: createdOrder,
         });
     } catch (error) {
-        console.error('Error occurred while creating the task', error);
+        console.error('Error occurred while creating the order', error);
         res.status(500).json({ message: 'Internal Server Error', error: error.message });
     }
 });
+
+
 
 module.exports = { addOrder };
