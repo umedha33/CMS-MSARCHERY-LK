@@ -255,4 +255,65 @@ const addSale = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addOrder, addContent, addProof, addExpense, addCustNote, addSale };
+
+const getAllContent = asyncHandler(async (req, res) => {
+    try {
+
+        if (!req.user) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const contents = await Content.find({});
+
+        if (contents.length === 0) {
+            res.status(404).json({
+                message: 'No content found',
+            });
+        } else {
+            res.status(200).json({
+                message: 'Contents retrieved successfully',
+                count: contents.length,
+                contents: contents,
+            });
+        }
+    } catch (error) {
+        console.error('Error occurred while fetching the content', error);
+        res.status(500).json({
+            message: 'Internal Server Error',
+            error: error.message,
+        });
+    }
+});
+
+const getAllProof = asyncHandler(async (req, res) => {
+    try {
+
+        if (!req.user) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const proofs = await Proof.find({});
+
+        if (proofs.length === 0) {
+            res.status(404).json({
+                message: 'No proofs found',
+            });
+        } else {
+            res.status(200).json({
+                message: 'Proofs retrieved successfully',
+                count: proofs.length,
+                proofs: proofs,
+            });
+        }
+    } catch (error) {
+        console.error('Error occurred while fetching the proof', error);
+        res.status(500).json({
+            message: 'Internal Server Error',
+            error: error.message,
+        });
+    }
+});
+
+module.exports = { addOrder, addContent, addProof, addExpense, addCustNote, addSale, getAllContent, getAllProof };

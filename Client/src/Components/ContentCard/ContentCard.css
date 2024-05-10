@@ -1,0 +1,259 @@
+.cntnt-itms-panl::-webkit-scrollbar {
+    width: 7px;
+}
+
+.cntnt-itms-panl::-webkit-scrollbar-thumb {
+    background-color: rgba(47, 97, 204, 0.322);
+    border-radius: 5px;
+}
+
+.contnt-card-container {
+    background-color: rgb(34, 130, 209);
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    /* align-items: center; */
+    margin-right: 10px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.cont-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 9rem;
+    height: 9rem;
+    background-color: rgba(166, 181, 199, 0.418);
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cont-card img {
+    width: 100%;
+    /* background-color: aqua; */
+    height: auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.crd-hdr-contn {
+    display: flex;
+    justify-content: center;
+}
+
+.crd-hdr-contn h2 {
+    margin: 15px;
+    color: white;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.cntnt-itms-panl {
+    background-color: #ececec;
+    border-radius: 10px;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0px -1px 5px rgba(15, 63, 194, 0.548);
+}
+
+.cntnt-itms-panl2 {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-y: auto;
+    gap: 10px;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.lodn-cont {
+    display: flex;
+    /* background-color: #2d81ff; */
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.loading-spinner {
+    background-color: #2d81ff49;
+    border: 4px solid rgba(99, 94, 255, 0.241);
+    border-left-color: #3278c7;
+    /* Change this to your desired color */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: loading 1s linear infinite;
+}
+
+.fa-file-pdf {
+    font-size: 5rem;
+    color: #3278c7;
+}
+
+/* ==================================== */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.modal-content a {
+    color: #0645AD;
+    text-decoration: none;
+}
+
+.modal-content a:hover {
+    text-decoration: underline;
+}
+
+.modal-content {
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #333;
+    font-size: 1.4rem;
+}
+
+.modal-content p {
+    color: #666;
+    font-size: 1rem;
+    margin-top: 5px;
+    line-height: 1.5;
+}
+
+
+
+
+
+
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 550px;
+    max-width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    color: #0056b3;
+}
+
+.modal-details121 {
+    /* background-color: #0056b3; */
+    text-align: left;
+    margin-top: 20px;
+}
+
+#mdl-hdr {
+    background-color: #0000001e;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    margin: -10px;
+    margin-bottom: 5px;
+}
+
+.modal-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+#cls-mdl-cntntcard {
+    width: 100%;
+}
+
+.modal-actions button:hover {
+    background-color: #006ee4;
+}
+
+.modal-actions button:last-child {
+    background-color: #ff0019;
+}
+
+.modal-actions button:last-child:hover {
+    background-color: #c82333;
+}
+
+.files-modl23 {
+    background-color: #0066ff44;
+    width: 100%;
+    word-wrap: break-word;
+    border-radius: 10px;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+
+.files-modl23 p {
+    margin: 10px;
+    font-size: 0.9rem;
+}

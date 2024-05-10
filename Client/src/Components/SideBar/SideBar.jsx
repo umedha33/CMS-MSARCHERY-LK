@@ -109,6 +109,9 @@ const SideBar = ({ activeNavElem }) => {
                         <h2 className={`nav-lbl ${activeNavItem === 'MySubmissions' ? 'active' : ''}`} onClick={() => { handleNavItemClick('MySubmissions'); }}>
                             <i className="fa-solid fa-file-export"></i>My Submissions
                         </h2>
+                        <h2 className={`nav-lbl ${activeNavItem === 'MyHub' ? 'active' : ''}`} onClick={() => { handleNavItemClick('MyHub'); }}>
+                            <i className="fa-solid fa-cloud-arrow-down"></i>My Hub
+                        </h2>
                     </div>
                     <div className={`${isSidebarOpen ? 'foot-elements' : 'foot-elements-min'}`}>
                         <hr id='hr-bottom' />

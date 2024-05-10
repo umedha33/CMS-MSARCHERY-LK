@@ -1,0 +1,73 @@
+/* .btm-mysub-panel::-webkit-scrollbar {
+    width: 7px;
+}
+
+.btm-mysub-panel::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 5px;
+} */
+
+.mysub-container {
+    height: 100%;
+}
+
+.row1-mysub-header {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 9px;
+    align-items: center;
+}
+
+.row1-mysub-header h1 {
+    font-size: 1.5rem;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    margin-left: 20px;
+    padding-top: 10px;
+}
+
+.row2-divider-mysub {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    margin-top: 5px;
+    /* margin-bottom: 5px; */
+    gap: 5px;
+    background-color: rgb(224, 224, 224);
+}
+
+.row2-divider-mysub h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-left: 22px;
+    cursor: pointer;
+    color: transparent;
+}
+
+#usrrl-mysbs {
+    margin-right: 30px;
+    font-size: 1.2rem;
+    color: #1246d4;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+}
+
+.myhub-btm-pnl {
+    display: flex;
+    /* background-color: #1246d4; */
+    height: 84%;
+    /* gap: 20px; */
+}
+
+.lft-card-comps {
+    display: flex;
+    /* background-color: #1246d4; */
+    width: 60%;
+}
+
+.right-card-comps {
+    display: flex;
+    width: 40%;
+    /* background-color: indianred; */
+}

@@ -16,6 +16,7 @@ import axios from 'axios';
 import io from 'socket.io-client'
 import { ChatState } from './../context/ChatProvider';
 import MySubmissions from './../Components/MySubmissions/MySubmissions';
+import MyHub from '../Components/MyHub/MyHub';
 
 const ENDPOINT = "http://localhost:4000";
 var socket;
@@ -150,6 +151,9 @@ const AdminDash = () => {
             break;
         case "MySubmissions":
             componentToRender = <MySubmissions />;
+            break;
+        case "MyHub":
+            componentToRender = <MyHub />;
             break;
         case "Settings":
             componentToRender = <Settings />;
