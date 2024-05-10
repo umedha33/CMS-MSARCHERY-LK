@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F2F2F2;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.hh {
+            background-color: #F2F2F2;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        body.hh::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        body.hh::-webkit-scrollbar-thumb {
+            background-color: rgba(24, 24, 24, 0.801);
+            border-radius: 5px;
+        }
+
+        .container {
+            width: 94.5%;
+            margin: 20px;
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #000000;
+            margin: 0;
+        }
+
+        .intro {
+            margin-bottom: 30px;
+            color: #5F5D5D;
+        }
+
+
+        .faq h3 {
+            margin: 15px 0 10px;
+            color: rgb(37, 68, 204);
+            cursor: pointer;
+            background-color: #c5d2ff;
+            padding: 14px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq h3:hover {
+            background-color: #c7ff5e;
+            color: black;
+        }
+
+        .faq p {
+            margin: 10px 0;
+            color: #5F5D5D;
+            display: none;
+            border-left: 3px solid #3c59dd;
+            padding-left: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="hh">
+    <div class="container">
+        <div class="faq">
+            <div class="box">
+                <h3>How do I reset my password?</h3>
+                <p>To reset your password, go to the login page and click on the "Forgot Password" link. Follow the
+                    instructions to reset your password.</p>
+            </div>
+            <div class="box">
+                <h3>How can I update my account information?</h3>
+                <p>You can update your account information by going to the Settings page and editing your profile
+                    details.</p>
+            </div>
+            <div class="box">
+                <h3>What payment methods do you accept?</h3>
+                <p>We accept credit/debit cards, PayPal, and bank transfers as payment methods.</p>
+            </div>
+            <div class="box">
+                <h3>How do I track my order?</h3>
+                <p>You can track your order status by logging into your account and checking the order history section.
+                </p>
+            </div>
+            <div class="box">
+                <h3>Do you offer international shipping?</h3>
+                <p>Yes, we offer international shipping to most countries. Please check our shipping policy for more
+                    details.</p>
+            </div>
+
+            <div class="box">
+                <h3>Can I cancel my order?</h3>
+                <p>You can cancel your order within 24 hours of placing it. After that, please contact customer support
+                    for assistance.</p>
+            </div>
+            <div class="box">
+                <h3>Is my personal information secure?</h3>
+                <p>Yes, we take the security of your personal information seriously. Our website is encrypted and
+                    follows industry best practices for data protection.</p>
+            </div>
+            <div class="box">
+                <h3>How can I contact customer support?</h3>
+                <p>You can contact our customer support team via email at support@example.com or through our live chat
+                    feature during business hours.</p>
+            </div>
+            <div class="box">
+                <h3>What is your return policy?</h3>
+                <p>Our return policy allows you to return items within 30 days of purchase. Please review our detailed
+                    return policy on our website for more information.</p>
+            </div>
+            <div class="box">
+                <h3>Do you offer discounts for bulk orders?</h3>
+                <p>Yes, we offer discounts for bulk orders. Please contact our sales team for inquiries regarding bulk
+                    pricing and discounts.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const faqQuestions = document.querySelectorAll('.faq h3');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+
+</html>

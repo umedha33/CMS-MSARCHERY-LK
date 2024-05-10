@@ -53,9 +53,40 @@ const MyHub = () => {
             ) : (<></>)} */}
 
             {/* for customer care - customer notes*/}
-            {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "Customer-Care" ? (
                 <div className='myhub-btm-pnl'>
                     <CustNoteCard />
+                </div>
+            ) : (<></>)}
+
+            {/* for logistcs and prep - orders*/}
+            {/* {user && user.role === "E-Com-Manager" ? (
+                <div className='myhub-btm-pnl'>
+                    <OrdersCard />
+                </div>
+            ) : (<></>)} */}
+
+            {/* for manager - orders, customer notes*/}
+            {/* {user && user.role === "E-Com-Manager" ? (
+                <div className='myhub-btm-pnl'>
+                    <div className="verticlsss">
+                        <CustNoteCard />
+                        <OrdersCard />
+                    </div>
+                </div>
+            ) : (<></>)} */}
+
+            {/* for admin - all*/}
+            {user && user.role === "E-Com-Manager" ? (
+                <div className='myhub-btm-pnl'>
+                    <div className="verticlsss">
+                        <CustNoteCard />
+                        <OrdersCard />
+                        <ProofsCard />
+                        <ContentCard />
+                        {/* <Expenses /> */}
+                        {/* <Salesrepos /> */}
+                    </div>
                 </div>
             ) : (<></>)}
 
