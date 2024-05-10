@@ -3,6 +3,7 @@ import './MyHub.css'
 import { ChatState } from '../../context/ChatProvider';
 import ContentCard from '../ContentCard/ContentCard';
 import ProofsCard from '../ProofsCard/ProofsCard';
+import OrdersCard from '../OrdersCard/OrdersCard';
 
 const MyHub = () => {
     const { user } = ChatState();
@@ -19,7 +20,7 @@ const MyHub = () => {
                 </div>
             </div>
 
-            {/* for ecom manager - contents,  proofs*/}
+            {/* for ecom manager - contents,  proof*/}
             {/* {user && user.role === "E-Com-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
@@ -31,11 +32,12 @@ const MyHub = () => {
                 </div>
             ) : (<></>)} */}
 
-            {/* for ecom manager - contents,  proofs*/}
+
+            {/* for accountant - orders,  proof*/}
             {user && user.role === "E-Com-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
-                        <ContentCard />
+                        <OrdersCard />
                     </div>
                     <div className="right-card-comps">
                         <ProofsCard />
