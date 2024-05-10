@@ -143,5 +143,23 @@ const addEmpLog = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { registerUser, authUser, allUsers, fetchAllEmp, updateUserStatus, addEmpLog };
+const getEmpLogs = asyncHandler(async (req, res) => {
+    if (!req.user) {
+        res.status(401).send('User not authenticated');
+        return;
+    }
+
+    const logs = await EmpLog.find({})
+        .populate('userId', 'name')
+        .sort({ logId: -1 });
+
+    res.status(200).json({
+        message: 'Employee logs fetched successfully',
+        logs: logs,
+    });
+});
+
+
+
+module.exports = { registerUser, authUser, allUsers, fetchAllEmp, updateUserStatus, addEmpLog, getEmpLogs };
 

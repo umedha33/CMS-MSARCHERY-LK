@@ -10,7 +10,7 @@ const OrdersCard = () => {
     const [selectedOrder, setSelectedOrder] = useState(null);
     const { user } = ChatState();
 
-    const fetchContent = async () => {
+    const fetchOrder = async () => {
         setLoading(true);
 
         try {
@@ -34,7 +34,7 @@ const OrdersCard = () => {
     };
 
     useEffect(() => {
-        fetchContent();
+        fetchOrder();
     }, [])
 
 
