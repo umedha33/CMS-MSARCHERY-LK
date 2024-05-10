@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const cloudinary = require('../config/cloudinary');
 const Order = require('../models/orderModel');
+const Content = require('../models/taskModel');
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
@@ -55,6 +56,48 @@ const addOrder = asyncHandler(async (req, res) => {
     }
 });
 
+const addContent = asyncHandler(async (req, res) => {
+    try {
+        const { contentId, contentTitle } = req.body;
+        let contentAttachments = [];
+
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const content = await Content.findOne({}).sort({ contentId: -1 });
+        const nextContentId = content ? content.contentId + 1 : 1;
+
+        if (req.files && req.files.length > 0) {
+            const uploadPromises = req.files.map(file => {
+                return cloudinary.uploader.upload(file.path, { resource_type: 'auto' });
+            });
+
+            const uploadResults = await Promise.all(uploadPromises);
+            contentAttachments = uploadResults.map(result => ({
+                fileName: result.original_filename,
+                fileUrl: result.secure_url,
+            }));
+        }
+
+        const newContent = new Content({
+            contentId: nextContentId,
+            contentTitle: contentTitle,
+            contentAttachments: contentAttachments,
+        });
+
+        let createdContent = await newContent.save();
+
+        res.status(201).json({
+            message: 'Content created successfully',
+            content: createdContent,
+        });
+    } catch (error) {
+        console.error('Error occurred while creating the content', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
 
 
-module.exports = { addOrder };
+module.exports = { addOrder, addContent };
