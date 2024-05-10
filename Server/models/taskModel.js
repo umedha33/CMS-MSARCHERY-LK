@@ -1,14 +1,28 @@
 const mongoose = require("mongoose");
 
-const contentModel = mongoose.Schema(
+const taskModel = mongoose.Schema(
     {
-        contentId: { type: Number, require: true },
-        contentTitle: { type: String, require: true },
-        contentAttachments: { type: Array },
+        taskId: { type: Number, require: true },
+        taskTitle: { type: String, require: true },
+        taskDescription: { type: String },
+        taskRecipient: { type: String },
+        taskAssigner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        taskAsnDate: {
+            type: Date,
+            default: Date.now
+        },
+        taskDueDate: { type: Date },
+        taskStatus: { type: String },
+        taskAddComments: { type: String },
+        taskRefLinks: { type: String },
+        taskAttachments: { type: Array },
     }, {
     timestamps: true,
 });
 
-const Content = mongoose.model('Contents', contentModel);
+const Task = mongoose.model('Tasks', taskModel);
 
-module.exports = Content;
+module.exports = Task;

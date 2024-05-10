@@ -3,6 +3,7 @@ import './MySubmissions.css'
 import OrderSubmit from '../OrderSubmit/OrderSubmit';
 import { ChatState } from '../../context/ChatProvider';
 import ContentSubmit from '../ContentSubmit/ContentSubmit';
+import ProofSubmit from '../ProofSubmit/ProofSubmit';
 
 const MySubmissions = () => {
 
@@ -19,8 +20,9 @@ const MySubmissions = () => {
                 </div>
             </div>
 
-            {user && user.role === "E-Com-Manager" ? (<OrderSubmit />) : (<></>)}
+            {/* {user && user.role === "E-Com-Manager" ? (<OrderSubmit />) : (<></>)} */}
             {/* {user && user.role === "E-Com-Manager" ? (<ContentSubmit />) : (<></>)} */}
+            {user && user.role === "E-Com-Manager" ? (<ProofSubmit />) : (<></>)}
 
         </div>
     );

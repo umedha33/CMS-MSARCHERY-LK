@@ -1,7 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const cloudinary = require('../config/cloudinary');
 const Order = require('../models/orderModel');
-const Content = require('../models/taskModel');
+const Content = require('../models/contentModel');
+const Proof = require('../models/proofModel');
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
@@ -99,5 +100,48 @@ const addContent = asyncHandler(async (req, res) => {
     }
 });
 
+const addProof = asyncHandler(async (req, res) => {
+    try {
+        const { proofId, proofTitle } = req.body;
+        let proofAttachments = [];
 
-module.exports = { addOrder, addContent };
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const proof = await Proof.findOne({}).sort({ proofId: -1 });
+        const nextProofId = proof ? proof.proofId + 1 : 1;
+
+        if (req.files && req.files.length > 0) {
+            const uploadPromises = req.files.map(file => {
+                return cloudinary.uploader.upload(file.path, { resource_type: 'auto' });
+            });
+
+            const uploadResults = await Promise.all(uploadPromises);
+            proofAttachments = uploadResults.map(result => ({
+                fileName: result.original_filename,
+                fileUrl: result.secure_url,
+            }));
+        }
+
+        const newProof = new Proof({
+            proofId: nextProofId,
+            proofTitle: proofTitle,
+            proofAttachments: proofAttachments,
+        });
+
+        let createdProof = await newProof.save();
+
+        res.status(201).json({
+            message: 'Proof created successfully',
+            proof: createdProof,
+        });
+    } catch (error) {
+        console.error('Error occurred while creating the proof', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+
+module.exports = { addOrder, addContent, addProof };
