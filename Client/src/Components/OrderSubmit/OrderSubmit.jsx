@@ -47,6 +47,12 @@ const OrderSubmit = () => {
     const handleSubmit = async () => {
         setLoading(true);
 
+        if (!orderId || !custName || !custEmail || !custPhone || !custAddress || !orderAmount || !orderProducts || !orderDate) {
+            window.alert("Please fill the required fields!")
+            setLoading(false);
+            return
+        }
+
         const formData = new FormData();
         formData.append('orderId', orderId);
         formData.append('custName', custName);
@@ -88,7 +94,7 @@ const OrderSubmit = () => {
 
     return (
         <div className="btm-mysub-panel">
-            <div className="mysub-btmset">
+            <div className="mysub-btmset44">
                 <div className="inp-fm-sec">
                     <label>Order ID</label>
                     <input type="text" value={orderId} onChange={(e) => setOrderId(e.target.value)} />

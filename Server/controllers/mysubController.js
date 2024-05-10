@@ -4,6 +4,8 @@ const Order = require('../models/orderModel');
 const Content = require('../models/contentModel');
 const Proof = require('../models/proofModel');
 const Expenses = require('../models/expensesModel');
+const CustNote = require('../models/custnoteModel');
+const SalesRepo = require('../models/salesModel');
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
@@ -175,5 +177,82 @@ const addExpense = asyncHandler(async (req, res) => {
     }
 });
 
+const addCustNote = asyncHandler(async (req, res) => {
+    try {
+        const { custNoteTitle, custNoteDescription, custName, custPhone, custNoteDate } = req.body;
+        let custNoteFiles = [];
 
-module.exports = { addOrder, addContent, addProof, addExpense };
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const custnote = await CustNote.findOne({}).sort({ custNoteId: -1 });
+        const nextCustNoteId = custnote ? custnote.custNoteId + 1 : 1;
+
+        if (req.files && req.files.length > 0) {
+            const uploadPromises = req.files.map(file => {
+                return cloudinary.uploader.upload(file.path, { resource_type: 'auto' });
+            });
+
+            const uploadResults = await Promise.all(uploadPromises);
+            custNoteFiles = uploadResults.map(result => ({
+                fileName: result.original_filename,
+                fileUrl: result.secure_url,
+            }));
+        }
+
+        const newCustNote = new CustNote({
+            custNoteId: nextCustNoteId,
+            custNoteTitle: custNoteTitle,
+            custNoteDescription: custNoteDescription,
+            custName: custName,
+            custPhone: custPhone,
+            custNoteFiles: custNoteFiles,
+            custNoteDate: custNoteDate,
+        });
+
+        let createdCustNote = await newCustNote.save();
+
+        res.status(201).json({
+            message: 'Cust note created successfully',
+            custnote: createdCustNote,
+        });
+    } catch (error) {
+        console.error('Error occurred while creating the cust note', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+const addSale = asyncHandler(async (req, res) => {
+    try {
+        const { saleTitle, saleDiscountInfo, saleEndDate } = req.body;
+
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const sale = await SalesRepo.findOne({}).sort({ saleId: -1 });
+        const nextSaleId = sale ? sale.saleId + 1 : 1;
+
+        const newSale = new SalesRepo({
+            saleId: nextSaleId,
+            saleTitle: saleTitle,
+            saleDiscountInfo: saleDiscountInfo,
+            saleEndDate: saleEndDate,
+        });
+
+        const createdSale = await newSale.save();
+
+        res.status(201).json({
+            message: 'Sale info added successfully',
+            sale: createdSale,
+        });
+    } catch (error) {
+        console.error('Error occurred while creating the sale', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+module.exports = { addOrder, addContent, addProof, addExpense, addCustNote, addSale };

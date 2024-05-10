@@ -44,3 +44,11 @@
     cursor: pointer;
     color: transparent;
 }
+
+#usrrl-mysbs {
+    margin-right: 30px;
+    font-size: 1.2rem;
+    color: #1246d4;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+}
