@@ -7,18 +7,18 @@
     border-radius: 5px;
 }
 
-.proof-card-container {
-    background-color: rgb(209, 34, 34);
+.contnt-card-container {
+    background-color: rgb(34, 130, 209);
     display: flex;
     flex-direction: column;
     margin: 20px;
     /* align-items: center; */
-    margin-left: 10px;
+    /* margin-right: 10px; */
     width: 100%;
     border-radius: 10px;
 }
 
-.proof-card {
+.cont-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +31,7 @@
     cursor: pointer;
 }
 
-.proof-card img {
+.cont-card img {
     width: 100%;
     /* background-color: aqua; */
     height: auto;
@@ -59,13 +59,90 @@
     box-shadow: 0px -1px 5px rgba(15, 63, 194, 0.548);
 }
 
-.cntnt-itms-panl24 {
+.cntnt-itms-panl23 {
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
 }
 
+/* ===================================== */
+.cust-note-card {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(41, 112, 218, 0.301);
+    width: 100%;
+    margin: 10px 5px;
+    margin-bottom: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.cust-note-card h3 {
+    color: #0254b7;
+    width: 20%;
+    /* background-color: #c8233360; */
+    /* Example color */
+    /* margin-bottom: 5px; */
+}
+
+#note-id {
+    color: #0254b7;
+    /* margin-bottom: 10px; */
+    /* background-color: #c8233360; */
+    width: 2%;
+    margin-right: -10px;
+}
+
+.cust-note-card p {
+    color: #474747;
+    /* margin-bottom: 10px; */
+    /* background-color: #c8233360; */
+    width: 30%;
+    margin-left: 10px;
+}
+
+.cust-data-set {
+    background-color: #00000034;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: #363636;
+    font-family: "Roboto", sans-serif;
+}
+
+#custname-spn {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.cust-note-file {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background-color: rgba(137, 43, 226, 0.219);
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: -10px;
+    gap: 5px;
+}
+
+.cust-note-file a {
+    color: #531a9e;
+    text-decoration: none;
+}
+
+.cust-note-file a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================== */
 @keyframes loading {
     0% {
         transform: rotate(0deg);
@@ -76,7 +153,7 @@
     }
 }
 
-.lodn-proof {
+.lodn-cont {
     display: flex;
     /* background-color: #2d81ff; */
     align-items: center;
@@ -88,6 +165,7 @@
     background-color: #2d81ff49;
     border: 4px solid rgba(99, 94, 255, 0.241);
     border-left-color: #3278c7;
+    /* Change this to your desired color */
     border-radius: 50%;
     width: 30px;
     height: 30px;

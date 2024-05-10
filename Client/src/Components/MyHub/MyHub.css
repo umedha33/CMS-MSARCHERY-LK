@@ -63,11 +63,12 @@
 .lft-card-comps {
     display: flex;
     /* background-color: #1246d4; */
-    width: 60%;
+    width: 70%;
+    margin-right: -10px;
 }
 
 .right-card-comps {
     display: flex;
-    width: 40%;
+    width: 35%;
     /* background-color: indianred; */
 }

@@ -4,6 +4,7 @@ import { ChatState } from '../../context/ChatProvider';
 import ContentCard from '../ContentCard/ContentCard';
 import ProofsCard from '../ProofsCard/ProofsCard';
 import OrdersCard from '../OrdersCard/OrdersCard';
+import CustNoteCard from '../CustNoteCard/CustNoteCard';
 
 const MyHub = () => {
     const { user } = ChatState();
@@ -20,7 +21,7 @@ const MyHub = () => {
                 </div>
             </div>
 
-            {/* for ecom manager - contents,  proof*/}
+            {/* for ecom manager - content,  proof*/}
             {/* {user && user.role === "E-Com-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
@@ -32,9 +33,8 @@ const MyHub = () => {
                 </div>
             ) : (<></>)} */}
 
-
             {/* for accountant - orders,  proof*/}
-            {user && user.role === "E-Com-Manager" ? (
+            {/* {user && user.role === "E-Com-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
                         <OrdersCard />
@@ -43,10 +43,24 @@ const MyHub = () => {
                         <ProofsCard />
                     </div>
                 </div>
+            ) : (<></>)} */}
+
+            {/* for sales and marketing - content*/}
+            {/* {user && user.role === "E-Com-Manager" ? (
+                <div className='myhub-btm-pnl'>
+                    <ContentCard />
+                </div>
+            ) : (<></>)} */}
+
+            {/* for customer care - customer notes*/}
+            {user && user.role === "E-Com-Manager" ? (
+                <div className='myhub-btm-pnl'>
+                    <CustNoteCard />
+                </div>
             ) : (<></>)}
 
 
-        </div>
+        </div >
     );
 }
 

@@ -346,4 +346,34 @@ const getAllOrders = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addOrder, addContent, addProof, addExpense, addCustNote, addSale, getAllContent, getAllProof, getAllOrders };
+const getAllCustNoes = asyncHandler(async (req, res) => {
+    try {
+
+        if (!req.user) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const custnote = await CustNote.find({});
+
+        if (custnote.length === 0) {
+            res.status(404).json({
+                message: 'No custnote found',
+            });
+        } else {
+            res.status(200).json({
+                message: 'Custnotes retrieved successfully',
+                count: custnote.length,
+                custnote: custnote,
+            });
+        }
+    } catch (error) {
+        console.error('Error occurred while fetching the custnote', error);
+        res.status(500).json({
+            message: 'Internal Server Error',
+            error: error.message,
+        });
+    }
+});
+
+module.exports = { addOrder, addContent, addProof, addExpense, addCustNote, addSale, getAllContent, getAllProof, getAllOrders, getAllCustNoes };

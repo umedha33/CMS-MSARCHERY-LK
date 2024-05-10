@@ -13,7 +13,7 @@
     flex-direction: column;
     margin: 20px;
     /* align-items: center; */
-    margin-right: 10px;
+    /* margin-right: 10px; */
     width: 100%;
     border-radius: 10px;
 }
@@ -59,12 +59,11 @@
     box-shadow: 0px -1px 5px rgba(15, 63, 194, 0.548);
 }
 
-.cntnt-itms-panl2 {
+.cntnt-itms-panl23 {
     padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    overflow-y: auto;
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 @keyframes loading {

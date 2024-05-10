@@ -54,7 +54,7 @@ const ProofsCard = () => {
             </div>
             <div className="cntnt-itms-panl">
                 {!loading ? (
-                    <div className="cntnt-itms-panl2">
+                    <div className="cntnt-itms-panl24">
                         {proofs.map((proof, idx) => (
                             proof.proofAttachments.map((attachment, attIdx) => {
                                 const isImage = /\.(jpg|jpeg|png|gif)$/.test(attachment.fileUrl);
