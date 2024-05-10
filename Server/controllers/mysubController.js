@@ -3,6 +3,7 @@ const cloudinary = require('../config/cloudinary');
 const Order = require('../models/orderModel');
 const Content = require('../models/contentModel');
 const Proof = require('../models/proofModel');
+const Expenses = require('../models/expensesModel');
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
@@ -143,5 +144,36 @@ const addProof = asyncHandler(async (req, res) => {
     }
 });
 
+const addExpense = asyncHandler(async (req, res) => {
+    try {
+        const { expTitle, expDescription, expAmount } = req.body;
 
-module.exports = { addOrder, addContent, addProof };
+        if (!req.user || !req.user._id) {
+            res.status(401);
+            throw new Error('User not authenticated');
+        }
+
+        const expense = await Expenses.findOne({}).sort({ expId: -1 });
+        const nextExpenseId = expense ? expense.expId + 1 : 1;
+
+        const newExpense = new Expenses({
+            expId: nextExpenseId,
+            expTitle: expTitle,
+            expDescription: expDescription,
+            expAmount: expAmount,
+        });
+
+        const createdExpense = await newExpense.save();
+
+        res.status(201).json({
+            message: 'Expense info added successfully',
+            expense: createdExpense,
+        });
+    } catch (error) {
+        console.error('Error occurred while creating the expense', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
+
+module.exports = { addOrder, addContent, addProof, addExpense };

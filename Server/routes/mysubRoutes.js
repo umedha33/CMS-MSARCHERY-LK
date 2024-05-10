@@ -1,7 +1,7 @@
 const express = require('express');
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/multer');
-const { addOrder, addContent, addProof } = require('../controllers/mysubController');
+const { addOrder, addContent, addProof, addExpense } = require('../controllers/mysubController');
 
 const router = express.Router();
 
@@ -11,6 +11,7 @@ router.post('/addOrder', protect, upload.fields([
 ]), addOrder);
 router.post('/addContent', protect, upload.array('contentAttachments'), addContent);
 router.post('/addProof', protect, upload.array('proofAttachments'), addProof);
+router.post('/addExpense', protect, addExpense);
 
 
 module.exports = router;
