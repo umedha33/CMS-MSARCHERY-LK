@@ -9,7 +9,7 @@ const Sales = () => {
   return (
     <div className='sales-rprts-container'>
       <OrdersChart />
-      {/* <EmpLogChart /> */}
+      <EmpLogChart />
     </div>
   );
 };
