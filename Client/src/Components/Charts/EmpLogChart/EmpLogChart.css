@@ -1,34 +1,52 @@
-.sales-rprts-container {
-    padding: 20px;
+.emp-log-chart-container {
+    padding: 20px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 95%;
+    background-color: rgba(0, 0, 0, 0.055);
+    border-radius: 10px;
+    margin-top: -5px;
 }
 
-.emp-work-chrt {
-    width: 80%;
-    max-width: 700px;
+.emp-log-chart-wrapper {
+    width: 100%;
     background: #f8f9fa;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 8px;
 }
 
-.month-navigator {
+.emp-log-chart-month-navigator {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 20px;
+    /* background-color: aqua; */
+    margin-left: -50px;
+    margin-right: 40px;
 }
 
-.month-navigator button {
-    padding: 10px;
+.emp-log-chart-month-navigator button {
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 30px;
     margin: 0 20px;
-    font-size: 16px;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    background-color: rgb(54, 54, 211);
+    color: white;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
 }
 
-.month-navigator button:disabled {
+.emp-log-chart-month-navigator button:disabled {
     cursor: default;
     opacity: 0.5;
+}
+
+.emp-log-chart-chart {
+    width: 60%;
 }

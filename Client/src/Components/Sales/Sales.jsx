@@ -9,9 +9,11 @@ const Sales = () => {
 
   return (
     <div className='sales-rprts-container'>
-      <OrdersChart />
-      {/* <EmpLogChart /> */}
-      {/* <ExpensesChart /> */}
+      <div className="scroll-contnr">
+        <OrdersChart />
+        <EmpLogChart />
+        <ExpensesChart />
+      </div>
     </div>
   );
 };

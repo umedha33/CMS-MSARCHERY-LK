@@ -70,7 +70,7 @@ const ExpensesChart = () => {
             y: {
                 title: {
                     display: true,
-                    text: 'Amount ($)',
+                    text: 'Amount (LKR)',
                 },
             },
         },

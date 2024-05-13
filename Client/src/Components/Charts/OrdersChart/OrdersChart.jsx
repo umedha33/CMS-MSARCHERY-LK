@@ -129,12 +129,12 @@ const OrdersChart = () => {
                         label: 'Most Sold Product',
                         data: [orders.filter(order => order.orderProducts === mostSoldProduct).length, orders.length - orders.filter(order => order.orderProducts === mostSoldProduct).length],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(22, 169, 234, 0.53)',
+                            'rgba(22, 169, 92, 0.53)',
                         ],
                         borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
+                            'rgba(22, 169, 234, 0.53)',
+                            'rgba(22, 169, 92, 0.53)',
                         ],
                         borderWidth: 1
                     }]

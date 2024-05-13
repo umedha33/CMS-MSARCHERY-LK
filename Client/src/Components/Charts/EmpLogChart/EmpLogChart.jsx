@@ -101,18 +101,22 @@ const EmpLogChart = () => {
     };
 
     return (
-        <div className='sales-rprts-container'>
-            <div className="month-navigator">
+        <div className='emp-log-chart-container'>
+            {/* <div className="emp-log-chart-wrapper"> */}
+
+            <div className="emp-log-chart-month-navigator">
                 <button disabled={minMonthAvailable && currentMonth <= minMonthAvailable} onClick={() => changeMonth(-1)}>Prev</button>
                 <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
                 <button disabled={currentMonth >= new Date()} onClick={() => changeMonth(1)}>Next</button>
             </div>
-            <div className="emp-work-chrt">
+            <div className="emp-log-chart-chart">
                 {loading ? <p>Loading...</p> : (chartData.labels.length > 0 ? (
                     <Bar data={chartData} options={{ scales: { y: { beginAtZero: true } } }} />
                 ) : <p>No data before this month.</p>)}
             </div>
         </div>
+        // </div>
+
     );
 };
 
