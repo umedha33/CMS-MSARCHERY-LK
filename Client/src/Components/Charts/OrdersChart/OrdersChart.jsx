@@ -153,18 +153,19 @@ const OrdersChart = () => {
 
     return (
         <div className='orders-rprts-container'>
-            <div className="month-navigator">
-                <button onClick={() => changeMonth(-1)}>Prev</button>
-                <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-                <button disabled={currentMonth >= new Date()} onClick={() => changeMonth(1)}>Next</button>
-            </div>
             <div className="income-info">
-                <p>Total Income: ${monthlyIncome}</p>
-                <p>Most Expensive Product: {mostExpensiveProduct}</p>
-                <p>Least Expensive Product: {leastExpensiveProduct}</p>
-                <p>Total Orders: {totalOrders}</p>
-                <p>Average Order Amount: ${averageOrderAmount}</p>
-                <p>Total Unique Products Sold: {totalUniqueProducts}</p>
+                <div className="month-navigator">
+                    <button onClick={() => changeMonth(-1)}>Prev</button>
+                    <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+                    <button disabled={currentMonth >= new Date()} onClick={() => changeMonth(1)}>Next</button>
+                </div>
+                <div className="ords-ps-txt">
+                    <p>Total Income: ${monthlyIncome}</p>
+                    <p>Most Expensive Product: {mostExpensiveProduct}</p>
+                    <p>Least Expensive Product: {leastExpensiveProduct}</p>
+                    <p>Total Orders: {totalOrders}</p>
+                    <p>Total Unique Products Sold: {totalUniqueProducts}</p>
+                </div>
             </div>
             <div className="chart-container">
                 <canvas id="myChart"></canvas>
