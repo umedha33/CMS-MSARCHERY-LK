@@ -1,7 +1,7 @@
 const express = require('express');
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/multer');
-const { addOrder, addContent, addProof, addExpense, addCustNote, addSale, getAllContent, getAllProof, getAllOrders, getAllCustNoes } = require('../controllers/mysubController');
+const { addOrder, addContent, addProof, addExpense, addCustNote, addSale, getAllContent, getAllProof, getAllOrders, getAllCustNoes, getAllExpenses } = require('../controllers/mysubController');
 
 const router = express.Router();
 
@@ -19,5 +19,6 @@ router.get('/fetchOrder', protect, getAllOrders);
 router.get('/fetchContent', protect, getAllContent);
 router.get('/fetchProof', protect, getAllProof);
 router.get('/fetchCustNote', protect, getAllCustNoes);
+router.get('/fetchExpense', protect, getAllExpenses);
 
 module.exports = router;
