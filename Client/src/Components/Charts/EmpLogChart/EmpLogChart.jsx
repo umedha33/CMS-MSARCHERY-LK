@@ -20,19 +20,18 @@ const EmpLogChart = () => {
             borderWidth: 1
         }]
     });
-    const [minMonthAvailable, setMinMonthAvailable] = useState(null);
+    const [csvUrl, setCsvUrl] = useState(null);
 
     useEffect(() => {
         fetchEmpLogs();
-        // Fetch minimum month available from the logs
-        findMinMonth();
     }, []);
 
     useEffect(() => {
         if (emplogs.length) {
             prepareChartData();
+            generateCSV();
         }
-    }, [currentMonth]);
+    }, [emplogs, currentMonth]);
 
     const fetchEmpLogs = async () => {
         setLoading(true);
@@ -86,37 +85,39 @@ const EmpLogChart = () => {
         setChartData(chartData);
     };
 
+    const generateCSV = () => {
+        let csvContent = "";
+        csvContent += "UserId,UserName,StartTime,EndTime,DurationHours\n"; // Column headers
+        emplogs.forEach(log => {
+            const durationHours = ((new Date(log.endTime) - new Date(log.startTime)) / 1000).toFixed(0);
+            csvContent += `${log.userId._id},${log.userId.name},${log.startTime},${log.endTime},${durationHours}\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        setCsvUrl(URL.createObjectURL(blob));
+    };
+
     const changeMonth = (delta) => {
         const newMonth = new Date(currentMonth.setMonth(currentMonth.getMonth() + delta));
         setCurrentMonth(newMonth);
     };
 
-    const findMinMonth = () => {
-        const minDate = emplogs.reduce((min, log) => {
-            const startDate = new Date(log.startTime);
-            return startDate < min ? startDate : min;
-        }, new Date());
-
-        setMinMonthAvailable(minDate);
-    };
-
     return (
         <div className='emp-log-chart-container'>
-            {/* <div className="emp-log-chart-wrapper"> */}
-
-            <div className="emp-log-chart-month-navigator">
-                <button disabled={minMonthAvailable && currentMonth <= minMonthAvailable} onClick={() => changeMonth(-1)}>Prev</button>
-                <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
-                <button disabled={currentMonth >= new Date()} onClick={() => changeMonth(1)}>Next</button>
+            <div className="navi-csv-set">
+                <div className="emp-log-chart-month-navigator">
+                    <button onClick={() => changeMonth(-1)}>Prev</button>
+                    <span>{currentMonth.toLocaleString('default', { month: 'long', year: 'numeric' })}</span>
+                    <button onClick={() => changeMonth(1)}>Next</button>
+                </div>
+                {csvUrl && <a id='anch-csv' href={csvUrl} download="EmpLogs.csv">Employee Activity Logs CSV <i className="fa-solid fa-file-csv"></i></a>}
             </div>
             <div className="emp-log-chart-chart">
                 {loading ? <p>Loading...</p> : (chartData.labels.length > 0 ? (
                     <Bar data={chartData} options={{ scales: { y: { beginAtZero: true } } }} />
-                ) : <p>No data before this month.</p>)}
+                ) : <p>No data for this month.</p>)}
             </div>
         </div>
-        // </div>
-
     );
 };
 

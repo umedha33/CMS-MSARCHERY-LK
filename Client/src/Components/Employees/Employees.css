@@ -88,8 +88,8 @@
 }
 
 .empCard img {
-    width: 50%;
-    height: auto;
+    width: 10rem;
+    height: 10rem;
     padding-bottom: 10px;
     padding-top: 20px;
     border-radius: 50%;

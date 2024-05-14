@@ -22,7 +22,7 @@ const MyHub = () => {
             </div>
 
             {/* for ecom manager - content,  proof*/}
-            {/* {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "E-Com-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
                         <ContentCard />
@@ -31,10 +31,10 @@ const MyHub = () => {
                         <ProofsCard />
                     </div>
                 </div>
-            ) : (<></>)} */}
+            ) : (<></>)}
 
             {/* for accountant - orders,  proof*/}
-            {/* {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "Accountant" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="lft-card-comps">
                         <OrdersCard />
@@ -43,14 +43,14 @@ const MyHub = () => {
                         <ProofsCard />
                     </div>
                 </div>
-            ) : (<></>)} */}
+            ) : (<></>)}
 
             {/* for sales and marketing - content*/}
-            {/* {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "Sales-Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <ContentCard />
                 </div>
-            ) : (<></>)} */}
+            ) : (<></>)}
 
             {/* for customer care - customer notes*/}
             {user && user.role === "Customer-Care" ? (
@@ -60,21 +60,21 @@ const MyHub = () => {
             ) : (<></>)}
 
             {/* for logistcs and prep - orders*/}
-            {/* {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "Logistics-Preperation" ? (
                 <div className='myhub-btm-pnl'>
                     <OrdersCard />
                 </div>
-            ) : (<></>)} */}
+            ) : (<></>)}
 
             {/* for manager - orders, customer notes*/}
-            {/* {user && user.role === "E-Com-Manager" ? (
+            {user && user.role === "Manager" ? (
                 <div className='myhub-btm-pnl'>
                     <div className="verticlsss">
                         <CustNoteCard />
                         <OrdersCard />
                     </div>
                 </div>
-            ) : (<></>)} */}
+            ) : (<></>)}
 
             {/* for admin - all*/}
             {user && user.role === "E-Com-Manager" ? (

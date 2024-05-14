@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './OrdersChart.css';
 import axios from 'axios';
-import { ChatState } from '../../../context/ChatProvider';
 import Chart from 'chart.js/auto';
+import { ChatState } from '../../../context/ChatProvider';
 
 const OrdersChart = () => {
     const [loading, setLoading] = useState(false);
@@ -16,6 +16,7 @@ const OrdersChart = () => {
     const [totalOrders, setTotalOrders] = useState(0);
     const [averageOrderAmount, setAverageOrderAmount] = useState(0);
     const [totalUniqueProducts, setTotalUniqueProducts] = useState(0);
+    const [csvUrl, setCsvUrl] = useState(null); // State to store the CSV URL
 
     const fetchOrder = async () => {
         setLoading(true);
@@ -33,19 +34,36 @@ const OrdersChart = () => {
             if (data) {
                 console.log('All orders data:', data.order);
                 setOrders(data.order);
-                setLoading(false);
-                calculateMonthlyIncome();
-                findMostAndLeastExpensiveProducts();
-                findMostSoldProduct();
-                calculateTotalOrders();
-                calculateAverageOrderAmount();
-                calculateTotalUniqueProducts();
             }
         } catch (error) {
-            console.error('Error submitting the order:', error);
+            console.error('Error fetching the orders:', error);
+        } finally {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        fetchOrder();
+    }, []);
+
+    useEffect(() => {
+        calculateMonthlyIncome();
+        findMostAndLeastExpensiveProducts();
+        findMostSoldProduct();
+        calculateTotalOrders();
+        calculateAverageOrderAmount();
+        calculateTotalUniqueProducts();
+    }, [currentMonth, orders]);
+
+    useEffect(() => {
+        if (mostSoldProduct) {
+            renderCircularChart();
+        }
+    }, [mostSoldProduct]);
+
+    useEffect(() => {
+        generateCSV(orders); // Generate CSV when orders update
+    }, [orders]);
 
     const calculateMonthlyIncome = () => {
         const filteredOrders = orders.filter(order => {
@@ -93,30 +111,16 @@ const OrdersChart = () => {
         setTotalUniqueProducts(uniqueProducts.size);
     };
 
-    const changeMonth = (delta) => {
-        const newMonth = new Date(currentMonth.setMonth(currentMonth.getMonth() + delta));
-        setCurrentMonth(newMonth);
+    const generateCSV = (ordersData) => {
+        let csvContent = "";
+        csvContent += "Order Date,Order Amount,Order Products\n"; // Column headers
+        ordersData.forEach(order => {
+            csvContent += `${order.orderDate},${order.orderAmount},${order.orderProducts}\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        setCsvUrl(URL.createObjectURL(blob));
     };
-
-    useEffect(() => {
-        fetchOrder();
-    }, []);
-
-    useEffect(() => {
-        calculateMonthlyIncome();
-        findMostAndLeastExpensiveProducts();
-        findMostSoldProduct();
-        calculateTotalOrders();
-        calculateAverageOrderAmount();
-        calculateTotalUniqueProducts();
-    }, [currentMonth, orders]);
-
-    useEffect(() => {
-        if (mostSoldProduct) {
-            // Render circular chart here using mostSoldProduct
-            renderCircularChart();
-        }
-    }, [mostSoldProduct]);
 
     const renderCircularChart = () => {
         const ctx = document.getElementById('myChart');
@@ -151,6 +155,11 @@ const OrdersChart = () => {
         }
     };
 
+    const changeMonth = (delta) => {
+        const newMonth = new Date(currentMonth.setMonth(currentMonth.getMonth() + delta));
+        setCurrentMonth(newMonth);
+    };
+
     return (
         <div className='orders-rprts-container'>
             <div className="income-info">
@@ -160,11 +169,14 @@ const OrdersChart = () => {
                     <button disabled={currentMonth >= new Date()} onClick={() => changeMonth(1)}>Next</button>
                 </div>
                 <div className="ords-ps-txt">
-                    <p>Total Income: ${monthlyIncome}</p>
-                    <p>Most Expensive Product: {mostExpensiveProduct}</p>
-                    <p>Least Expensive Product: {leastExpensiveProduct}</p>
+                    <p>Total Income: {monthlyIncome} LKR</p>
+                    {/* <p>Most Expensive Product: {mostExpensiveProduct}</p> */}
+                    {/* <p>Least Expensive Product: {leastExpensiveProduct}</p> */}
+                    <p>Most Sold Product: {mostSoldProduct}</p>
                     <p>Total Orders: {totalOrders}</p>
+                    <p>Average Order Amount: {averageOrderAmount} LKR</p>
                     <p>Total Unique Products Sold: {totalUniqueProducts}</p>
+                    {csvUrl && <a id='anch-ords-csv' href={csvUrl} download="Orders.csv">Download Orders CSV <i className="fa-solid fa-file-csv"></i></a>}
                 </div>
             </div>
             <div className="chart-container">
